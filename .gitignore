@@ -1,0 +1,7 @@
+*.a
+*.o
+*.out
+.*.swp
+*.gch
+.DS_Store
+lem_in.dSYM
