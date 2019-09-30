@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_node.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 13:35:09 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/26 16:23:32 by afaddoul         ###   ########.fr       */
+/*   Created: 2018/10/16 12:26:02 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/09/27 15:00:23 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-t_lst				*add_node(t_lst *head, char *line)
+long long		ft_atol(const char *str)
 {
-	t_lst			*current;
-	t_lst			*node;
+	int			i;
+	int			sign;
+	long long	nbr;
 
-	if (!(node = ft_memalloc(sizeof(t_lst))))
-		return (NULL);
-	node->line = ft_strdup(line);
-	if (head == NULL)
+	i = 0;
+	sign = 0;
+	nbr = 0;
+	while ((str[i] > 8 && str[i] < 14) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= 48 && str[i] <= 57)
 	{
-		node->next = NULL;
-		return (node);
+		nbr = nbr * 10;
+		nbr = nbr + (str[i] - 48);
+		i++;
 	}
-	else
-	{
-		current = head;
-		while (current->next)
-			current = current->next;
-		current->next = node;
-		node->next = NULL;
-	}
-	return (node);
+	if (sign == -1)
+		return (-nbr);
+	return (nbr);
 }

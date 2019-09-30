@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_dlstnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/18 21:23:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 12:48:39 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/09/28 16:11:36 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/09/28 16:12:14 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+t_dlist	*ft_dlstnew(void)
 {
-	write(1, s, ft_strlen(s));
+	return ((t_dlist*)ft_memalloc(sizeof(t_dlist)));
 }

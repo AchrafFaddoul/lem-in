@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   dummy_del.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/18 21:23:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 12:48:39 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/09/30 10:24:39 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/09/30 11:27:34 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+void 	dummy_del(void *content)
 {
-	write(1, s, ft_strlen(s));
+	ft_strdel((char **)(&content));
 }

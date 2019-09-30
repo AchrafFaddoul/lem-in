@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_lst.c                                         :+:      :+:    :+:   */
+/*   ft_farmnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/26 13:51:37 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/26 14:09:34 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/09/28 13:33:18 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/09/30 11:06:10 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	free_lst(t_lst *lst)
+t_farm		*ft_farmnew(void)
 {
-	t_lst *tmp;
-
-	while (lst)
-	{
-		ft_strdel(&(lst->line));
-		tmp = lst;
-		lst = lst->next;
-		free(tmp);
-	}
+	return ((t_farm*)ft_memalloc(sizeof(t_farm)));
 }

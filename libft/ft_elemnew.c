@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_elemnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/18 21:23:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 12:48:39 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/09/28 16:12:23 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/09/30 10:26:43 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+t_element	*ft_elemnew(const void *content)
 {
-	write(1, s, ft_strlen(s));
+	t_element	*elm;
+
+	elm = (t_element*)ft_memalloc(sizeof(t_element));
+	if (!elm)
+		return (NULL);
+	elm->content = (void*)content;
+	return (elm);
 }

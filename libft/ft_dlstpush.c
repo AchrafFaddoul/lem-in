@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_dlstpush.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/18 21:23:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 12:48:39 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/09/28 16:14:27 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/09/30 11:21:41 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+void	ft_dlstpush(t_dlist *lst, t_element *elm)
 {
-	write(1, s, ft_strlen(s));
+	lst->size++;
+	if (!lst->head)
+	{
+		lst->head = elm;
+		lst->tail = elm;
+		return ;
+	}
+	lst->tail->next = elm;
+	elm->prev = lst->tail;
+	lst->tail = elm;
 }
