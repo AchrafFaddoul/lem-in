@@ -6,7 +6,7 @@
 /*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 18:30:53 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/09/30 19:55:59 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-ttypedef struct			s_room
+typedef struct			s_room
 {
 	char				*room;
 	long long 			hash_code;
