@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 18:52:40 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/01 20:31:01 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,47 @@ static int		get_type(const char *line)
 	return (T_VERTEX);
 }
 
-t_element		*ft_getrooms(t_farm *farm, ft_dlist *lst)
+t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
 {
-	t_dlist		*elm;
 	t_element	*current;
+	t_room		*room;
 	int 		ret;
 
 	current = lst->head;
+	farm->rooms = ft_dlstnew();
 	while (current)
 	{
 		if (!(ret = get_type(current->content)))
 			return (NULL);
-		if (ret == T_START)
+		if (ret == T_COMMENT)
 		{
-			if (farm->rooms->start)
+			current = current->next;
+			continue ;
+		}
+		else if (ret == T_START)
+		{
+			if (farm->start)
 				return (NULL);
 			current = current->next;
+			if (!(room = ft_roomparse((char*)(current->content))))
+				return (NULL);
+			ft_dlstpush(farm->rooms, ft_elemnew(room));
 		}
-		if (ret == T_END)
+		else if (ret == T_END)
 		{
-			if (farm->rooms->end)
+			if (farm->end)
 				return (NULL);
 			current = current->next;
+			if (!(room = ft_roomparse((char*)(current->content))))
+				return (NULL);
+			ft_dlstpush(farm->rooms, ft_elemnew(room));
 		}
+		else if (!(room = ft_roomparse((char*)(current->content))))
+			return (NULL);
+		ft_dlstpush(farm->rooms, ft_elemnew(room));
 		current = current ? current->next : NULL;
+		if (ft_countof(current->content, '-') == 1)
+			break ;
 	}
 	return (current);
 }

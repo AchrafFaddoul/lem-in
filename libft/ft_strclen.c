@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_farmnew.c                                       :+:      :+:    :+:   */
+/*   ft_strclen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/28 13:33:18 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/01 15:29:19 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/10/01 13:51:31 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/10/01 13:53:54 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-t_farm		*ft_farmnew(void)
+size_t		ft_strclen(const char *str, char c)
 {
-	return ((t_farm*)ft_memalloc(sizeof(t_farm)));
+	int 	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
 }

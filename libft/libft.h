@@ -6,7 +6,7 @@
 /*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 11:20:27 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 17:37:38 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/01 16:23:26 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,7 @@ t_dlist					*ft_dlstnew(void);
 void					ft_dlstdel(t_dlist **lst, void (*del)(void*));
 void					ft_dlstpush(t_dlist *lst, t_element *elm);
 void					dummy_del(void *content);
+size_t					ft_strclen(const char *str, char c);
+char					*ft_strndup(const char *src, size_t n);
 
 #endif

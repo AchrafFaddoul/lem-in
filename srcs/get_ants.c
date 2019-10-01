@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:09:53 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 14:14:40 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/01 19:20:20 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int 			get_ants(t_farm *farm, char *line)
 		return (0);
 	if (!(ft_isoverflow(line)))
 		return (0);
-	farm->ants = ft_atol(line);
+	if(!(farm->ants = ft_atol(line)))
+		return (0);
 	return (1);
 }
