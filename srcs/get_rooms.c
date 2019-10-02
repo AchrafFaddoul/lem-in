@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/01 20:31:01 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/02 09:26:51 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
 			current = current->next;
 			if (!(room = ft_roomparse((char*)(current->content))))
 				return (NULL);
+			farm->start = room;
 			ft_dlstpush(farm->rooms, ft_elemnew(room));
 		}
 		else if (ret == T_END)
@@ -64,11 +65,13 @@ t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
 			current = current->next;
 			if (!(room = ft_roomparse((char*)(current->content))))
 				return (NULL);
+			farm->end = room;
 			ft_dlstpush(farm->rooms, ft_elemnew(room));
 		}
 		else if (!(room = ft_roomparse((char*)(current->content))))
 			return (NULL);
-		ft_dlstpush(farm->rooms, ft_elemnew(room));
+		else
+			ft_dlstpush(farm->rooms, ft_elemnew(room));
 		current = current ? current->next : NULL;
 		if (ft_countof(current->content, '-') == 1)
 			break ;

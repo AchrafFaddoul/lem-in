@@ -6,7 +6,7 @@
 /*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/01 20:31:12 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/02 09:24:27 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct			s_farm
 	long long			ants;
 	t_dlist				*rooms;
 	t_dlist				*edges;
-	t_element			*start;
-	t_element			*end;
+	t_room				*start;
+	t_room				*end;
 	// t_hashmap			*rooms_map;
 	// t_hashmap			*edges_map;
 }						t_farm;
