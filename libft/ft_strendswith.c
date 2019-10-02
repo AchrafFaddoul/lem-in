@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupcase.c                                     :+:      :+:    :+:   */
+/*   ft_strendswith.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 11:36:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2018/10/23 17:54:16 by afaddoul         ###   ########.fr       */
+/*   Created: 2018/10/10 20:34:09 by ybahlaou          #+#    #+#             */
+/*   Updated: 2018/10/29 13:31:22 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-char	*ft_strupcase(char *str)
+int	ft_strendswith(const char *str, const char *sub)
 {
-	int		i;
+	size_t	str_len;
+	size_t	sub_len;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] >= 'A' && str[i] <= 'Z')
-			i++;
-		else if (str[i] >= 'a' && str[i] <= 'z')
-		{
-			str[i] -= 32;
-			i++;
-		}
-		else
-			i++;
-	}
-	return (str);
+	str_len = ft_strlen(str);
+	sub_len = ft_strlen(sub);
+	if (str_len < sub_len)
+		return (0);
+	return (ft_strequ(str + str_len - sub_len, sub));
 }

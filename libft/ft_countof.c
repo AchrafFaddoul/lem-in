@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_countof.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/02 08:50:38 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/02 10:01:51 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/10/29 17:21:29 by ybahlaou          #+#    #+#             */
+/*   Updated: 2018/10/29 17:22:30 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t 		ft_countof(const char *str, int c)
+size_t	ft_countof(const char *str, char c)
 {
-	size_t	counter;
+	size_t	count;
 
-	counter  = 0;
-	while(*str)
+	count = 0;
+	while (*str)
 	{
 		if (*str == c)
-			counter++;
+			count++;
 		str++;
 	}
-	return (counter);
+	return (count);
 }

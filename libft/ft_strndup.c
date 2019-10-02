@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 13:56:31 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/01 13:56:55 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/04/18 02:30:04 by ybahlaou          #+#    #+#             */
+/*   Updated: 2019/04/18 03:53:13 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include "libft.h"
-
-char    *ft_strndup(const char *src, size_t n)
+char	*ft_strndup(const char *src, size_t n)
 {
-	char    *str;
-	size_t    i;
+	char	*str;
+	size_t	i;
 
 	i = ft_strlen(src);
 	if (n >= i)

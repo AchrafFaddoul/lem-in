@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/15 21:09:01 by afaddoul          #+#    #+#             */
-/*   Updated: 2018/10/23 12:40:34 by afaddoul         ###   ########.fr       */
+/*   Created: 2018/10/05 09:24:54 by ybahlaou          #+#    #+#             */
+/*   Updated: 2018/10/29 15:30:48 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t		i;
-	size_t		j;
-	size_t		position;
+	size_t	i;
+	size_t	j;
 
+	if (!*to_find)
+		return ((char*)str);
 	i = 0;
-	j = 0;
-	if (!(haystack || needle))
-		return (NULL);
-	if (needle[j] == '\0' || haystack == needle)
-		return ((char*)haystack);
-	while (haystack[i] != '\0' && i < len)
+	while (*str && i < len)
 	{
 		j = 0;
-		position = i;
-		while (needle[j] != '\0' && (haystack[position] == needle[j]))
-		{
+		while (*(str + j) && *(to_find + j) &&
+				i + j < len && *(to_find + j) == *(str + j))
 			j++;
-			position++;
-		}
-		if (needle[j] == '\0' && (i + j) <= len)
-			return ((char*)haystack + i);
+		if (!*(to_find + j))
+			return ((char*)str);
 		i++;
+		str++;
 	}
 	return (NULL);
 }

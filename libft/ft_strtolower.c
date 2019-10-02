@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_strtolower.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/05 22:28:38 by afaddoul          #+#    #+#             */
-/*   Updated: 2018/10/23 21:46:13 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/04/17 19:44:10 by ybahlaou          #+#    #+#             */
+/*   Updated: 2019/04/17 19:44:26 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swap(int *a, int *b)
+static char	ft_call(char c)
 {
-	int ech;
+	return ((char)ft_tolower((char)c));
+}
 
-	ech = *a;
-	*a = *b;
-	*b = ech;
+char		*ft_strtolower(const char *str)
+{
+	return (ft_strmap(str, &ft_call));
 }

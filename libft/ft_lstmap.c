@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/22 16:02:37 by afaddoul          #+#    #+#             */
-/*   Updated: 2018/10/23 12:02:31 by afaddoul         ###   ########.fr       */
+/*   Created: 2018/10/09 14:31:39 by ybahlaou          #+#    #+#             */
+/*   Updated: 2018/10/29 13:23:43 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *begin;
-	t_list *hyper_lst;
+	t_list	*list;
+	t_list	*begin;
 
-	if (!lst)
-		return (NULL);
-	hyper_lst = (t_list*)malloc(sizeof(t_list));
-	hyper_lst = f(lst);
-	begin = hyper_lst;
-	while (lst->next)
+	list = (*f)(lst);
+	lst = lst->next;
+	begin = list;
+	while (lst != NULL)
 	{
-		hyper_lst->next = f(lst->next);
-		hyper_lst = hyper_lst->next;
+		list->next = (*f)(lst);
+		list = list->next;
 		lst = lst->next;
 	}
+	list->next = NULL;
 	return (begin);
 }

@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dummy_del.c                                        :+:      :+:    :+:   */
+/*   ft_putlnbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/30 10:24:39 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/09/30 11:27:34 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/06/11 01:56:24 by ybahlaou          #+#    #+#             */
+/*   Updated: 2019/06/11 01:56:52 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void 	dummy_del(void *content)
+void	ft_putlnbr_fd(long n, int fd)
 {
-	ft_strdel((char **)(&content));
+	unsigned long nb;
+
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = -n;
+	}
+	else
+		nb = n;
+	if (nb >= 10)
+		ft_putlnbr_fd(nb / 10, fd);
+	ft_putchar_fd(nb % 10 + '0', fd);
 }

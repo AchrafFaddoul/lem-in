@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/12 20:14:31 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/05/10 04:22:08 by afaddoul         ###   ########.fr       */
+/*   Created: 2018/10/06 09:45:42 by ybahlaou          #+#    #+#             */
+/*   Updated: 2019/05/12 17:37:18 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,14 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	lendst;
-	size_t	lensrc;
+	size_t	src_size;
+	size_t	dst_size;
 
-	lendst = ft_strlen(dst);
-	lensrc = ft_strlen(src);
-	if (size == 0)
-		return (lensrc);
-	if (lendst > size)
-		lensrc += size;
-	else
-		lensrc = lendst + lensrc;
-	i = 0;
-	while (src[i] && (lendst < (size - 1)))
-	{
-		dst[lendst] = src[i];
-		lendst++;
-		i++;
-	}
-	dst[lendst] = '\0';
-	return (lensrc);
+	dst_size = ft_strlen(dst);
+	src_size = ft_strlen(src);
+	if (size <= dst_size)
+		return (size + src_size);
+	dst += dst_size;
+	ft_strncat(dst, src, size - dst_size - 1);
+	return (dst_size + src_size);
 }

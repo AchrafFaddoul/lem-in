@@ -3,36 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/06 11:25:34 by afaddoul          #+#    #+#             */
-/*   Updated: 2018/10/21 14:00:02 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/06/05 23:39:28 by ybahlaou          #+#    #+#             */
+/*   Updated: 2019/06/05 23:45:39 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrev(char *str)
+static void	ft_swp(char *a, char *b)
 {
-	int		i;
-	int		x;
-	int		y;
-	char	echangeur;
+	char	z;
 
+	z = *a;
+	*a = *b;
+	*b = z;
+}
+
+char		*ft_strrev(char *str)
+{
+	size_t	len;
+	size_t	mid;
+	size_t	i;
+
+	len = ft_strlen(str);
+	mid = len / 2;
 	i = 0;
-	while (str[i] != '\0')
+	while (i < mid)
 	{
+		ft_swp(str + i, str + len - i - 1);
 		i++;
-	}
-	x = i - 1;
-	y = 0;
-	while (x > y)
-	{
-		echangeur = str[x];
-		str[x] = str[y];
-		str[y] = echangeur;
-		y++;
-		x--;
 	}
 	return (str);
 }

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_word_counter.c                                  :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/20 16:42:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2018/10/20 18:27:15 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/01/26 19:08:43 by ybahlaou          #+#    #+#             */
+/*   Updated: 2019/05/09 12:20:45 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_word_counter(const char *s, char c)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	int		i;
-	int		my_counter;
+	size_t	i;
 
 	i = 0;
-	my_counter = 0;
-	if (s[i] != c)
-		my_counter++;
-	i++;
-	while (s[i] != '\0')
+	if (size != 0)
 	{
-		if ((s[i] != c) && (s[i - 1] == c))
-			my_counter++;
-		i++;
+		size--;
+		while (*(src + i) && i < size)
+		{
+			*(dst + i) = *(src + i);
+			i++;
+		}
+		*(dst + i) = '\0';
 	}
-	return (my_counter);
+	if (*(src + i) == '\0')
+		return (i);
+	return (ft_strlen(src));
 }

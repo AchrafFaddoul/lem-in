@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_digit_counter.c                                 :+:      :+:    :+:   */
+/*   ft_strtoupper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/21 13:56:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/07/05 18:08:17 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/04/17 19:39:37 by ybahlaou          #+#    #+#             */
+/*   Updated: 2019/04/17 19:43:46 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_nb_len(long long n)
+static char	ft_call(char c)
 {
-	unsigned long long	number;
-	int					counter;
+	return ((char)ft_toupper((char)c));
+}
 
-	counter = 0;
-	if (n <= 0)
-	{
-		counter++;
-		number = n * -1;
-	}
-	else
-		number = n;
-	while (number > 0)
-	{
-		number /= 10;
-		++counter;
-	}
-	return (counter);
+char		*ft_strtoupper(const char *str)
+{
+	return (ft_strmap(str, &ft_call));
 }

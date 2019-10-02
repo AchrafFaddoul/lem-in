@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsigned_nb_len.c                               :+:      :+:    :+:   */
+/*   ft_strstartswith.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/05 18:08:01 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/07/06 12:49:53 by afaddoul         ###   ########.fr       */
+/*   Created: 2018/10/10 20:33:04 by ybahlaou          #+#    #+#             */
+/*   Updated: 2018/10/10 22:22:24 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int						ft_unsigned_nb_len(unsigned long long n)
+int	ft_strstartswith(const char *str, const char *sub)
 {
-	unsigned long long	number;
-	int					counter;
+	size_t	sub_len;
 
-	counter = 0;
-	if (n <= 0)
-	{
-		counter++;
-		number = n * -1;
-	}
-	else
-		number = n;
-	while (number > 0)
-	{
-		number /= 10;
-		++counter;
-	}
-	return (counter);
+	sub_len = ft_strlen(sub);
+	if (sub_len == 0)
+		return (1);
+	return (ft_strncmp(str, sub, sub_len) == 0);
 }
