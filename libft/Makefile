@@ -104,7 +104,13 @@ SRCS =	ft_atoi.c			\
 		ft_dlstdel.c		\
 		ft_dlstnew.c		\
 		ft_dlstpush.c		\
-		ft_elemnew.c
+		ft_elemnew.c		\
+		ft_htnew.c			\
+		ft_htdel.c			\
+		ft_htget.c			\
+		ft_htinsert.c		\
+		ft_htentrynew.c		\
+		ft_htentrydel.c
 
 OBJS = $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 11:49:33 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/10/02 11:22:06 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/02 19:28:39 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,31 @@ typedef struct	s_btree
 	struct s_btree	*right;
 }				t_btree;
 
-typedef struct			s_element
+typedef struct	s_element
 {
 	void				*content;
 	struct s_element	*next;
 	struct s_element	*prev;
-}						t_element;
+}				t_element;
 
-typedef struct			s_dlist
+typedef struct	s_dlist
 {
 	t_element	*head;
 	t_element	*tail;
 	size_t		size;
-}						t_dlist;
+}				t_dlist;
+
+typedef struct	s_htentry
+{
+	char	*key;
+	void	*content;
+}				t_htentry;
+
+typedef struct	s_hashtable
+{
+	t_htentry	**entries;
+	size_t		size;
+}				t_hashtable;
 
 /*
 **	std
@@ -189,5 +201,16 @@ void			ft_btreedel(t_btree **root, void (*del)(void*, size_t));
 void			ft_btreepreorder(t_btree *root, void (*ft)(t_btree*));
 void			ft_btreeinorder(t_btree *root, void (*ft)(t_btree*));
 void			ft_btreepostorder(t_btree *root, void (*ft)(t_btree*));
+
+/*
+** hashtable
+*/
+
+t_hashtable		*ft_htnew(size_t size);
+void			ft_htdel(t_hashtable **ht, void (*del)(void*));
+void			*ft_htget(t_hashtable *ht, const char *key);
+void			ft_htinsert(t_hashtable *ht, const t_htentry *entry);
+t_htentry		*ft_htentrynew(const char *key, const void *content);
+void			ft_htentrydel(t_htentry **entry, void (*del)(void*));
 
 #endif
