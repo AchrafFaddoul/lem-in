@@ -6,7 +6,7 @@
 #    By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/11 17:42:24 by afaddoul          #+#    #+#              #
-#    Updated: 2019/10/02 11:20:31 by ybahlaou         ###   ########.fr        #
+#    Updated: 2019/10/02 11:29:54 by ybahlaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FLAGS = -g -Wextra -Wall -Werror
 
 HEADER_FILES = includes/
 
-FILES = srcs/ft_farmnew.c srcs/ft_roomnew.c	srcs/get_next_line.c srcs/ft_farmfill.c srcs/ft_roomparse.c srcs/get_rooms.c srcs/ft_parsedata.c srcs/get_ants.c srcs/main.c
+FILES = srcs/ft_farmnew.c srcs/ft_roomnew.c	srcs/get_next_line.c srcs/ft_farmfill.c srcs/ft_roomparse.c srcs/get_rooms.c srcs/ft_parsedata.c srcs/ft_getants.c srcs/main.c
 
 OBJ = $(FILES:.c=.o)
 

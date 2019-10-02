@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/02 09:24:27 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/02 11:30:12 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct			s_farm
 }						t_farm;
 
 t_farm					*ft_farmfill(t_farm *farm, t_dlist *lst);
-int						get_ants(t_farm *farm, char *line);
+int						ft_getants(t_farm *farm, char *line);
 t_dlist					*read_input(void);
 int						ft_parsedata(t_farm *farm);
 void					ft_error(void);
