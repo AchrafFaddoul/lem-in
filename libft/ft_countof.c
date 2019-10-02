@@ -6,15 +6,15 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 08:50:38 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/02 08:54:06 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/02 10:01:51 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int 		ft_countof(const char *str, int c)
+size_t 		ft_countof(const char *str, int c)
 {
-	int 	counter;
+	size_t	counter;
 
 	counter  = 0;
 	while(*str)

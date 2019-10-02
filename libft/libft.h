@@ -6,7 +6,7 @@
 /*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 11:20:27 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/02 08:53:11 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/02 10:02:17 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,6 @@ void					ft_dlstpush(t_dlist *lst, t_element *elm);
 void					dummy_del(void *content);
 size_t					ft_strclen(const char *str, char c);
 char					*ft_strndup(const char *src, size_t n);
-int						ft_countof(const char *str, int c);
+size_t					ft_countof(const char *str, int c);
 
 #endif
