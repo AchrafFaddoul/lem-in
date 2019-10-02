@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsedata.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:37:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/01 20:14:04 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/02 11:19:30 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void		dummy_del(void *content)
+{
+	ft_strdel((char **)(&content));
+}
 
 t_dlist			*read_input(void)
 {
