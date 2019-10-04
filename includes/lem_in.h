@@ -6,7 +6,7 @@
 /*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/02 11:30:12 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/04 11:26:07 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int						ft_isoverflow(char *str);
 t_element				*ft_getrooms(t_farm *farm, t_dlist *lst);
 t_room					*ft_roomnew(char *name);
 t_room					*ft_roomparse(const char *input);
+t_hashtable				*ft_dlisttoht(t_dlist *rooms);
 
 #endif
