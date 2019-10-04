@@ -6,7 +6,7 @@
 /*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 18:37:03 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/10/02 20:24:37 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/04 13:55:15 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	ft_htdel(t_hashtable **ht, void (*del)(void*))
 			ft_htentrydel((*ht)->entries + i, del);
 		i++;
 	}
-	*ht = NULL;
+	free((*ht)->entries);
+	ft_memdel((void**)ht);
 }
