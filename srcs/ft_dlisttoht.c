@@ -6,11 +6,16 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/04 11:25:21 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/04 14:33:36 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void	useless_del(void *content)
+{
+	(void)content;
+}
 
 t_hashtable			*ft_dlisttoht(t_dlist *rooms)
 {
@@ -28,7 +33,7 @@ t_hashtable			*ft_dlisttoht(t_dlist *rooms)
 		room = (t_room*)current->content;
 		if (!(entry = ft_htentrynew(room->key, (void*)room)))
 		{
-			// del all hash table
+			ft_htdel(&ht, &useless_del);
 			break ;
 		}
 		ft_htinsert(ht, entry);
