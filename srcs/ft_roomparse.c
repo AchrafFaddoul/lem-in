@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 18:52:53 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/01 15:57:28 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/04 16:56:37 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static char	*extract_name(const char *input)
 		return (NULL);
 	if (*(input + len + 1) == ' ')
 		return (NULL);
-	name = ft_strndup(input, len);
+	if (!(name = ft_strndup(input, len)))
+		return (NULL);
 	input += len + 1;
 	if (!(len = is_coord(input, ' ')))
 	{
