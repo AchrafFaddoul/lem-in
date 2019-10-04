@@ -6,7 +6,7 @@
 /*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:37:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/02 11:19:30 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/04 15:06:16 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,11 @@ int				ft_parsedata(t_farm *farm)
 		return (0);
 	if (!(farm = ft_farmfill(farm, lst)))
 		return (0);
+	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
+		return (0);
+	for (unsigned long i = 0; i < farm->rooms->size; i++)
+	{
+		ft_putendl(farm->rooms_ht->entries[i]->key);
+	}
 	return (1);
 }
