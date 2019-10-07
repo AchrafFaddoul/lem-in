@@ -6,13 +6,13 @@
 /*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 19:17:42 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/10/02 19:54:16 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/07 06:09:47 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	compute_hash(const char *key)
+size_t				compute_hash(const char *key)
 {
 	const int 	p = 31;
 	const int 	m = 1e9 + 9;
