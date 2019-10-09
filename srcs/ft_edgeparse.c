@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:10:46 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/04 17:18:55 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/07 08:42:11 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,26 @@ static char **extract_links(const char *input)
 		return (NULL);
 	if (!(links[0] = ft_strndup(input, len)))
 	{
-		ft_memdel(&links);
+		ft_memdel((void**)links);
 		return (NULL);
 	}
 	input += len + 1;
-	while (*input)
-		len++;
-	if(!(links[1] = ft_strndup(input, len)))
+	if(!(links[1] = ft_strdup(input)))
 	{
-		ft_memdel(((void**)&links[0]));
 		ft_memdel((void**)links);
 		return (NULL);
 	}
 	return (links);
 }
 
-t_edges		*ft_edgesparse(const char *input)
+int			ft_edgesparse(const char *input, char **vertex, char **neighbor)
 {
-	t_edges *edge;
 	char 	**links;
 
 	if (!(links = extract_links(input)))
-		return (NULL);
-	if (!(edge = ft_edgenew(links)))
-	{
-		ft_memdel((void**)(&links[0]));
-		ft_memdel((void**)(&links[1]));
-		return (NULL);
-	}
-	return (edge);
+		return (0);
+	*vertex = *links;
+	*neighbor = *(links + 1);
+	free(links);
+	return (1);
 }

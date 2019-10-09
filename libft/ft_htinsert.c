@@ -6,29 +6,11 @@
 /*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 18:43:37 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/10/02 19:51:35 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/07 06:10:58 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static size_t	compute_hash(const char *key)
-{
-	const int 	p = 31;
-	const int 	m = 1e9 + 9;
-	size_t		hash_value;
-	size_t		p_pow;
-
-	hash_value = 0;
-	p_pow = 1;
-	while (*key)
-	{
-		hash_value = (hash_value + (*key - 'a' + 1) * p_pow) % m;
-		p_pow = (p_pow * p) % m;
-		key++;
-	}
-	return (hash_value);
-}
 
 void					ft_htinsert(t_hashtable *ht, const t_htentry *entry)
 {

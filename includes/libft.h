@@ -6,7 +6,7 @@
 /*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 11:49:33 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/10/02 19:28:39 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/07 06:12:52 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct	s_dlist
 
 typedef struct	s_htentry
 {
-	char	*key;
-	void	*content;
+	char		*key;
+	void		*content;
 }				t_htentry;
 
 typedef struct	s_hashtable
@@ -184,6 +184,8 @@ void			ft_lstremoveat(t_list **lst,
 */
 
 t_dlist			*ft_dlstnew(void);
+void			*ft_dlstget(t_dlist *lst, const void *data,
+					int (*equ)(const void*, const void*));
 void			ft_dlstdel(t_dlist **lst, void (*del)(void*));
 void			ft_dlstpush(t_dlist *lst, t_element *elm);
 t_element		*ft_elemnew(const void *content);
@@ -212,5 +214,8 @@ void			*ft_htget(t_hashtable *ht, const char *key);
 void			ft_htinsert(t_hashtable *ht, const t_htentry *entry);
 t_htentry		*ft_htentrynew(const char *key, const void *content);
 void			ft_htentrydel(t_htentry **entry, void (*del)(void*));
+int				equ(const void *target, const void *current);
+size_t			ft_getindex(t_hashtable *ht, const char *key);
+size_t			compute_hash(const char *key);
 
 #endif

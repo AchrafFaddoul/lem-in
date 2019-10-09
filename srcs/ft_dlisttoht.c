@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/04 15:00:36 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/04 22:30:58 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	useless_del(void *content)
 	(void)content;
 }
 
-t_hashtable				*ft_dlisttoht(t_farm *farm)
+t_hashtable	*ft_dlisttoht(t_farm *farm)
 {
 	t_element		*current;
 	t_room			*room;

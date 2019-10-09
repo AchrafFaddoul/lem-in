@@ -1,1 +1,1 @@
-clear ; rm lem-in ; make ; ./lem-in < maps/big-superposition | cat -e
+clear ; rm lem-in ; make ; ./lem-in < tmp/test| cat -e

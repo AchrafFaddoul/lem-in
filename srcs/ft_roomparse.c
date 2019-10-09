@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 18:52:53 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/04 16:56:37 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/04 21:37:05 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_room		*ft_roomparse(const char *input)
 	if (!(name = extract_name(input)))
 		return (NULL);
 	if (!(room = ft_roomnew(name)))
-		return (NULL);
+		ft_memdel((void**)&room);
+	ft_strdel(&name);
 	return (room);
 }

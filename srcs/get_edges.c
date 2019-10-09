@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/07 06:15:12 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/07 10:07:14 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,26 @@ t_farm 			*ft_getedges(t_farm *farm, t_element *lst)
 	{
 		if (!(ret = get_type((char*)(lst->content))))
 			return (NULL);
-		else if (ret == T_COMMENT)
+		if (ret == T_COMMENT)
 		{
 			lst = lst->next;
 			continue ;
 		}
 		if (!ft_edgesparse((char*)(lst->content), &vertex, &neighbor))
 			return (NULL);
+		ft_putendl("------");
+		ft_putendl(vertex);
+		ft_putendl(neighbor);
 		if (!(search_and_insert(farm, vertex, neighbor)))
 		{
+			ft_putendl("here");
 			ft_strdel(&vertex);
 			ft_strdel(&neighbor);
 			return (NULL);
 		}
 		ft_strdel(&vertex);
 		ft_strdel(&neighbor);
+		lst = lst->next;
 	}
 	return (farm);
 }
