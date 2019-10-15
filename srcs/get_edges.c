@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_edges.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybahlaou <ybahlaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/07 10:07:14 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:44:17 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 # define T_INVALID  	0
 # define T_COMMENT      1
 # define T_LINKS		2
+
+static int		equ(const void *target, const void *current)
+{
+	if (target == current)
+		return (1);
+	return (0);
+}
 
 static 	int 	get_type(const char *line)
 {
@@ -66,12 +73,8 @@ t_farm 			*ft_getedges(t_farm *farm, t_element *lst)
 		}
 		if (!ft_edgesparse((char*)(lst->content), &vertex, &neighbor))
 			return (NULL);
-		ft_putendl("------");
-		ft_putendl(vertex);
-		ft_putendl(neighbor);
 		if (!(search_and_insert(farm, vertex, neighbor)))
 		{
-			ft_putendl("here");
 			ft_strdel(&vertex);
 			ft_strdel(&neighbor);
 			return (NULL);
