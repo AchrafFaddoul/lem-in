@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybahlaou <ybahlaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 11:49:33 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/10/07 06:12:52 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:25:38 by ybahlaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,6 @@ void			*ft_htget(t_hashtable *ht, const char *key);
 void			ft_htinsert(t_hashtable *ht, const t_htentry *entry);
 t_htentry		*ft_htentrynew(const char *key, const void *content);
 void			ft_htentrydel(t_htentry **entry, void (*del)(void*));
-int				equ(const void *target, const void *current);
 size_t			ft_getindex(t_hashtable *ht, const char *key);
 size_t			compute_hash(const char *key);
 
