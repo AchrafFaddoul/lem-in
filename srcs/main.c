@@ -16,27 +16,22 @@
 void 		ft_error(void)
 {
 	write(1, "ERROR\n", 6);
-	// exit(0);
 }
 
 int			main(void)
 {
 	t_farm		*farm;
 	t_htentry	*entry;
-	// t_room		*room;
 	size_t		i;
 
-	ft_putendl("hello 1");
 	farm = ft_farmnew();
 	if (!(ft_parsedata(farm)))
 	{
-		ft_putendl("hello 2");
 		ft_memdel((void**)(&farm));
 		ft_error();
 	}
 	else
 	{
-		ft_putendl("hello 3");
 		i = 0;
 		while (i < farm->rooms_ht->size)
 		{

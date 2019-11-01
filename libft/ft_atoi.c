@@ -3,33 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/04 20:43:02 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/10/02 10:16:17 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/10/16 12:26:02 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/05/26 02:45:28 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
-	unsigned int	nb;
-	unsigned int	max;
-	int				sign;
+	int		i;
+	int		sign;
+	int		nbr;
 
-	max = 1 << (sizeof(int) * 8 - 1);
-	while (ft_isspace(*str))
-		str++;
-	sign = *str == '-' ? -1 : 1;
-	str += *str == '-' || *str == '+';
-	nb = 0;
-	while (ft_isdigit(*str))
+	i = 0;
+	sign = 0;
+	nbr = 0;
+	while ((str[i] > 8 && str[i] < 14) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= 48 && str[i] <= 57)
 	{
-		nb = 10 * nb + *str - '0';
-		if ((nb > max && sign == -1) || (sign == 1 && nb >= max))
-			return (-1);
-		str++;
+		nbr = nbr * 10;
+		nbr = nbr + (str[i] - 48);
+		i++;
 	}
-	return (nb * sign);
+	if (sign == -1)
+		return (-nbr);
+	return (nbr);
 }

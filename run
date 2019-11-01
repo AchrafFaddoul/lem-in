@@ -1,1 +1,1 @@
-clear ; rm lem-in ; make ; ./lem-in < tmp/test| cat -e
+clear ; rm lem-in ; make ; ./lem-in < tmp/test | cat -e

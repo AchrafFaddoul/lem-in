@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/05 09:24:54 by ybahlaou          #+#    #+#             */
-/*   Updated: 2018/10/29 15:30:48 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/10/15 21:09:01 by afaddoul          #+#    #+#             */
+/*   Updated: 2018/10/23 12:40:34 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	size_t	j;
+	size_t		i;
+	size_t		j;
+	size_t		position;
 
-	if (!*to_find)
-		return ((char*)str);
 	i = 0;
-	while (*str && i < len)
+	j = 0;
+	if (!(haystack || needle))
+		return (NULL);
+	if (needle[j] == '\0' || haystack == needle)
+		return ((char*)haystack);
+	while (haystack[i] != '\0' && i < len)
 	{
 		j = 0;
-		while (*(str + j) && *(to_find + j) &&
-				i + j < len && *(to_find + j) == *(str + j))
+		position = i;
+		while (needle[j] != '\0' && (haystack[position] == needle[j]))
+		{
 			j++;
-		if (!*(to_find + j))
-			return ((char*)str);
+			position++;
+		}
+		if (needle[j] == '\0' && (i + j) <= len)
+			return ((char*)haystack + i);
 		i++;
-		str++;
 	}
 	return (NULL);
 }

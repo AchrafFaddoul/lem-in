@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlnbr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 01:56:24 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/06/11 01:56:52 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/10/23 17:55:28 by afaddoul          #+#    #+#             */
+/*   Updated: 2018/10/23 17:56:19 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putlnbr_fd(long n, int fd)
+char	*ft_strlowcase(char *str)
 {
-	unsigned long nb;
+	int		i;
 
-	if (n < 0)
+	i = 0;
+	while (str[i])
 	{
-		ft_putchar_fd('-', fd);
-		nb = -n;
+		if (str[i] >= 'a' && str[i] <= 'z')
+			i++;
+		else if (str[i] >= 'A' && str[i] <= 'Z')
+		{
+			str[i] += 32;
+			i++;
+		}
+		else
+			i++;
 	}
-	else
-		nb = n;
-	if (nb >= 10)
-		ft_putlnbr_fd(nb / 10, fd);
-	ft_putchar_fd(nb % 10 + '0', fd);
+	return (str);
 }

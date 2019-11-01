@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_indexof.c                                       :+:      :+:    :+:   */
+/*   ft_word_counter.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/29 16:50:25 by ybahlaou          #+#    #+#             */
-/*   Updated: 2018/10/29 16:51:36 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/10/20 16:42:04 by afaddoul          #+#    #+#             */
+/*   Updated: 2018/10/20 18:27:15 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-ssize_t	ft_indexof(const char *str, char c)
+int		ft_word_counter(const char *s, char c)
 {
-	ssize_t	i;
+	int		i;
+	int		my_counter;
 
 	i = 0;
-	while (*(str + i))
+	my_counter = 0;
+	if (s[i] != c)
+		my_counter++;
+	i++;
+	while (s[i] != '\0')
 	{
-		if (*(str + i) == c)
-			return (i);
+		if ((s[i] != c) && (s[i - 1] == c))
+			my_counter++;
 		i++;
 	}
-	return (-1);
+	return (my_counter);
 }

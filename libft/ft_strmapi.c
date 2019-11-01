@@ -3,32 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/07 10:43:26 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/05/09 12:05:23 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/10/17 22:14:22 by afaddoul          #+#    #+#             */
+/*   Updated: 2018/10/23 19:01:59 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {
-	char			*newstr;
-	size_t			newstr_len;
-	unsigned int	i;
+	unsigned char	i;
+	char			*ptr;
 
-	newstr_len = ft_strlen(s);
-	newstr = ft_strnew(newstr_len);
-	if (newstr != NULL)
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	ptr = (char*)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (ptr == NULL)
+		return (NULL);
+	while (s[i])
 	{
-		i = 0;
-		while (*(s + i))
-		{
-			*(newstr + i) = (*f)(i, *(s + i));
-			i++;
-		}
-		*(newstr + i) = '\0';
+		ptr[i] = f(i, s[i]);
+		i++;
 	}
-	return (newstr);
+	ptr[i] = '\0';
+	return (ptr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/07 10:55:15 by ybahlaou          #+#    #+#             */
-/*   Updated: 2018/10/29 16:46:24 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/10/18 10:42:25 by afaddoul          #+#    #+#             */
+/*   Updated: 2018/10/21 18:05:03 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,16 @@
 
 int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	return (ft_strncmp(s1, s2, n) == 0);
+	size_t		i;
+
+	i = 0;
+	if (!(s1 && s2))
+		return (0);
+	while (i < n)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }

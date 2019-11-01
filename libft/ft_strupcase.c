@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/26 19:08:43 by ybahlaou          #+#    #+#             */
-/*   Updated: 2019/05/09 12:20:45 by ybahlaou         ###   ########.fr       */
+/*   Created: 2018/09/12 11:36:36 by afaddoul          #+#    #+#             */
+/*   Updated: 2018/10/23 17:54:16 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strupcase(char *str)
 {
-	size_t	i;
+	int		i;
 
 	i = 0;
-	if (size != 0)
+	while (str[i])
 	{
-		size--;
-		while (*(src + i) && i < size)
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			i++;
+		else if (str[i] >= 'a' && str[i] <= 'z')
 		{
-			*(dst + i) = *(src + i);
+			str[i] -= 32;
 			i++;
 		}
-		*(dst + i) = '\0';
+		else
+			i++;
 	}
-	if (*(src + i) == '\0')
-		return (i);
-	return (ft_strlen(src));
+	return (str);
 }
