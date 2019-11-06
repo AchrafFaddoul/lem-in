@@ -7,11 +7,11 @@ hafssa 23 3
 spody 16 7
 mamak 16 3
 jdak 16 5
-wa9ila_chinwi 9 3
-ouzzine 1 5
+moul_rowz 9 3
+joker 1 5
 toxic 4 8
 achraf-mamak
-achraf-wa9ila_chinwi
+achraf-moul_rowz
 hafssa-spody
 mamak-spody
 jdak-hafssa
@@ -19,8 +19,8 @@ spody-jdak
 #another comment
 mamak-hafssa
 hafssa-achraf
-toxic-ouzzine
+toxic-joker
 toxic-hafsa
-ouzzine-mamak
-wa9ila_chinwi-jdak
+joker-mamak
+moul_rowz-jdak
 #another comment

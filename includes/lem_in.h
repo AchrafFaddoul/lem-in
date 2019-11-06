@@ -21,7 +21,7 @@
 typedef struct			s_room
 {
 	char			*key;
-	long long 		hash_code;
+	long long 		index;
 	t_dlist			*edges;
 }				t_room;
 

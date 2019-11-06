@@ -37,7 +37,7 @@ t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
 	t_room		*room;
 	int 		ret;
 
-	current = lst->head;
+	current = lst->head->next;
 	farm->rooms = ft_dlstnew();
 	while (current)
 	{

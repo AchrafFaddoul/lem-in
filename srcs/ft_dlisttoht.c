@@ -22,6 +22,7 @@ t_hashtable	*ft_dlisttoht(t_farm *farm)
 	t_element		*current;
 	t_room			*room;
 	t_htentry		*entry;
+	long long		ret;
 
 	farm->rooms_ht = ft_htnew(farm->rooms->size);
 	if (farm->rooms_ht == NULL)
@@ -35,7 +36,9 @@ t_hashtable	*ft_dlisttoht(t_farm *farm)
 			ft_htdel(&farm->rooms_ht, &useless_del);
 			break ;
 		}
-		ft_htinsert(farm->rooms_ht, entry);
+		if ((ret = ft_htinsert(farm->rooms_ht, entry)) == -1)
+		return (NULL);
+		((t_room*)(entry->content))->index = ret;
 		current = current->next;
 	}
 	return (farm->rooms_ht);

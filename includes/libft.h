@@ -133,7 +133,7 @@ char	*ft_strndup(const char *src, size_t n);
 int	ft_isulong(const char *str, char c);
 t_hashtable	*ft_htnew(size_t size);
 t_htentry	*ft_htentrynew(const char *key, const void *content);
-void		ft_htinsert(t_hashtable *ht, const t_htentry *entry);
+long long	ft_htinsert(t_hashtable *ht, const t_htentry *entry);
 void		ft_htdel(t_hashtable **ht, void (*del)(void*));
 void		ft_htentrydel(t_htentry **entry, void (*del)(void*));
 

@@ -21,27 +21,12 @@ void 		ft_error(void)
 int			main(void)
 {
 	t_farm		*farm;
-	t_htentry	*entry;
-	size_t		i;
 
 	farm = ft_farmnew();
 	if (!(ft_parsedata(farm)))
 	{
 		ft_memdel((void**)(&farm));
 		ft_error();
-	}
-	else
-	{
-		i = 0;
-		while (i < farm->rooms_ht->size)
-		{
-			if (farm->rooms_ht->entries[i] != NULL)
-			{
-				entry = farm->rooms_ht->entries[i];
-				printf("%s\n", entry->key);
-			}
-			i++;
-		}
 	}
 	return (0);
 }

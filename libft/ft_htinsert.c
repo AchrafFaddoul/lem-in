@@ -1,16 +1,19 @@
 #include "libft.h"
+#include <stdio.h>
 
-void					ft_htinsert(t_hashtable *ht, const t_htentry *entry)
+long long 		ft_htinsert(t_hashtable *ht, const t_htentry *entry)
 {
-	size_t	index;
-	size_t	start;
+	long long	index;
+	long long	start;
+	long long	gen_code;
 
-	index = compute_hash(entry->key) % ht->size;
+	gen_code = compute_hash(entry->key) ;
+	index = gen_code % ht->size;
 	start = index;
 	if (ht->entries[index] == NULL)
 	{
 		ht->entries[index] = (t_htentry*)entry;
-		return ;
+		return index;
 	}
 	while (1)
 	{
@@ -18,9 +21,10 @@ void					ft_htinsert(t_hashtable *ht, const t_htentry *entry)
 			break ;
 		index++;
 		if (index == start)
-			return ;
-		if (index == ht->size)
+			return -1;
+		if (index == (long long)ht->size)
 			index = 0;
 	}
 	ht->entries[index] = (t_htentry*)entry;
+	return (index);
 }
