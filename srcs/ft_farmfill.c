@@ -12,39 +12,35 @@
 
 #include "lem_in.h"
 
-t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
+static void 		print_data(t_farm *farm)
 {
-	t_element	*current;
-	t_element	*tmp;
-
-	if (!(ft_getants(farm, lst->head->content)))
-		return (NULL);
-
-	printf("%lld\n\n", farm->ants);
-
-	if (!(current = ft_getrooms(farm, lst)))
-		return (NULL);
-	tmp = farm->rooms->head;;
-	while (tmp)
-	{
-		printf("%s\n", ((char*)((t_room*)((t_element*)(tmp))->content)->key));
-		tmp = tmp->next;
-	}
-	printf("\n");
-
-	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
-		return (NULL);
-
-	size_t  i = 0;
+	size_t i = 0;
 	while (i < farm->rooms_ht->size)
 	{
-		printf("index:%zu, room:%s index:%lld\n", i, farm->rooms_ht->entries[i]->key,
-		((t_room*)(farm->rooms_ht->entries[i]->content))->index);
+		printf("\nHT_KEY:%s\n|", farm->rooms_ht->entries[i]->key);
+		while ((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)
+		{
+			printf("---->%s", ((t_room*)(((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)->content))->key);
+
+			(((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head = (((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head->next;
+		}
 		i++;
 	}
 
-	//exit(0);
+}
+
+t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
+{
+	t_element	*current;
+
+	if (!(ft_getants(farm, lst->head->content)))
+		return (NULL);
+	if (!(current = ft_getrooms(farm, lst)))
+		return (NULL);
+	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
+		return (NULL);
 	if (!(ft_getedges(farm, current)))
 		return (NULL);
+	print_data(farm);
 	return (farm);
 }
