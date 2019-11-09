@@ -11,17 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
-/*
-   static void		noderm(t_dlist *lst)
-   {
-   t_element	*to_del;
 
-   to_del = lst->head;
-   lst->head = lst->head->next;
-   ft_memdel(&to_del->content);
-   ft_memdel((void**)&to_del);
-   }
- */
 t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 {
 	t_element	*current;
@@ -53,9 +43,8 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		i++;
 	}
 
-	exit(0);
+	//exit(0);
 	if (!(ft_getedges(farm, current)))
 		return (NULL);
-	ft_putendl("here");
 	return (farm);
 }

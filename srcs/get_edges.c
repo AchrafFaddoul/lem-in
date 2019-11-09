@@ -37,29 +37,24 @@ static int		search_and_insert(t_farm *farm,
 {
 	t_room	*vertex_room;
 	t_room	*neighbor_room;
-	int 	vertex_index;
-	int 	neighbor_index;
-	int 	i = 0;
+	int 	vx_in;
+	int 	ng_in;
 
-	vertex_room = (t_room*)ft_htget(farm->rooms_ht, vertex);
-	ft_putendl("-----here1------");
-	printf("time:%d\n", i);
-	if (vertex_room == NULL)
+	printf("head of the function\n");
+	if (!(vertex_room = (t_room*)ft_htget(farm->rooms_ht, vertex)))
 		return (0);
-	neighbor_room = (t_room*)ft_htget(farm->rooms_ht, neighbor);
-	if (neighbor_room == NULL)
+	if (!(neighbor_room = (t_room*)ft_htget(farm->rooms_ht, neighbor)))
 		return (0);
-	vertex_index = ft_getindex(farm->rooms_ht, vertex);
-	ft_putendl(vertex);
-	ft_putendl(neighbor);
-	if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[vertex_index]->content))->edges, neighbor_room, equ)))
+	vx_in = vertex_room->index;
+	ng_in = neighbor_room->index;
+	printf("vx:%d---%s\n", vx_in, vertex_room->key);
+	printf("ng:%d---%s\n", ng_in, neighbor_room->key);
+	if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, neighbor_room, equ)))
 		return (0);
-	neighbor_index = ft_getindex(farm->rooms_ht, neighbor);
-	if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[neighbor_index]->content))->edges, vertex_room, equ)))
+	if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, vertex_room, equ)))
 		return (0);
-	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vertex_index]->content))->edges, (t_element*)vertex_room);
-	ft_putendl("----here2-----");
-	i++;
+	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, (t_element*)vertex_room);
+	printf("tail of the function\n");
 	return (1);
 }
 
@@ -69,21 +64,6 @@ t_farm 			*ft_getedges(t_farm *farm, t_element *lst)
 	char		*neighbor;
 	int 		ret;
 
-	unsigned long 		i = 0;
-	t_htentry       *entry;
-	while (i < farm->rooms_ht->size)
-	{
-		if (farm->rooms_ht->size)
-		{
-			if (farm->rooms_ht->entries[i] != NULL)
-			{
-				entry = farm->rooms_ht->entries[i];
-				printf("%s\n", entry->key);
-			}
-			i++;
-		}
-	}
-	//exit(0);
 	while (lst)
 	{
 		if (!(ret = get_type((char*)(lst->content))))
@@ -95,6 +75,7 @@ t_farm 			*ft_getedges(t_farm *farm, t_element *lst)
 		}
 		if (!ft_edgesparse((char*)(lst->content), &vertex, &neighbor))
 			return (NULL);
+		printf("VX:%s---NG:%s\n", vertex, neighbor);
 		if (!(search_and_insert(farm, vertex, neighbor)))
 		{
 			ft_strdel(&vertex);
