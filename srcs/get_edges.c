@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_edges.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <ybahlaou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/15 17:44:17 by ybahlaou         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:44:17 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 
 static int		equ(const void *target, const void *current)
 {
-	if (target == current)
-		return (1);
-	return (0);
+	return (target == current);
 }
 
 static 	int 	get_type(const char *line)
@@ -49,11 +47,28 @@ static int		search_and_insert(t_farm *farm,
 	ng_in = neighbor_room->index;
 	printf("vx:%d---%s\n", vx_in, vertex_room->key);
 	printf("ng:%d---%s\n", ng_in, neighbor_room->key);
+	printf("first search\n");
+	printf("%p\n", ((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges);
+	printf("SEGFAULT\n");
+	printf("----------------------\n");
+	while ((((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges)->head)
+	{
+		printf("%p\n", (((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges)->head);
+		((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->head = (((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges)->head->next;
+	}
+		printf("%p\n", (((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges)->head);
+	printf("----------------------\n");
 	if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, neighbor_room, equ)))
 		return (0);
+	else
+		printf("nothing\n");
+	printf("second search\n");
 	if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, vertex_room, equ)))
 		return (0);
-	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, (t_element*)vertex_room);
+	else
+		printf("nothing\n");
+	printf("push to edges dlist\n");
+	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, (t_element*)neighbor_room);
 	printf("tail of the function\n");
 	return (1);
 }
@@ -78,6 +93,7 @@ t_farm 			*ft_getedges(t_farm *farm, t_element *lst)
 		printf("VX:%s---NG:%s\n", vertex, neighbor);
 		if (!(search_and_insert(farm, vertex, neighbor)))
 		{
+			printf("FAIL\n");
 			ft_strdel(&vertex);
 			ft_strdel(&neighbor);
 			return (NULL);

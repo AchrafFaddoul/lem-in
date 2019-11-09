@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsedata.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:37:42 by afaddoul          #+#    #+#             */
 /*   Updated: 2019/10/04 15:47:22 by afaddoul         ###   ########.fr       */
