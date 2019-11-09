@@ -68,7 +68,7 @@ static int		search_and_insert(t_farm *farm,
 	else
 		printf("nothing\n");
 	printf("push to edges dlist\n");
-	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, (t_element*)neighbor_room);
+	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, ft_elemnew(neighbor_room));
 	printf("tail of the function\n");
 	return (1);
 }
