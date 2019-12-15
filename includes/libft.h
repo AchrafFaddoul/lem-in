@@ -42,6 +42,7 @@ typedef struct  s_dlist
 typedef struct  s_htentry
 {
 	char            *key;
+	int 		flow;
 	void            *content;
 }                               t_htentry;
 

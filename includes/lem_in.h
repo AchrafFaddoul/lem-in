@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybahlaou <ybahlaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
 /*   Updated: 2019/10/07 09:06:27 by afaddoul         ###   ########.fr       */
@@ -21,9 +21,14 @@
 typedef struct			s_room
 {
 	char			*key;
-	long long 		index;
+	int	 		index;
 	t_dlist			*edges;
 }				t_room;
+
+typedef struct 			s_item
+{
+	int 			index;
+}				t_item;
 
 typedef struct			s_farm
 {
@@ -37,7 +42,7 @@ typedef struct			s_farm
 t_farm				*ft_farmfill(t_farm *farm, t_dlist *lst);
 int				ft_getants(t_farm *farm, char *line);
 t_dlist				*read_input(void);
-int			ft_parsedata(t_farm *farm);
+int				ft_parsedata(t_farm *farm);
 void				ft_error(void);
 t_farm				*ft_farmnew(void);
 int				get_ants(t_farm *farm, char *line);
@@ -52,5 +57,8 @@ int				ft_edgesparse(const char *input,
 t_farm				*ft_getedges(t_farm *farm, t_element *lst);
 int				ft_edgesparse(const char *input,
 			char **vertex, char **neighbor);
+void				ft_enqueue(t_dlist *lst, t_element *elm);
+int				ft_dequeue(t_dlist *lst);
+t_item				*ft_itemnew(int value);
 
 #endif
