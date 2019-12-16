@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/16 15:56:59 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:35:45 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,45 @@ int 			ft_ismatched(t_room *room, t_dlist *lst_vis)
 	return (-1);
 }
 
+void 			ft_flowmark(t_dlist *edges, int value)
+{
+	t_element 	*tmp;
+
+	tmp = edges->head;
+	while (tmp)
+	{
+		if (((t_room*)(tmp->content))->index == value)
+		{
+			((t_room*)(tmp->content))->flow = 1;
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void 			ft_hashmapupdate(t_farm *farm, t_dlist *path)
+{
+	t_element 	*current;
+
+	current = path->tail;
+	ft_flowmark((GET_ENTRY(farm->start->index))->edges, ((t_item*)(current->content))->index);
+	while ((((t_item*)(current->content))->index) != farm->end->index)
+	{
+		GET_ENTRY((((t_item*)(current->content))->index))->flow = 1;
+		ft_flowmark(GET_ENTRY((((t_item*)(current->content))->index))->edges, (((t_item*)(current->prev->content))->index));
+		current = current->prev;
+	}
+}
+
+static int 			ft_pathdel(t_dlist *path)
+{
+	int 		size;
+
+	size = path->size - 1;
+	ft_dlstdel(&path, dummy_del);
+	return (size);
+}
+
 int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 {
 	t_dlist 	*path;
@@ -73,8 +112,8 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 		elm  = ft_elemnew((t_item*)item);
 		ft_dlstpush(path, elm);
 	}
-	//update with path lst
-	return (0);
+	ft_hashmapupdate(farm, path);
+	return (ft_pathdel(path));
 }
 
 int 			bfs(t_farm *farm)
@@ -87,9 +126,9 @@ int 			bfs(t_farm *farm)
 	t_element	*tmp;
 
 	if (!(queue = ft_dlstnew()))
-		return (0);
+		return (-1);
 	if (!(lst_vis = ft_dlstnew()))
-		return (0);
+		return (-1);
 	item = ft_itemnew(farm->start->index);
 	elm  = ft_elemnew((t_item*)item);
 	ft_enqueue(queue, elm);
@@ -102,10 +141,7 @@ int 			bfs(t_farm *farm)
 		{
 			current_item = ((t_room*)(tmp->content))->index;
 			if (current_item == farm->end->index)
-			{
-				ft_pathextract(farm, lst_vis);
-				return (1);
-			}
+				return (ft_pathextract(farm, lst_vis));
 			if (!ft_search_item(lst_vis, current_item) && !(farm->rooms_ht->entries[current_item]->flow))
 			{
 				item = ft_itemnew(current_item);

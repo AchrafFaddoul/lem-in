@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/16 15:57:46 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:35:48 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,10 @@ int				ft_dequeue(t_dlist *lst);
 t_item				*ft_itemnew(int value);
 int				ft_search_item(t_dlist *lst, int target);
 int				bfs(t_farm *farm);
+int				ft_search_item(t_dlist *lst, int target);
+int				ft_ismatched(t_room *room, t_dlist *lst_vis);
+void			ft_flowmark(t_dlist *edges, int value);
+void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
+int				ft_pathextract(t_farm *farm, t_dlist *lst_vis);
 
 #endif
