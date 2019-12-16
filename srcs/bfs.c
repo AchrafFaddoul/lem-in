@@ -6,11 +6,17 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/16 19:35:45 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/16 21:00:17 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+# define MAX_FLOW 0
+# define PRINT   -1
+# define ERROR   -2
+
+//score managing in BFS
 
 static void dummy_del(void *content)
 {
@@ -50,7 +56,7 @@ int 			ft_ismatched(t_room *room, t_dlist *lst_vis)
 		}
 		tmp1 = tmp1->next;
 	}
-	return (-1);
+	return (0);
 }
 
 void 			ft_flowmark(t_dlist *edges, int value)
@@ -85,11 +91,8 @@ void 			ft_hashmapupdate(t_farm *farm, t_dlist *path)
 
 static int 			ft_pathdel(t_dlist *path)
 {
-	int 		size;
-
-	size = path->size - 1;
 	ft_dlstdel(&path, dummy_del);
-	return (size);
+	return (1);
 }
 
 int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
@@ -101,7 +104,7 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 
 	path = ft_dlstnew();
 	if (!path)
-		return (0);
+		return (ERROR);
 	item = ft_itemnew(farm->end->index);
 	elm  = ft_elemnew((t_item*)item);
 	ft_dlstpush(path, elm);
@@ -112,11 +115,20 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 		elm  = ft_elemnew((t_item*)item);
 		ft_dlstpush(path, elm);
 	}
-	ft_hashmapupdate(farm, path);
-	return (ft_pathdel(path));
+	farm->path_nb++;
+	farm->node_nb += path->size -1;
+	ret = ft_scorecompute(farm->path_nb, farm->node_nb, farm->ants);
+	if (ret <= farm->score)
+	{
+		farm->score = ret;
+		ft_hashmapupdate(farm, path);
+		return (ft_pathdel(path));
+	}
+	else
+		return (PRINT);
 }
 
-int 			bfs(t_farm *farm)
+int 			ft_bfs(t_farm *farm)
 {
 	t_dlist		*queue;
 	t_dlist 	*lst_vis;
@@ -126,9 +138,9 @@ int 			bfs(t_farm *farm)
 	t_element	*tmp;
 
 	if (!(queue = ft_dlstnew()))
-		return (-1);
+		return (ERROR);
 	if (!(lst_vis = ft_dlstnew()))
-		return (-1);
+		return (ERROR);
 	item = ft_itemnew(farm->start->index);
 	elm  = ft_elemnew((t_item*)item);
 	ft_enqueue(queue, elm);
@@ -153,5 +165,24 @@ int 			bfs(t_farm *farm)
 		}
 	}
 	ft_dlstdel(&lst_vis, dummy_del);
-	return (0);
+	return (MAXFLOW);
+}
+
+int 			ft_scorecompute(int path, int node, int ants)
+{
+	float		result;
+
+	result = ((node + ants) / path);
+	result = ((float)(result/(int)result) > 0f ? (result + 1) : result);
+	return ((int)result);
+}
+
+int 			ft_bfsmanager(t_farm *farm)
+{
+	int 		path_nb;
+	int 		node_nb;
+
+	path = 0;
+	node_nb = 0;
+
 }

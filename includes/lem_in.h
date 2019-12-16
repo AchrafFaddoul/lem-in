@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/16 19:35:48 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/16 20:56:29 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct 			s_item
 typedef struct			s_farm
 {
 	long long		ants;
+	long long 		score;
+	int  			nodes_nb;
+	int 			path_nb;
 	t_dlist			*rooms;
 	t_room			*start;
 	t_room			*end;
@@ -63,7 +66,7 @@ void				ft_enqueue(t_dlist *lst, t_element *elm);
 int				ft_dequeue(t_dlist *lst);
 t_item				*ft_itemnew(int value);
 int				ft_search_item(t_dlist *lst, int target);
-int				bfs(t_farm *farm);
+int				ft_bfs(t_farm *farm);
 int				ft_search_item(t_dlist *lst, int target);
 int				ft_ismatched(t_room *room, t_dlist *lst_vis);
 void			ft_flowmark(t_dlist *edges, int value);
