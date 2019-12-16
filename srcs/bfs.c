@@ -6,23 +6,74 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/04 22:30:58 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:56:59 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			ft_search_item(t_element *lst, int target)
+static void dummy_del(void *content)
+{
+	ft_memdel((void **)(&content));
+}
+
+int			ft_search_item(t_dlist *lst, int target)
 {
 	t_element 	*tmp;
 
-	tmp = lst;
+	tmp = lst->head;
 	while (tmp)
 	{
-		if ((((t_room*)(tmp->content))->index) == target)
+		if ((((t_item*)(tmp->content))->index) == target)
 			return (1);
 		tmp = tmp->next;
 	}
+	return (0);
+}
+
+int 			ft_ismatched(t_room *room, t_dlist *lst_vis)
+{
+	t_element 	*tmp1;
+	t_element 	*tmp2;
+
+	tmp1 = room->edges->head;
+	while (tmp1)
+	{
+		tmp2 = lst_vis->head;
+		while (tmp2)
+		{
+			if (((t_item*)(tmp2->content))->index == room->index)
+				break ;
+			if (((t_item*)(tmp1->content))->index == ((t_item*)(tmp2->content))->index)
+				return (((t_item*)(tmp1->content))->index);
+			tmp2 = tmp2->next;
+		}
+		tmp1 = tmp1->next;
+	}
+	return (-1);
+}
+
+int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
+{
+	t_dlist 	*path;
+	t_item 		*item;
+	t_element	*elm;
+	int 		ret;
+
+	path = ft_dlstnew();
+	if (!path)
+		return (0);
+	item = ft_itemnew(farm->end->index);
+	elm  = ft_elemnew((t_item*)item);
+	ft_dlstpush(path, elm);
+	while (!((ret = ft_ismatched(GET_ENTRY(((t_item*)(path->tail->content))->index), lst_vis))
+				== farm->start->index))
+	{
+		item = ft_itemnew(ret);
+		elm  = ft_elemnew((t_item*)item);
+		ft_dlstpush(path, elm);
+	}
+	//update with path lst
 	return (0);
 }
 
@@ -50,7 +101,12 @@ int 			bfs(t_farm *farm)
 		while (tmp)
 		{
 			current_item = ((t_room*)(tmp->content))->index;
-			if (!ft_search_item(tmp, current_item))
+			if (current_item == farm->end->index)
+			{
+				ft_pathextract(farm, lst_vis);
+				return (1);
+			}
+			if (!ft_search_item(lst_vis, current_item) && !(farm->rooms_ht->entries[current_item]->flow))
 			{
 				item = ft_itemnew(current_item);
 				elm  = ft_elemnew((t_item*)item);
@@ -60,5 +116,6 @@ int 			bfs(t_farm *farm)
 			tmp = tmp->next;
 		}
 	}
-	return (1);
+	ft_dlstdel(&lst_vis, dummy_del);
+	return (0);
 }

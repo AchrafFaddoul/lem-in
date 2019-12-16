@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/07 09:06:27 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/16 15:57:46 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
+# define GET_ENTRY(index) ((t_room*)(farm->rooms_ht->entries[index]->content))
 
 typedef struct			s_room
 {
@@ -61,7 +62,7 @@ int				ft_edgesparse(const char *input,
 void				ft_enqueue(t_dlist *lst, t_element *elm);
 int				ft_dequeue(t_dlist *lst);
 t_item				*ft_itemnew(int value);
-int				ft_search_item(t_element *lst, int target);
+int				ft_search_item(t_dlist *lst, int target);
 int				bfs(t_farm *farm);
 
 #endif
