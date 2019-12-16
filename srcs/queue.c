@@ -36,6 +36,7 @@ int	ft_dequeue(t_dlist *lst)
 	item  = ((t_item*)(to_del->content))->index;
 	tmp = lst->head->next;
 	ft_memdel((void**)&to_del);
+	lst->size--;
 	lst->head = tmp;
 	lst->head->prev = NULL;
 	return (item);

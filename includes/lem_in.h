@@ -22,6 +22,7 @@ typedef struct			s_room
 {
 	char			*key;
 	int	 		index;
+	int 			flow;
 	t_dlist			*edges;
 }				t_room;
 
@@ -60,5 +61,7 @@ int				ft_edgesparse(const char *input,
 void				ft_enqueue(t_dlist *lst, t_element *elm);
 int				ft_dequeue(t_dlist *lst);
 t_item				*ft_itemnew(int value);
+int				ft_search_item(t_element *lst, int target);
+int				bfs(t_farm *farm);
 
 #endif

@@ -20,7 +20,7 @@ static void 		print_data(t_farm *farm)
 		printf("\nHT_KEY:%s\n|", farm->rooms_ht->entries[i]->key);
 		while ((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)
 		{
-			printf("---->%s", ((t_room*)(((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)->content))->key);
+			printf("---->%s\n", ((t_room*)(((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)->content))->key);
 
 			(((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head = (((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head->next;
 		}
