@@ -95,6 +95,15 @@ static int 			ft_pathdel(t_dlist *path)
 	return (1);
 }
 
+int 			ft_scorecompute(int path, int node, int ants)
+{
+	float		result;
+
+	result = ((node + ants) / path);
+	result = ((float)(result/(int)result) > 0.0f ? (result + 1) : result);
+	return ((int)result);
+}
+
 int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 {
 	t_dlist 	*path;
@@ -165,24 +174,13 @@ int 			ft_bfs(t_farm *farm)
 		}
 	}
 	ft_dlstdel(&lst_vis, dummy_del);
-	return (MAXFLOW);
+	return (MAX_FLOW);
 }
 
-int 			ft_scorecompute(int path, int node, int ants)
-{
-	float		result;
-
-	result = ((node + ants) / path);
-	result = ((float)(result/(int)result) > 0f ? (result + 1) : result);
-	return ((int)result);
-}
 
 int 			ft_bfsmanager(t_farm *farm)
 {
-	int 		path_nb;
-	int 		node_nb;
-
-	path = 0;
-	node_nb = 0;
-
+	farm->ants++;
+	farm->ants--;
+	return (0);
 }

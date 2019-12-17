@@ -36,7 +36,7 @@ typedef struct			s_farm
 {
 	long long		ants;
 	long long 		score;
-	int  			nodes_nb;
+	int  			node_nb;
 	int 			path_nb;
 	t_dlist			*rooms;
 	t_room			*start;
