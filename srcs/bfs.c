@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/16 21:00:17 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/17 17:58:27 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ int			ft_search_item(t_dlist *lst, int target)
 	t_element 	*tmp;
 
 	tmp = lst->head;
+	printf("Begin search\n");
 	while (tmp)
 	{
+		printf("Inside _tmp while \n");
 		if ((((t_item*)(tmp->content))->index) == target)
 			return (1);
 		tmp = tmp->next;
 	}
+	printf("not visited\n");
 	return (0);
 }
 
@@ -123,18 +126,19 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 		item = ft_itemnew(ret);
 		elm  = ft_elemnew((t_item*)item);
 		ft_dlstpush(path, elm);
+		printf("\nHT_KEY:%s\n|", farm->rooms_ht->entries[ret]->key);
 	}
 	farm->path_nb++;
 	farm->node_nb += path->size -1;
 	ret = ft_scorecompute(farm->path_nb, farm->node_nb, farm->ants);
-	if (ret <= farm->score)
-	{
-		farm->score = ret;
-		ft_hashmapupdate(farm, path);
-		return (ft_pathdel(path));
-	}
-	else
-		return (PRINT);
+	//	if (ret <= farm->score)
+	//	{
+	//		farm->score = ret;
+	//		ft_hashmapupdate(farm, path);
+	//	}
+	//	else
+	ft_pathdel(path);
+	return (PRINT);
 }
 
 int 			ft_bfs(t_farm *farm)
@@ -154,15 +158,23 @@ int 			ft_bfs(t_farm *farm)
 	elm  = ft_elemnew((t_item*)item);
 	ft_enqueue(queue, elm);
 	ft_dlstpush(lst_vis, elm);
+	t_element *vis_tmp = lst_vis->head;
+	while (vis_tmp)
+	{
+		printf("%d\n", ((t_item*)vis_tmp->content)->index);
+		vis_tmp = vis_tmp->next;
+	}
+	exit(0);
 	while (queue->size)
 	{
 		current_item = ft_dequeue(queue);
 		tmp = (((t_room*)(farm->rooms_ht->entries[current_item]->content))->edges)->head;
+		printf("%d\n", current_item);
 		while (tmp)
 		{
 			current_item = ((t_room*)(tmp->content))->index;
-			if (current_item == farm->end->index)
-				return (ft_pathextract(farm, lst_vis));
+			//	if (current_item == farm->end->index)
+			//		return (ft_pathextract(farm, lst_vis));
 			if (!ft_search_item(lst_vis, current_item) && !(farm->rooms_ht->entries[current_item]->flow))
 			{
 				item = ft_itemnew(current_item);
@@ -170,17 +182,19 @@ int 			ft_bfs(t_farm *farm)
 				ft_enqueue(queue, elm);
 				ft_dlstpush(lst_vis, elm);
 			}
+			exit(0);
 			tmp = tmp->next;
 		}
 	}
 	ft_dlstdel(&lst_vis, dummy_del);
 	return (MAX_FLOW);
 }
+/*
 
-
-int 			ft_bfsmanager(t_farm *farm)
-{
-	farm->ants++;
-	farm->ants--;
-	return (0);
-}
+   int 			ft_bfsmanager(t_farm *farm)
+   {
+   farm->ants++;
+   farm->ants--;
+   return (0);
+   }
+   */

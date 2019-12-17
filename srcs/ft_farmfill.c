@@ -6,18 +6,19 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/15 17:34:56 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:02:14 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
+/*
 static void 		print_data(t_farm *farm)
 {
 	size_t i = 0;
 	while (i < farm->rooms_ht->size)
 	{
 		printf("\nHT_KEY:%s\n|", farm->rooms_ht->entries[i]->key);
+		printf("\nHT_index:%zu\n|", i);
 		while ((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)
 		{
 			printf("---->%s\n", ((t_room*)(((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)->content))->key);
@@ -26,9 +27,8 @@ static void 		print_data(t_farm *farm)
 		}
 		i++;
 	}
-
 }
-
+*/
 t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 {
 	t_element	*current;
@@ -41,6 +41,8 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		return (NULL);
 	if (!(ft_getedges(farm, current)))
 		return (NULL);
-	print_data(farm);
+//	print_data(farm);
+	printf("hererere\n");
+	ft_bfs(farm);
 	return (farm);
 }
