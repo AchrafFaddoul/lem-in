@@ -165,10 +165,12 @@ int 			ft_bfs(t_farm *farm)
 		tmp = (((t_room*)(farm->rooms_ht->entries[current_item]->content))->edges)->head;
 		while (tmp)
 		{
+			printf("add to visited and queue\n");
 			////////////////////////////print lst _vis
 			vis_tmp = lst_vis->head;
 			queue_tmp = queue->head;
 			printf("\n");
+			printf("vis");
 			while (vis_tmp)
 			{
 				printf(" %d ", ((t_item*)vis_tmp->content)->index);
@@ -177,6 +179,7 @@ int 			ft_bfs(t_farm *farm)
 			//print lst _queue
 			queue_tmp = queue->head;
 			printf("      ");
+			printf("queue");
 			while (queue_tmp)
 			{
 				printf(" %d ", ((t_item*)queue_tmp->content)->index);
@@ -191,6 +194,7 @@ int 			ft_bfs(t_farm *farm)
 				elm  = ft_elemnew((t_item*)item);
 				ft_enqueue(queue, elm);
 				ft_dlstpush(lst_vis, ft_elemnew((t_item*)ft_itemnew(current_item)));
+				printf("added\n\n");
 			}
 			tmp = tmp->next;
 		}
