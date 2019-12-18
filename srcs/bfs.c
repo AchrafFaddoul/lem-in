@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/18 11:09:49 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/18 20:56:29 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,6 @@ int 			ft_bfs(t_farm *farm)
 	t_item		*item;
 	int 		current_item;
 	t_element	*tmp;
-	t_element *vis_tmp;
-	t_element *queue_tmp;
 
 	if (!(queue = ft_dlstnew()))
 		return (ERROR);
@@ -157,44 +155,19 @@ int 			ft_bfs(t_farm *farm)
 	item = ft_itemnew(farm->start->index);
 	elm  = ft_elemnew((t_item*)item);
 	ft_enqueue(queue, elm);
-	ft_dlstpush(lst_vis, elm);
-	printf("visited       queue\n");
+	ft_dlstpush(lst_vis, ft_elemnew((t_item*)ft_itemnew(farm->start->index)));
 	while (queue->size)
 	{
 		current_item = ft_dequeue(queue);
 		tmp = (((t_room*)(farm->rooms_ht->entries[current_item]->content))->edges)->head;
 		while (tmp)
 		{
-			printf("add to visited and queue\n");
-			////////////////////////////print lst _vis
-			vis_tmp = lst_vis->head;
-			queue_tmp = queue->head;
-			printf("\n");
-			printf("vis");
-			while (vis_tmp)
-			{
-				printf(" %d ", ((t_item*)vis_tmp->content)->index);
-				vis_tmp = vis_tmp->next;
-			}
-			//print lst _queue
-			queue_tmp = queue->head;
-			printf("      ");
-			printf("queue");
-			while (queue_tmp)
-			{
-				printf(" %d ", ((t_item*)queue_tmp->content)->index);
-				queue_tmp = queue_tmp->next;
-			}
-			printf("\n");
-			//////////////////////////////END
-			current_item = ((t_room*)(tmp->content))->index;
 			if (!ft_search_item(lst_vis, current_item) && !(farm->rooms_ht->entries[current_item]->flow))
 			{
 				item = ft_itemnew(current_item);
 				elm  = ft_elemnew((t_item*)item);
 				ft_enqueue(queue, elm);
 				ft_dlstpush(lst_vis, ft_elemnew((t_item*)ft_itemnew(current_item)));
-				printf("added\n\n");
 			}
 			tmp = tmp->next;
 		}
