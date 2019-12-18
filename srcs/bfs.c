@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/17 17:58:27 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/18 11:09:49 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,6 @@ static void dummy_del(void *content)
 	ft_memdel((void **)(&content));
 }
 
-int			ft_search_item(t_dlist *lst, int target)
-{
-	t_element 	*tmp;
-
-	tmp = lst->head;
-	printf("Begin search\n");
-	while (tmp)
-	{
-		printf("Inside _tmp while \n");
-		if ((((t_item*)(tmp->content))->index) == target)
-			return (1);
-		tmp = tmp->next;
-	}
-	printf("not visited\n");
-	return (0);
-}
 
 int 			ft_ismatched(t_room *room, t_dlist *lst_vis)
 {
@@ -141,6 +125,20 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 	return (PRINT);
 }
 
+int			ft_search_item(t_dlist *lst, int target)
+{
+	t_element 	*tmp;
+
+	tmp = lst->head;
+	while (tmp)
+	{
+		if ((((t_item*)(tmp->content))->index) == target)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int 			ft_bfs(t_farm *farm)
 {
 	t_dlist		*queue;
@@ -149,6 +147,8 @@ int 			ft_bfs(t_farm *farm)
 	t_item		*item;
 	int 		current_item;
 	t_element	*tmp;
+	t_element *vis_tmp;
+	t_element *queue_tmp;
 
 	if (!(queue = ft_dlstnew()))
 		return (ERROR);
@@ -158,31 +158,40 @@ int 			ft_bfs(t_farm *farm)
 	elm  = ft_elemnew((t_item*)item);
 	ft_enqueue(queue, elm);
 	ft_dlstpush(lst_vis, elm);
-	t_element *vis_tmp = lst_vis->head;
-	while (vis_tmp)
-	{
-		printf("%d\n", ((t_item*)vis_tmp->content)->index);
-		vis_tmp = vis_tmp->next;
-	}
-	exit(0);
+	printf("visited       queue\n");
 	while (queue->size)
 	{
 		current_item = ft_dequeue(queue);
 		tmp = (((t_room*)(farm->rooms_ht->entries[current_item]->content))->edges)->head;
-		printf("%d\n", current_item);
 		while (tmp)
 		{
+			////////////////////////////print lst _vis
+			vis_tmp = lst_vis->head;
+			queue_tmp = queue->head;
+			printf("\n");
+			while (vis_tmp)
+			{
+				printf(" %d ", ((t_item*)vis_tmp->content)->index);
+				vis_tmp = vis_tmp->next;
+			}
+			//print lst _queue
+			queue_tmp = queue->head;
+			printf("      ");
+			while (queue_tmp)
+			{
+				printf(" %d ", ((t_item*)queue_tmp->content)->index);
+				queue_tmp = queue_tmp->next;
+			}
+			printf("\n");
+			//////////////////////////////END
 			current_item = ((t_room*)(tmp->content))->index;
-			//	if (current_item == farm->end->index)
-			//		return (ft_pathextract(farm, lst_vis));
 			if (!ft_search_item(lst_vis, current_item) && !(farm->rooms_ht->entries[current_item]->flow))
 			{
 				item = ft_itemnew(current_item);
 				elm  = ft_elemnew((t_item*)item);
 				ft_enqueue(queue, elm);
-				ft_dlstpush(lst_vis, elm);
+				ft_dlstpush(lst_vis, ft_elemnew((t_item*)ft_itemnew(current_item)));
 			}
-			exit(0);
 			tmp = tmp->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/17 16:02:14 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/18 10:04:12 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 	if (!(ft_getedges(farm, current)))
 		return (NULL);
 //	print_data(farm);
-	printf("hererere\n");
+	printf("\ncall BFS\n");
 	ft_bfs(farm);
 	return (farm);
 }
