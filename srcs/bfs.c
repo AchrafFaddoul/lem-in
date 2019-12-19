@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/18 20:56:29 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/18 22:39:00 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,6 @@ static void dummy_del(void *content)
 }
 
 
-int 			ft_ismatched(t_room *room, t_dlist *lst_vis)
-{
-	t_element 	*tmp1;
-	t_element 	*tmp2;
-
-	tmp1 = room->edges->head;
-	while (tmp1)
-	{
-		tmp2 = lst_vis->head;
-		while (tmp2)
-		{
-			if (((t_item*)(tmp2->content))->index == room->index)
-				break ;
-			if (((t_item*)(tmp1->content))->index == ((t_item*)(tmp2->content))->index)
-				return (((t_item*)(tmp1->content))->index);
-			tmp2 = tmp2->next;
-		}
-		tmp1 = tmp1->next;
-	}
-	return (0);
-}
 
 void 			ft_flowmark(t_dlist *edges, int value)
 {
@@ -91,6 +70,43 @@ int 			ft_scorecompute(int path, int node, int ants)
 	return ((int)result);
 }
 
+int 			ft_ismatched(t_room *room, t_dlist *lst_vis)
+{
+	t_element 	*tmp1;
+	t_element 	*tmp2;
+
+	tmp1 = room->edges->head;
+	tmp2 = lst_vis->head;
+	/*
+	printf("edge\n");
+	while (tmp1)
+	{
+		printf("%d   ",((t_room*)(tmp1->content))->index);
+		tmp1 = tmp1->next;
+	}
+		printf("lst_vis\n");
+	while (tmp2)
+	{
+		printf("%d   ", ((t_item*)(tmp2->content))->index);
+		tmp2 = tmp2->next;
+	}
+	*/
+	while (tmp1)
+	{
+		tmp2 = lst_vis->head;
+		while (tmp2)
+		{
+			if (((t_item*)(tmp2->content))->index == room->index)
+				break ;
+			if (((t_room*)(tmp1->content))->index == ((t_item*)(tmp2->content))->index)
+				return (((t_room*)(tmp1->content))->index);
+			tmp2 = tmp2->next;
+		}
+		tmp1 = tmp1->next;
+	}
+	return (0);
+}
+
 int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 {
 	t_dlist 	*path;
@@ -104,23 +120,31 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 	item = ft_itemnew(farm->end->index);
 	elm  = ft_elemnew((t_item*)item);
 	ft_dlstpush(path, elm);
-	while (!((ret = ft_ismatched(GET_ENTRY(((t_item*)(path->tail->content))->index), lst_vis))
-				== farm->start->index))
+	printf("key_tail:%s\n", (GET_ENTRY(((t_item*)(path->tail->content))->index))->key);
+	while ((ret = ft_ismatched(GET_ENTRY(((t_item*)(path->tail->content))->index), lst_vis)) != farm->start->index)
 	{
+		printf("RET:%d\n", ret);
 		item = ft_itemnew(ret);
 		elm  = ft_elemnew((t_item*)item);
 		ft_dlstpush(path, elm);
-		printf("\nHT_KEY:%s\n|", farm->rooms_ht->entries[ret]->key);
+		t_element *vis_tmp = path->head;
+		printf("path\n");
+		while (vis_tmp)
+		{
+			printf(" %s ", farm->rooms_ht->entries[((t_item*)vis_tmp->content)->index]->key  );
+			vis_tmp = vis_tmp->next;
+		}
+		printf("end printting path\n");
 	}
-	farm->path_nb++;
-	farm->node_nb += path->size -1;
-	ret = ft_scorecompute(farm->path_nb, farm->node_nb, farm->ants);
-	//	if (ret <= farm->score)
-	//	{
-	//		farm->score = ret;
-	//		ft_hashmapupdate(farm, path);
-	//	}
-	//	else
+	/*	farm->path_nb++;
+		farm->node_nb += path->size -1;
+		ret = ft_scorecompute(farm->path_nb, farm->node_nb, farm->ants);
+		if (ret <= farm->score)
+		{
+		farm->score = ret;
+		ft_hashmapupdate(farm, path);
+		}
+	//	else*/
 	ft_pathdel(path);
 	return (PRINT);
 }
@@ -160,8 +184,44 @@ int 			ft_bfs(t_farm *farm)
 	{
 		current_item = ft_dequeue(queue);
 		tmp = (((t_room*)(farm->rooms_ht->entries[current_item]->content))->edges)->head;
+		printf("\nEDGE_OF");
+		printf(" %s ", farm->rooms_ht->entries[current_item]->key  );
 		while (tmp)
 		{
+			current_item = ((t_room*)(tmp->content))->index;
+			t_element	*vis_tmp = lst_vis->head;
+			if (current_item == farm->end->index)
+			{
+
+				vis_tmp = lst_vis->head;
+				printf("\n");
+				printf("vis");
+				while (vis_tmp)
+				{
+					printf(" %s ", farm->rooms_ht->entries[((t_item*)vis_tmp->content)->index]->key  );
+					vis_tmp = vis_tmp->next;
+				}
+				return (ft_pathextract(farm, lst_vis));
+			}
+
+			t_element 	*queue_tmp = queue->head;
+			printf("\n");
+			printf("vis");
+			while (vis_tmp)
+			{
+				printf(" %s ", farm->rooms_ht->entries[((t_item*)vis_tmp->content)->index]->key  );
+				vis_tmp = vis_tmp->next;
+			}
+			queue_tmp = queue->head;
+			printf("      ");
+			printf("queue");
+			while (queue_tmp)
+			{
+				printf(" %s ", farm->rooms_ht->entries[((t_item*)queue_tmp->content)->index]->key  );
+				queue_tmp = queue_tmp->next;
+			}
+			printf("\n");
+
 			if (!ft_search_item(lst_vis, current_item) && !(farm->rooms_ht->entries[current_item]->flow))
 			{
 				item = ft_itemnew(current_item);
