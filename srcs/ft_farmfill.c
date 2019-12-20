@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/18 10:04:12 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:28:14 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		return (NULL);
 //	print_data(farm);
 	printf("\ncall BFS\n");
+	ft_bfs(farm);
+	/*
+	size_t i = 0;
+	while (i < farm->rooms_ht->size)
+	{
+		printf("FLOW:%d|", farm->rooms_ht->entries[i]->flow);
+		printf("KEY:%s\n|", farm->rooms_ht->entries[i]->key);
+		i++;
+	}
+	*/
+	ft_bfs(farm);
+	ft_bfs(farm);
 	ft_bfs(farm);
 	return (farm);
 }

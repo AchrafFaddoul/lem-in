@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/18 22:39:00 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/19 17:30:06 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void 			ft_hashmapupdate(t_farm *farm, t_dlist *path)
 	ft_flowmark((GET_ENTRY(farm->start->index))->edges, ((t_item*)(current->content))->index);
 	while ((((t_item*)(current->content))->index) != farm->end->index)
 	{
-		GET_ENTRY((((t_item*)(current->content))->index))->flow = 1;
+		farm->rooms_ht->entries[(((t_item*)(current->content))->index)]->flow = 1;
+		printf("flow inside while: %d\n",GET_ENTRY((((t_item*)(current->content))->index))->flow );
+		printf("KEY inside while: %s\n",GET_ENTRY((((t_item*)(current->content))->index))->key );
 		ft_flowmark(GET_ENTRY((((t_item*)(current->content))->index))->edges, (((t_item*)(current->prev->content))->index));
 		current = current->prev;
 	}
@@ -77,20 +79,6 @@ int 			ft_ismatched(t_room *room, t_dlist *lst_vis)
 
 	tmp1 = room->edges->head;
 	tmp2 = lst_vis->head;
-	/*
-	printf("edge\n");
-	while (tmp1)
-	{
-		printf("%d   ",((t_room*)(tmp1->content))->index);
-		tmp1 = tmp1->next;
-	}
-		printf("lst_vis\n");
-	while (tmp2)
-	{
-		printf("%d   ", ((t_item*)(tmp2->content))->index);
-		tmp2 = tmp2->next;
-	}
-	*/
 	while (tmp1)
 	{
 		tmp2 = lst_vis->head;
@@ -131,21 +119,21 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis)
 		printf("path\n");
 		while (vis_tmp)
 		{
-			printf(" %s ", farm->rooms_ht->entries[((t_item*)vis_tmp->content)->index]->key  );
+			printf(" %s ", farm->rooms_ht->entries[((t_item*)vis_tmp->content)->index]->key);
 			vis_tmp = vis_tmp->next;
 		}
 		printf("end printting path\n");
 	}
-	/*	farm->path_nb++;
-		farm->node_nb += path->size -1;
-		ret = ft_scorecompute(farm->path_nb, farm->node_nb, farm->ants);
-		if (ret <= farm->score)
-		{
+	farm->path_nb++;
+	farm->node_nb += path->size -1;
+	ret = ft_scorecompute(farm->path_nb, farm->node_nb, farm->ants);
+//	if (ret <= farm->score)
+//	{
 		farm->score = ret;
 		ft_hashmapupdate(farm, path);
-		}
-	//	else*/
-	ft_pathdel(path);
+//	}
+//	else
+		ft_pathdel(path);
 	return (PRINT);
 }
 
@@ -201,6 +189,7 @@ int 			ft_bfs(t_farm *farm)
 					printf(" %s ", farm->rooms_ht->entries[((t_item*)vis_tmp->content)->index]->key  );
 					vis_tmp = vis_tmp->next;
 				}
+				printf("\n\nbfs Dome \n\n");
 				return (ft_pathextract(farm, lst_vis));
 			}
 
