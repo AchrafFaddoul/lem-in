@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/19 17:28:14 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/20 19:28:41 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		return (NULL);
 //	print_data(farm);
 	printf("\ncall BFS\n");
-	ft_bfs(farm);
 	/*
 	size_t i = 0;
 	while (i < farm->rooms_ht->size)
@@ -53,8 +52,9 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		i++;
 	}
 	*/
-	ft_bfs(farm);
-	ft_bfs(farm);
-	ft_bfs(farm);
+	printf("BEF_BFS_MANAGER_CALL\n");
+	printf("befbfskey |%s|\n", ((t_room*)farm->start)->key);
+	printf("befbfsindex |%d|\n", ((t_room*)farm->start)->index);
+	ft_bfsmanager(farm);
 	return (farm);
 }

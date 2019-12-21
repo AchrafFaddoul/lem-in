@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/17 17:46:23 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/20 22:58:28 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,19 @@ typedef struct 			s_item
 	int 			index;
 }				t_item;
 
+typedef struct			s_group
+{
+	t_dlist				**path;
+	long long 			score;
+	int  				node_nb;
+	int 				path_nb;
+}						t_group;
+
+
 typedef struct			s_farm
 {
 	long long		ants;
-	long long 		score;
-	int  			node_nb;
-	int 			path_nb;
+	t_group			grps[2];
 	t_dlist			*rooms;
 	t_room			*start;
 	t_room			*end;
@@ -66,11 +73,12 @@ void				ft_enqueue(t_dlist *lst, t_element *elm);
 int				ft_dequeue(t_dlist *lst);
 t_item				*ft_itemnew(int value);
 int				ft_search_item(t_dlist *lst, int target);
-int				ft_bfs(t_farm *farm);
+int				ft_bfs(t_farm *farm, int i_grp);
 int				ft_search_item(t_dlist *lst, int target);
 int				ft_ismatched(t_room *room, t_dlist *lst_vis);
-void			ft_flowmark(t_dlist *edges, int value);
+void			ft_flowmark(t_room *room, int value);
 void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
-int				ft_pathextract(t_farm *farm, t_dlist *lst_vis);
+int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, int i_grp);
+int             ft_bfsmanager(t_farm *farm);
 
 #endif

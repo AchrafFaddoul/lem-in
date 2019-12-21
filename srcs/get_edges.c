@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/15 17:44:17 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/20 22:53:19 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static int		search_and_insert(t_farm *farm,
 		if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, vertex_room, equ)))
 			return (0);
 	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, ft_elemnew(neighbor_room));
+	((t_room*)(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->tail->content))->flow = -1;
 	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, ft_elemnew(vertex_room));
+	((t_room*)(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges->tail->content))->flow = -1;
 	return (1);
 }
 
