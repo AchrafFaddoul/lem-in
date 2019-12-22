@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 01:30:34 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/21 20:03:07 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,42 +41,8 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		return (NULL);
 	if (!(ft_getedges(farm, current)))
 		return (NULL);
-//	print_data(farm);
-	printf("\ncall BFS\n");
-	/*
-	size_t i = 0;
-	while (i < farm->rooms_ht->size)
-	{
-		printf("FLOW:%d|", farm->rooms_ht->entries[i]->flow);
-		printf("KEY:%s\n|", farm->rooms_ht->entries[i]->key);
-		i++;
-	}
-	*/
-	printf("BEF_BFS_MANAGER_CALL\n");
-	printf("befbfskey |%s|\n", ((t_room*)farm->start)->key);
-	printf("befbfsindex |%d|\n", ((t_room*)farm->start)->index);
-	printf("BEF\n");
 	if (!ft_bfsmanager(farm))
-	{
-		printf("EXIT\n");
 		return (NULL);
-	}
-	printf("AFT_PATH_READY\n");
-	printf("---->size:%zu\n", farm->start->edges->size);
-	int 		i = 0;
-	t_element	*tmp;
-	printf("#########PATH######<%d>####\n", farm->grps[0].path_nb);
-	while (i < farm->grps[0].path_nb)
-	{
-		tmp = ((t_dlist*)(farm->grps[0].path[i]))->head;
-		printf("#########PATH######<%d>####\n", i);
-		while (tmp)
-		{
-			printf("%s ", (GET_ENTRY((((t_item*)tmp->content)->index)))->key);
-			tmp = tmp->next;
-		}
-		i++;
-		printf("\n");
-	}
+	ft_putinstructions(farm);
 	return (farm);
 }

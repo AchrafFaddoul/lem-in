@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 00:37:16 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/21 21:26:33 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ typedef struct 			s_item
 {
 	int 			index;
 }				t_item;
+
+typedef struct 			s_simulation
+{
+	int 				node_nb;
+	int 				ants_nb;
+}						t_simulation;
 
 typedef struct			s_group
 {
@@ -80,5 +86,6 @@ void			ft_flowmark(t_room *room, int value);
 void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
 int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, int i_grp);
 int             ft_bfsmanager(t_farm *farm);
+int				ft_putinstructions(t_farm *farm);
 
 #endif

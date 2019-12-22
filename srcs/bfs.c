@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 01:29:55 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/21 17:45:25 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -370,6 +370,9 @@ void			ft_grpsreverse(t_farm *farm)
 	farm->grps[0].path_nb = farm->grps[1].path_nb;
 	farm->grps[0].path = farm->grps[1].path;
 	farm->grps[1].path = ft_grpnew(farm->start->edges->size);
+	farm->grps[1].path_nb = 0;
+	farm->grps[1].score = 9223372036854775807;
+	farm->grps[1].node_nb = 0;
 	printf("\n\nREVERSE_DONE\n\n");
 }
 
