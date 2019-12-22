@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 23:14:26 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/22 22:49:41 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		return (NULL);
 	if (!ft_bfsmanager(farm))
 		return (NULL);
+	////printf("score:%lld\n", farm->grps[0].score);
 	ft_putinstructions(farm);
 	return (farm);
 }

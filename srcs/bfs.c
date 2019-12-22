@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/22 20:02:27 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/22 23:00:54 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,13 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, int i_grp)
 		elm  = ft_elemnew((t_item*)item);
 		ft_dlstpush(path, elm);
 	}
-	farm->grps[i_grp].node_nb += (path->size -1);
+	farm->grps[i_grp].node_nb += (path->size - 1);
 	ret = ft_scorecompute(farm->grps[i_grp].path_nb + 1, farm->grps[i_grp].node_nb, farm->ants);
-	if (ret <= farm->grps[i_grp].score)
+	if (ret < farm->grps[i_grp].score)
 	{
-		farm->grps[i_grp].path_nb++;
 		farm->grps[i_grp].score = ret;
 		ft_hashmapupdate(farm, path);
-		farm->grps[i_grp].path[farm->grps[i_grp].path_nb - 1] = path;
+		farm->grps[i_grp].path[farm->grps[i_grp].path_nb++] = path;
 		ft_dlstdel(&lst_vis, dummy_del);
 		return (UPDATED);
 	}
@@ -246,24 +245,6 @@ static void 		ft_farmreset(t_farm *farm)
 	}
 }
 
-int 			ft_maxflowcaller(t_farm *farm)
-{
-	int 		ret;
-	ret = ft_maxflow(farm, 1);
-	if (ret == ERROR)
-		return (-1);
-	else if(ret == MAX_FLOW)
-		return (1);
-	ft_farmreset(farm);
-	ft_hashmapupdate(farm, farm->grps[1].path[0]);
-	while ((ret = ft_bfs(farm, 1)) != MAX_FLOW && ret != PRINT)
-	{
-		if (ret == ERROR)
-			return (-1);
-	}
-	return (1);
-}
-
 static int 			ft_pathdel(t_dlist *path)
 {
 	if (path)
@@ -272,6 +253,7 @@ static int 			ft_pathdel(t_dlist *path)
 		return (0);
 	return (1);
 }
+
 void			ft_grpdestroy(t_dlist **grp, int path_nb)
 {
 	int			i;
@@ -293,7 +275,28 @@ void			ft_grpsreverse(t_farm *farm)
 	farm->grps[1].node_nb = 0;
 }
 
+int 			ft_maxflowcaller(t_farm *farm)
+{
+	int 		ret;
+	ret = ft_maxflow(farm, 1);
+	if (ret == ERROR)
+		return (-1);
+	else if(ret == MAX_FLOW)
+		return (1);
+	//printf("score: %lld\n", farm->grps[1].score);
+	ft_farmreset(farm);
+	ft_hashmapupdate(farm, farm->grps[1].path[0]);
+	while ((ret = ft_bfs(farm, 1)) != MAX_FLOW)
+	{
+		if (ret == PRINT)
+			return (1);
+		if (ret == ERROR)
+			return (-1);
+	}
+	return (1);
+}
 int 			ft_bfsmanager(t_farm *farm)
+
 {
 	int 		ret;
 
@@ -310,6 +313,8 @@ int 			ft_bfsmanager(t_farm *farm)
 	farm->grps[1].score = 9223372036854775807;
 	while ((ret = ft_maxflowcaller(farm)) != 0)
 	{
+		//printf("old grps score: %lld\n", farm->grps[0].score);
+		//printf("new grps score: %lld\n", farm->grps[1].score);
 		if(ret == -1)
 			return (0);
 		if (farm->grps[0].score <= farm->grps[1].score)
