@@ -1,12 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putinstructions.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/12/22 00:06:35 by afaddoul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-t_simulation		**ft_simdestroy(t_farm *farm, t_simulation **sim_arr)
+t_simulation		**ft_simdestroy(t_simulation **sim_arr, size_t size)
 {
 	size_t 			i;
-	size_t 			size;
 
 	i = 0;
-	size = farm->grps[0].path_nb;
 	while (i < size)
 	{
 		free(sim_arr[i]);
@@ -31,7 +41,7 @@ t_simulation		**ft_simnew(t_farm *farm)
 	{
 		sim_arr[i] = (t_simulation*)ft_memalloc(sizeof(t_simulation*));
 		if (!sim_arr[i])
-			return (ft_simdestroy(farm, sim_arr));
+			return (ft_simdestroy(sim_arr, size));
 		i++;
 	}
 	return (sim_arr);
@@ -84,7 +94,6 @@ t_simulation 		**ft_simulation(t_farm *farm)
 	i = 0;
 	ants_nb = farm->ants;
 	sim_arr = ft_simnew(farm);
-	printf("sim_arr created\n");
 	if (!sim_arr)
 		return (sim_arr);
 	path = farm->grps[0].path;
@@ -104,13 +113,83 @@ t_simulation 		**ft_simulation(t_farm *farm)
 	return (sim_arr);
 }
 
+static t_node		**ft_pathsdestroy(t_node **paths, size_t size)
+{
+	size_t			i;
+
+	i = 0;
+	while (i < size)
+	{
+		free(paths[i]);
+		i++;
+	}
+	free(paths);
+	return (NULL);
+
+}
+
+static void			ft_pathfiller(t_farm *farm, t_node **path, size_t i)
+{
+	t_element		*tmp;
+	int 			j;
+
+	j = 1;
+	tmp = farm->grps[0].path[i]->tail;
+	printf("END:%s\n", (GET_ENTRY((((t_item*)(tmp->content)))->index))->key);
+	while (tmp)
+	{
+		path[i][j].room = (GET_ENTRY((((t_item*)(tmp->content)))->index))->key;
+		tmp = tmp->prev;
+		j++;
+	}
+}
+
+t_node 				**ft_pathsnew(t_farm *farm, t_simulation **sim_arr)
+{
+	size_t			size;
+	size_t 			i;
+	t_node 			**paths;
+
+	i = 0;
+	size = farm->grps[0].path_nb;
+	paths = (t_node**)ft_memalloc(sizeof(t_node*) * size);
+	if (!paths)
+		return (NULL);
+	while (i < size)
+	{
+		paths[i] = (t_node*)ft_memalloc(sizeof(t_node) * (farm->grps[0].path[i]->size + 1));
+		if (!paths[i])
+			return (ft_pathsdestroy(paths, size));
+		paths[i][0].ants = sim_arr[i]->ants_nb;
+		ft_pathfiller(farm, paths, i);
+		i++;
+	}
+	return (paths);
+}
+
 int	 				ft_putinstructions(t_farm *farm)
 {
 	t_simulation 	**sim_arr;
+	t_node 			**paths;
 
 	sim_arr = ft_simulation(farm);
 	if (!sim_arr)
 		return (0);
+	if (!(paths = ft_pathsnew(farm, sim_arr)))
+		return (0);
+	int i = 0;
+	size_t j;
+	while (i < farm->grps[0].path_nb)
+	{
+		j = 0;
+		while (j < farm->grps[0].path[i]->size + 1)
+		{
+			printf("|%d:", paths[i][j].ants);
+			printf("%s|", paths[i][j].room);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 	return (1);
-	//	ft_pathnew(farm. sim_arr);
 }
