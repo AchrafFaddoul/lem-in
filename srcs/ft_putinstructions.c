@@ -5,8 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/22 18:32:33 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/12/22 19:58:13 by afaddoul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putinstructions.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/22 17:45:09 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/22 18:31:49 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +179,7 @@ t_node 				**ft_pathsnew(t_farm *farm, t_simulation **sim_arr)
 	{
 		paths[i] = (t_node*)ft_memalloc(sizeof(t_node) * (farm->grps[0].path[i]->size + 1));
 		if (!paths[i])
-			return (ft_pathsdestroy(paths, size));
+			return (ft_pathsdestroy(paths, farm->paths_nb));
 		paths[i][0].ants = sim_arr[i]->ants_nb;
 		ft_pathfiller(farm, paths, i);
 		i++;
@@ -175,16 +187,97 @@ t_node 				**ft_pathsnew(t_farm *farm, t_simulation **sim_arr)
 	return (paths);
 }
 
+int 				ft_antsmove(t_node *path, t_simulation *sim_arr, int *ants)
+{
+	int 			end_reached;
+	int 			i;
+
+	i = sim_arr->path_size - 1;
+	end_reached = 0;
+	while (i >= 0 && path[0].ants)
+	{
+		if (i == 0)
+		{
+			printf("|%d| * |%d| \n",path[i].ants, *ants);
+			path[i].ants--;
+			path[1].ants = (*ants)++;
+		}
+		else
+		{
+			if ((i + 1) == (sim_arr->path_size - 1))
+				end_reached++;
+			if (!path[i].ants)
+			{
+				path[i+1].ants = path[i].ants;
+				path[i].ants = 0;
+			}
+		}
+		i--;
+	}
+	return (end_reached);
+}
+
+void 				ft_instruprinter(t_farm *farm, t_node **paths,
+		t_simulation **sim_arr)
+{
+	int 			i;
+	int 			j;
+	int				prev_printed;
+
+	prev_printed = 0;
+	i = 0;
+	sim_arr = NULL;
+	while (i < (int)farm->paths_nb)
+	{
+		j = ((int)farm->grps[0].path[i]->size);
+		while (j > 0)
+		{
+			if (paths[i][j].ants != 0)
+			{
+				//prev_printed = 1;
+				printf("L%d-%s", paths[i][j].ants, paths[i][j].room);
+				if ((i != (int)farm->paths_nb - 1 || (j != 1 &&  paths[i][j - 1].ants != 0)))
+				{
+					printf(" ");
+				}
+			}
+			j--;
+		}
+		i++;
+	}
+	printf("\n");
+}
+
+void				ft_resultprinter(t_farm *farm, t_simulation **sim_arr,
+		t_node **paths)
+{
+	long long		counter;
+	int 			ants;
+	size_t 			i;
+
+	counter = farm->ants;
+	ants = 1;
+	i = 0;
+	while (counter)
+	{
+		counter -= ft_antsmove(paths[i], sim_arr[i], &ants);
+		i++;
+	}
+	ft_instruprinter(farm, paths, sim_arr);
+}
+
 int	 				ft_putinstructions(t_farm *farm)
 {
 	t_simulation 	**sim_arr;
 	t_node 			**paths;
 
+	printf("*********************\n");
 	sim_arr = ft_simulation(farm);
 	if (!sim_arr)
 		return (0);
 	if (!(paths = ft_pathsnew(farm, sim_arr)))
 		return (0);
+
 	int i = 0;
 	size_t j;
 	while (i < (int)farm->paths_nb)
@@ -199,5 +292,65 @@ int	 				ft_putinstructions(t_farm *farm)
 		printf("\n");
 		i++;
 	}
+	printf("***************************\n\n");
+	int i2 = 0;
+	int j2;
+	int done_ants = 0;
+	int ants = 1;
+	while (done_ants < farm->ants)
+	{
+		j2 = farm->grps[0].path[i2]->size;
+		while (j2 >= 0)
+		{
+		//	printf("ants in room = %d | j %d | i = %d\n",paths[i2][j2].ants,j2, i2);
+			if (paths[i2][j2].ants != 0)
+			{
+				if (j2 == 0)
+				{
+				//	printf("dkhelt i = %d\n", i2);
+					paths[i2][j2 + 1].ants = ants++;
+					paths[i2][j2].ants--;
+				}
+				else if (j2 == (int)farm->grps[0].path[i2]->size){
+					done_ants++;
+					paths[i2][j2].ants = 0;
+				}
+				else 
+				{
+					paths[i2][j2 + 1].ants = paths[i2][j2].ants;
+					paths[i2][j2].ants = 0;
+				}
+			}
+			j2--;
+		}
+		i2++;
+	//	printf("i = %d | paths nb = %d\n", i2,(int)farm->paths_nb );
+		if (i2 >= (int)farm->paths_nb)
+		{
+			i2 = 0;
+			ft_instruprinter(farm, paths, sim_arr);
+		/*	i = 0;
+			while (i < (int)farm->paths_nb)
+			{
+				j = 0;
+				while (j < farm->grps[0].path[i]->size + 1)
+				{
+					printf("|%d:", paths[i][j].ants);
+					printf("%s|", paths[i][j].room);
+					j++;
+				}
+				printf("\n");
+				i++;
+			}*/
+		}
+
+
+
+
+
+	}
+
+
+	//	ft_resultprinter(farm, sim_arr, paths);
 	return (1);
 }
