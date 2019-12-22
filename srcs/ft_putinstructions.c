@@ -5,20 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/22 18:32:33 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/22 19:58:13 by afaddoul         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_putinstructions.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/22 18:31:49 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/22 20:07:50 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +105,6 @@ t_simulation 		**ft_simulation(t_farm *farm)
 		sim_arr[i]->ants_nb++;
 		ants_nb--;
 	}
-	i = -1;
-	while ((int)(++i) < farm->grps[0].path_nb)
-	{
-		printf("%d\n", sim_arr[i]->ants_nb);
-	}
 	return (sim_arr);
 }
 
@@ -198,7 +181,6 @@ int 				ft_antsmove(t_node *path, t_simulation *sim_arr, int *ants)
 	{
 		if (i == 0)
 		{
-			printf("|%d| * |%d| \n",path[i].ants, *ants);
 			path[i].ants--;
 			path[1].ants = (*ants)++;
 		}
@@ -271,28 +253,12 @@ int	 				ft_putinstructions(t_farm *farm)
 	t_simulation 	**sim_arr;
 	t_node 			**paths;
 
-	printf("*********************\n");
 	sim_arr = ft_simulation(farm);
 	if (!sim_arr)
 		return (0);
 	if (!(paths = ft_pathsnew(farm, sim_arr)))
 		return (0);
 
-	int i = 0;
-	size_t j;
-	while (i < (int)farm->paths_nb)
-	{
-		j = 0;
-		while (j < farm->grps[0].path[i]->size + 1)
-		{
-			printf("|%d:", paths[i][j].ants);
-			printf("%s|", paths[i][j].room);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("***************************\n\n");
 	int i2 = 0;
 	int j2;
 	int done_ants = 0;
@@ -302,12 +268,10 @@ int	 				ft_putinstructions(t_farm *farm)
 		j2 = farm->grps[0].path[i2]->size;
 		while (j2 >= 0)
 		{
-		//	printf("ants in room = %d | j %d | i = %d\n",paths[i2][j2].ants,j2, i2);
 			if (paths[i2][j2].ants != 0)
 			{
 				if (j2 == 0)
 				{
-				//	printf("dkhelt i = %d\n", i2);
 					paths[i2][j2 + 1].ants = ants++;
 					paths[i2][j2].ants--;
 				}
@@ -324,30 +288,11 @@ int	 				ft_putinstructions(t_farm *farm)
 			j2--;
 		}
 		i2++;
-	//	printf("i = %d | paths nb = %d\n", i2,(int)farm->paths_nb );
 		if (i2 >= (int)farm->paths_nb)
 		{
 			i2 = 0;
 			ft_instruprinter(farm, paths, sim_arr);
-		/*	i = 0;
-			while (i < (int)farm->paths_nb)
-			{
-				j = 0;
-				while (j < farm->grps[0].path[i]->size + 1)
-				{
-					printf("|%d:", paths[i][j].ants);
-					printf("%s|", paths[i][j].room);
-					j++;
-				}
-				printf("\n");
-				i++;
-			}*/
 		}
-
-
-
-
-
 	}
 
 
