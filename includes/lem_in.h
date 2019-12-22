@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 23:22:18 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/22 17:43:20 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct 			s_simulation
 {
 	int 				node_nb;
 	int 				ants_nb;
+	int 				path_size;
 }						t_simulation;
 
 typedef struct 			s_node
@@ -56,6 +57,7 @@ typedef struct			s_group
 typedef struct			s_farm
 {
 	long long		ants;
+	size_t			paths_nb;
 	t_group			grps[2];
 	t_dlist			*rooms;
 	t_room			*start;

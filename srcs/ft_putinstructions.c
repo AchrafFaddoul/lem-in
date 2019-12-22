@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/22 00:06:35 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/22 17:45:09 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ static void			ft_pathfiller(t_farm *farm, t_node **path, size_t i)
 
 	j = 1;
 	tmp = farm->grps[0].path[i]->tail;
-	printf("END:%s\n", (GET_ENTRY((((t_item*)(tmp->content)))->index))->key);
 	while (tmp)
 	{
 		path[i][j].room = (GET_ENTRY((((t_item*)(tmp->content)))->index))->key;
@@ -152,6 +151,15 @@ t_node 				**ft_pathsnew(t_farm *farm, t_simulation **sim_arr)
 
 	i = 0;
 	size = farm->grps[0].path_nb;
+	while (i < (size_t)farm->grps[0].path_nb)
+	{
+		if (sim_arr[i][0].ants_nb == 0)
+			break ;
+		i++;
+	}
+	farm->paths_nb = i;
+	size = i;
+	i = 0;
 	paths = (t_node**)ft_memalloc(sizeof(t_node*) * size);
 	if (!paths)
 		return (NULL);
@@ -179,7 +187,7 @@ int	 				ft_putinstructions(t_farm *farm)
 		return (0);
 	int i = 0;
 	size_t j;
-	while (i < farm->grps[0].path_nb)
+	while (i < (int)farm->paths_nb)
 	{
 		j = 0;
 		while (j < farm->grps[0].path[i]->size + 1)
