@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/23 00:10:44 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/23 00:12:42 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,72 +199,13 @@ int 				ft_antsmove(t_node *path, t_simulation *sim_arr, int *ants)
 	return (end_reached);
 }
 
-/*
 void 				ft_instruprinter(t_farm *farm, t_node **paths)
 {
 	int 			i;
 	int 			j;
-	int				prev_printed;
-
-	prev_printed = 0;
-	i = 0;
-	while (i < (int)farm->paths_nb)
-	{
-		j = ((int)farm->grps[0].path[i]->size);
-		int sz = ((int)farm->grps[0].path[i]->size);
-		while (j > 0)
-		{
-			while (paths[i][x].ants == 0)
-				if (paths[i][j].ants != 0)
-				{
-					printf("L%d-%s", paths[i][j].ants, paths[i][j].room);
-					//if (!((i == (int)farm->paths_nb - 1) (j != 1 &&  paths[i][j - 1].ants != 0)))
-					if (j > x || i != (int)farm->paths_nb - 1)
-					{
-						printf(" ");
-					}
-				}
-			j--;
-		}
-		i++;
-	}
-	printf("\n");
-}
-*/
-
-void 				ft_searchlast(t_farm *farm, t_node **paths, int *i, int *j)
-{
-	int 			x;
-	int 			y;
-
-	x = farm->paths_nb - 1;
-	while (x >= 0)
-	{
-		y = farm->grps[0].path[x]->size;
-		while (y >= 0)
-		{
-			if (paths[x][y].ants == 0)
-			{
-				*i = x;
-				*j = y + 1;
-					return ;
-			}
-			y--;
-		}
-		x--;
-	}
-}
-
-void 				ft_instruprinter(t_farm *farm, t_node **paths)
-{
-	int 			i;
-	int 			j;
-	int 			last_i;
-	int 			last_j;
 
 	i = 0;
 	int cnt = 0;
-	//ft_searchlast(farm, paths, &last_i, &last_j);
 	while (i < (int)farm->paths_nb)
 	{
 		j = ((int)farm->grps[0].path[i]->size);
@@ -299,25 +240,6 @@ void 				ft_instruprinter(t_farm *farm, t_node **paths)
 
 	printf("\n");
 }
-/*
-void				ft_resultprinter(t_farm *farm, t_simulation **sim_arr,
-		t_node **paths)
-{
-	long long		counter;
-	int 			ants;
-	size_t 			i;
-
-	counter = farm->ants;
-	ants = 1;
-	i = 0;
-	while (counter)
-	{
-		counter -= ft_antsmove(paths[i], sim_arr[i], &ants);
-		i++;
-	}
-	ft_instruprinter(farm, paths, sim_arr);
-}
-*/
 
 int	 				ft_putinstructions(t_farm *farm)
 {

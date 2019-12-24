@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/22 17:43:20 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/23 17:57:18 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct			s_room
 typedef struct 			s_item
 {
 	int 			index;
+	int				prev;
 }				t_item;
 
 typedef struct 			s_simulation
@@ -85,14 +86,14 @@ int				ft_edgesparse(const char *input,
 			char **vertex, char **neighbor);
 void				ft_enqueue(t_dlist *lst, t_element *elm);
 int				ft_dequeue(t_dlist *lst);
-t_item				*ft_itemnew(int value);
+t_item				*ft_itemnew(int value, int prev);
 int				ft_search_item(t_dlist *lst, int target);
 int				ft_bfs(t_farm *farm, int i_grp);
 int				ft_search_item(t_dlist *lst, int target);
-int				ft_ismatched(t_room *room, t_dlist *lst_vis);
+int				ft_ismatched(t_room *room, t_dlist *standby, t_dlist *lst_vis);
 void			ft_flowmark(t_room *room, int value);
 void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
-int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, int i_grp);
+int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, t_dlist *standby, int i_grp, int dequeued);
 int             ft_bfsmanager(t_farm *farm);
 int				ft_putinstructions(t_farm *farm);
 

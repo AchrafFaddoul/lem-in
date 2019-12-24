@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_queue.c                                         :+:      :+:    :+:   */
+/*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 23:15:26 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/23 17:56:45 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_dequeue(t_dlist *lst)
 	return (item);
 }
 
-t_item 	*ft_itemnew(int value)
+t_item 	*ft_itemnew(int value, int prev)
 {
 	t_item *item;
 
@@ -50,5 +50,6 @@ t_item 	*ft_itemnew(int value)
 	if (!item)
 		return (NULL);
 	item->index = value;
+	item->prev = prev;
 	return (item);
 }
