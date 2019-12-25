@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 23:15:03 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/24 22:57:56 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ static 	int 	get_type(const char *line)
 	return (T_LINKS);
 }
 
+t_room 			*ft_roomdup(t_room *room)
+{
+	t_room 		*new_room;
+
+	new_room = (t_room*)ft_memalloc(sizeof(t_room));
+	if (!new_room)
+		return (NULL);
+	room->key = 
+}
+
 static int		search_and_insert(t_farm *farm,
 		const char *vertex, const char *neighbor)
 {
@@ -48,8 +58,10 @@ static int		search_and_insert(t_farm *farm,
 		if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, vertex_room, equ)))
 			return (0);
 	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, ft_elemnew(neighbor_room));
+	printf("index:%d ADR:%p\n", vx_in , ((t_room*)(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->tail->content)));
 	((t_room*)(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->tail->content))->flow = -1;
 	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, ft_elemnew(vertex_room));
+	printf("index:%d ADR:%p\n", ng_in, ((t_room*)(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges->tail->content)));
 	((t_room*)(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges->tail->content))->flow = -1;
 	return (1);
 }
