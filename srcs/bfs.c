@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/27 19:06:14 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/27 20:11:01 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,8 +249,8 @@ int 		ft_flowextract(t_farm *farm, t_dlist *vis, int dequeued)
 		{
 			if (farm->grps[1].path[j]->size < farm->grps[1].path[i]->size)
 			{
-				path = farm->grps[1].path[j];
-				farm->grps[1].path[j] = farm->grps[1].path[i];
+				path = farm->grps[1].path[i];
+				farm->grps[1].path[i] = farm->grps[1].path[j];
 				farm->grps[1].path[j] = path;
 			}
 		}
@@ -459,8 +459,10 @@ int				ft_maxflowcaller(t_farm *farm)
 	int i;
 
 	i = -1;
+	printf("================PATH NB %d\n",farm->grps[1].path_nb );
 	while(++i < farm->grps[1].path_nb)
 	{
+		printf("PATH SIZE %zu\n",farm->grps[1].path[i]->size);
 		tmp = farm->grps[1].path[i]->head;
 		while(tmp)
 		{
@@ -484,13 +486,13 @@ int 			ft_bfsmanager(t_farm *farm)
 	farm->grps[1].score = 9223372036854775807;
 	while ((ret = ft_maxflowcaller(farm)) != ERROR)
 	{
-	//	printf("G1 score is %lld\n", farm->grps[0].score);
-	//	printf("G2 score is %lld\n\n", farm->grps[1].score);
+		//printf("G1 score is %lld\n", farm->grps[0].score);
+		//printf("G2 score is %lld\n\n", farm->grps[1].score);
 		if (ret == MAX_FLOW)
 		{
 			return (1);
 		}
-		if (farm->grps[0].score <= farm->grps[1].score)
+		if (farm->grps[0].score < farm->grps[1].score)
 		{
 			return (1);
 		}
