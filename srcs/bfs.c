@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/27 03:09:54 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/27 19:06:14 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,7 +323,7 @@ int 			ft_flowvalid(t_farm *farm, t_dlist *lst, int flow, int target)
 	if (flow == target)
 		return (0);
 	if (target == farm->start->index)
-		return(1);
+		return (1);
 	while (tmp)
 	{
 		if (((t_room*)(tmp->content))->index == flow)
@@ -454,13 +454,19 @@ int				ft_maxflowcaller(t_farm *farm)
 		else if (ret == PRINT)
 			return (1);
 	}*/
-/*
-	t_element *tmp;
-	tmp = farm->grps[1].path[1]->head;
-	while(tmp)
+
+	/*t_element *tmp;
+	int i;
+
+	i = -1;
+	while(++i < farm->grps[1].path_nb)
 	{
-		//printf("ROOM %s \n", GET_ENTRY(((t_item*)(tmp->content))->index)->key);
-		tmp = tmp->next;
+		tmp = farm->grps[1].path[i]->head;
+		while(tmp)
+		{
+			printf("ROOM %s \n", GET_ENTRY(((t_item*)(tmp->content))->index)->key);
+			tmp = tmp->next;
+		}
 	}*/
 	return (1);
 }
@@ -471,25 +477,21 @@ int 			ft_bfsmanager(t_farm *farm)
 
 	farm->grps[0].score = 9223372036854775807;
 	farm->grps[0].path = ft_grpnew(GET_ENTRY(((t_room*)(farm->start))->index)->edges->size);
-	while ((ret = ft_bfs(farm, 0)) != MAX_FLOW)
-	{
-		if (ret == ERROR)
-			return (0);
-		else if (ret == PRINT)
-			break ;
-	}
+	ret = ft_bfs(farm, 0);
+	if (ret == ERROR)
+		return (0);
 	farm->grps[1].path = ft_grpnew(farm->start->edges->size);
 	farm->grps[1].score = 9223372036854775807;
 	while ((ret = ft_maxflowcaller(farm)) != ERROR)
 	{
+	//	printf("G1 score is %lld\n", farm->grps[0].score);
+	//	printf("G2 score is %lld\n\n", farm->grps[1].score);
 		if (ret == MAX_FLOW)
 		{
-			//printf("score is %lld\n", farm->grps[0].score);
 			return (1);
 		}
 		if (farm->grps[0].score <= farm->grps[1].score)
 		{
-			//printf("score is %lld\n", farm->grps[0].score);
 			return (1);
 		}
 		else
