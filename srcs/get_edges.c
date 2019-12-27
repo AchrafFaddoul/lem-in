@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/25 23:51:06 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/26 21:46:28 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ static int		search_and_insert(t_farm *farm,
 		if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, vertex_room, equ)))
 			return (0);
 	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, ft_elemnew(ft_roomdup(neighbor_room)));
-	printf("index:%d ADR:%p\n", vx_in , ((t_room*)(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->tail->content)));
+//	printf("index:%d ADR:%p\n", vx_in , ((t_room*)(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->tail->content)));
 	((t_room*)(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->tail->content))->flow = -1;
 	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, ft_elemnew(ft_roomdup(vertex_room)));
-	printf("index:%d ADR:%p\n", ng_in, ((t_room*)(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges->tail->content)));
+//	printf("index:%d ADR:%p\n", ng_in, ((t_room*)(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges->tail->content)));
 	((t_room*)(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges->tail->content))->flow = -1;
 	return (1);
 }
