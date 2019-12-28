@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 16:39:17 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 22:20:36 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 void 	ft_enqueue(t_dlist *lst, t_element *elm)
 {
 	ft_dlstpush(lst, elm);
+}
+static void item_del(void *content)
+{
+	free(content);
 }
 
 int		ft_dequeue(t_dlist *lst)
@@ -27,6 +31,7 @@ int		ft_dequeue(t_dlist *lst)
 	if (lst->size == 1)
 	{
 		item  = ((t_item*)to_del->content)->index;
+		item_del((t_item*)to_del->content);
 		ft_memdel((void**)&to_del);
 		lst->head = NULL;
 		lst->tail = NULL;
@@ -35,6 +40,7 @@ int		ft_dequeue(t_dlist *lst)
 	}
 	item  = ((t_item*)(to_del->content))->index;
 	tmp = lst->head->next;
+	item_del((t_item*)to_del->content);
 	ft_memdel((void**)&to_del);
 	lst->size--;
 	lst->head = tmp;

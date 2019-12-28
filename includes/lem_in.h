@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 19:02:01 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 22:22:49 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,9 @@ void				ft_enqueue(t_dlist *lst, t_element *elm);
 int				ft_dequeue(t_dlist *lst);
 t_item				*ft_itemnew(int value, int prev);
 int				ft_search_item(t_dlist *lst, int target);
-int				ft_bfs(t_farm *farm, int i_grp);
-int				ft_search_item(t_dlist *lst, int target);
 int				ft_ismatched(t_room *room, t_dlist *standby, t_dlist *lst_vis);
 void			ft_flowmark(t_room *room, int value);
 void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
-int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, t_dlist *standby, int i_grp, int dequeued);
 int             ft_bfsmanager(t_farm *farm);
 int				ft_putinstructions(t_farm *farm);
 void			ft_roomdel(t_room **room);
