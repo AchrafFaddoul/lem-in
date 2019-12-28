@@ -1,30 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_roomnew.c                                       :+:      :+:    :+:   */
+/*   ft_farmdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 10:59:30 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/27 22:51:44 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/12/27 22:23:38 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/12/28 01:22:19 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room		*ft_roomnew(char *name)
+void 		ft_farmdel(t_farm *farm)
 {
-	t_room 	*room;
-
-	room = (t_room*)ft_memalloc(sizeof(t_room));
-	if (!room)
-		return (NULL);
-	room->key = ft_strdup(name);
-	room->edges = ft_dlstnew();
-	if (room->edges == NULL)
-	{
-		ft_strdel(&room->key);
-		ft_memdel((void**)&room);
-	}
-	return (room);
 }

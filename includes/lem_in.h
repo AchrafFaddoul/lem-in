@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/24 22:58:04 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/28 00:08:52 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ typedef struct			s_farm
 	t_room			*start;
 	t_room			*end;
 	t_hashtable		*rooms_ht;
-}				t_farm;
+	t_dlist			*input;
+}					t_farm;
 
 t_farm				*ft_farmfill(t_farm *farm, t_dlist *lst);
 int				ft_getants(t_farm *farm, char *line);
@@ -76,7 +77,7 @@ int				get_ants(t_farm *farm, char *line);
 int				ft_isnumber(char *str);
 int				ft_isoverflow(char *str);
 t_element			*ft_getrooms(t_farm *farm, t_dlist *lst);
-t_room				*ft_roomnew(const char *name);
+t_room				*ft_roomnew(char *name);
 t_room				*ft_roomparse(const char *input);
 t_hashtable			*ft_dlisttoht(t_farm *farm);
 int				ft_edgesparse(const char *input,
@@ -96,5 +97,6 @@ void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
 int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, t_dlist *standby, int i_grp, int dequeued);
 int             ft_bfsmanager(t_farm *farm);
 int				ft_putinstructions(t_farm *farm);
+void			ft_roomdel(t_room **room);
 
 #endif

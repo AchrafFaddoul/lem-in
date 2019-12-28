@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:37:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 23:14:44 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 00:21:44 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int				ft_parsedata(t_farm *farm)
 
 	if (!(lst = read_input()))
 		return (0);
+	farm->input = lst;
 	if (!ft_farmfill(farm, lst))
 		return (0);
 	return (1);

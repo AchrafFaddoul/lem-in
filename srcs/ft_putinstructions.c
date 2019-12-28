@@ -6,11 +6,16 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/23 00:12:42 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 01:23:35 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void			del(void *content)
+{
+	ft_strdel((char**)&content);
+}
 
 t_simulation		**ft_simdestroy(t_simulation **sim_arr, size_t size)
 {
@@ -241,6 +246,26 @@ void 				ft_instruprinter(t_farm *farm, t_node **paths)
 	printf("\n");
 }
 
+void				ft_inputprinter(t_farm *farm)
+{
+	t_element 		*current;
+	t_element 		*to_del;
+
+	current = farm->input->head;
+	while (current)
+	{
+		to_del = current;
+		current = current->next;
+		ft_putstr((char*)(((t_element*)(to_del))->content));
+		ft_putchar('\n');
+		if (!current)
+			ft_putchar('\n');
+		del(to_del->content);
+		ft_memdel((void**)&to_del);
+	}
+	ft_memdel((void**)&farm->input);
+}
+
 int	 				ft_putinstructions(t_farm *farm)
 {
 	t_simulation 	**sim_arr;
@@ -251,7 +276,7 @@ int	 				ft_putinstructions(t_farm *farm)
 		return (0);
 	if (!(paths = ft_pathsnew(farm, sim_arr)))
 		return (0);
-
+	ft_inputprinter(farm);
 	int i2 = 0;
 	int j2;
 	int done_ants = 0;
@@ -287,8 +312,5 @@ int	 				ft_putinstructions(t_farm *farm)
 			i2 = 0;
 		}
 	}
-
-
-	//	ft_resultprinter(farm, sim_arr, paths);
 	return (1);
 }

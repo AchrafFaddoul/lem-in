@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_dlstdel.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/27 23:07:15 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/12/28 00:26:27 by afaddoul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	ft_dlstdel(t_dlist **lst, void (*del)(void*))
@@ -6,7 +18,7 @@ void	ft_dlstdel(t_dlist **lst, void (*del)(void*))
 	t_element	*to_del;
 
 	current = (*lst)->head;
-	while (!current)
+	while (current)
 	{
 		to_del = current;
 		current = current->next;
