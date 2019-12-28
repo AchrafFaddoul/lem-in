@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 17:14:25 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 19:02:01 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_element			*ft_getrooms(t_farm *farm, t_dlist *lst);
 t_room				*ft_roomnew(char *name);
 t_room				*ft_roomparse(const char *input);
 t_hashtable			*ft_dlisttoht(t_farm *farm);
-int				ft_edgesparse(const char *input,
+int					ft_edgesparse(const char *input,
 			char **vertex, char **neighbor);
 t_farm				*ft_getedges(t_farm *farm, t_element *lst);
 int				ft_edgesparse(const char *input,

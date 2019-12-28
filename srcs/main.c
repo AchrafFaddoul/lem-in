@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 09:41:11 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/27 23:07:04 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 18:29:09 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			main(void)
 	t_farm		*farm;
 
 	farm = ft_farmnew();
+	dprintf(2, "BEF%p\n", farm);
 	if (!(ft_parsedata(farm)))
 	{
 		ft_memdel((void**)(&farm));

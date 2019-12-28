@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 17:20:23 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 20:12:14 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,7 +351,7 @@ t_dlist			**ft_grpnew(size_t size)
 {
 	t_dlist		**grp;
 
-	grp = (t_dlist**)ft_memalloc(sizeof(t_dlist*) * (int)size);
+	grp = (t_dlist**)ft_memalloc(sizeof(t_dlist*) * size);
 	if (!grp)
 		return (NULL);
 	return (grp);
