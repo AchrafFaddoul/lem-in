@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/10/04 22:30:58 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 15:55:40 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_hashtable	*ft_dlisttoht(t_farm *farm)
 			break ;
 		}
 		if ((ret = ft_htinsert(farm->rooms_ht, entry)) == -1)
-		return (NULL);
+			return (NULL);
 		((t_room*)(entry->content))->index = ret;
 		current = current->next;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/23 17:56:45 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/28 16:39:17 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void 	ft_enqueue(t_dlist *lst, t_element *elm)
 	ft_dlstpush(lst, elm);
 }
 
-int	ft_dequeue(t_dlist *lst)
+int		ft_dequeue(t_dlist *lst)
 {
 	t_element 	*to_del;
 	t_element 	*tmp;

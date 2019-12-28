@@ -3,46 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_farmfill.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 00:18:00 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 18:21:17 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-/*
-static void 		print_data(t_farm *farm)
-{
-	size_t i = 0;
-	while (i < farm->rooms_ht->size)
-	{
-		printf("\nHT_KEY:%s\n|", farm->rooms_ht->entries[i]->key);
-		printf("\nHT_index:%zu\n|", i);
-		while ((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)
-		{
-			printf("---->%s\n", ((t_room*)(((((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head)->content))->key);
 
-			(((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head = (((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head->next;
-		}
-		i++;
-	}
-}
-*/
 t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 {
 	t_element	*current;
 
+//	int w = 0;
+//	dprintf(2, "f - waa3(%d)\n", w++);
 	if (!(ft_getants(farm, lst->head->content)))
 		return (NULL);
+//	dprintf(2, "f - waa3(%d)\n", w++);
 	if (!(current = ft_getrooms(farm, lst)))
 		return (NULL);
+//	dprintf(2, "f - waa3(%d)\n", w++);
 	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
 		return (NULL);
+//	dprintf(2, "f - waa3(%d)\n", w++);
 	if (!(ft_getedges(farm, current)))
 		return (NULL);
+//	dprintf(2, "f - waa3(%d)\n", w++);
 	if (!ft_bfsmanager(farm))
 		return (NULL);
+//	dprintf(2, "f - waa3(%d)\n", w++);
 	ft_putinstructions(farm);
+//	dprintf(2, "f - waa3(%d)\n", w++);
 	return (farm);
 }

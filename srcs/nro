@@ -1,0 +1,311 @@
+Norme: ./bfs.o
+Warning: Not a valid file
+Norme: ./ft_dlisttoht.o
+Warning: Not a valid file
+Norme: ./ft_edgeparse.o
+Warning: Not a valid file
+Norme: ./ft_farmfill.o
+Warning: Not a valid file
+Norme: ./ft_farmnew.o
+Warning: Not a valid file
+Norme: ./ft_getants.o
+Warning: Not a valid file
+Norme: ./ft_parsedata.o
+Warning: Not a valid file
+Norme: ./ft_putinstructions.o
+Warning: Not a valid file
+Norme: ./ft_roomnew.o
+Warning: Not a valid file
+Norme: ./ft_roomparse.o
+Warning: Not a valid file
+Norme: ./get_edges.o
+Warning: Not a valid file
+Norme: ./get_next_line.o
+Warning: Not a valid file
+Norme: ./get_rooms.o
+Warning: Not a valid file
+Norme: ./main.o
+Warning: Not a valid file
+Norme: ./queue.o
+Warning: Not a valid file
+Norme: ./ft_farmdel.c
+Error (line 15): Space before function name
+Error (line 15, col 4): bad spacing
+Norme: ./ft_farmfill.c
+Error (line 13): preprocessor block must be followed by one empty line
+Error (line 14): comment not well formatted
+Error (line 24): line has 127 characters
+Error (line 26): line has 149 characters
+Error (line 32): bad spacing before ft_farmfill
+Norme: ./ft_farmnew.c
+Norme: ./ft_dlisttoht.c
+Error (line 40): bad indentation
+Norme: ./ft_edgeparse.c
+Error (line 15): Space before function name
+Error (line 18, col 5): bad spacing
+Error (line 34, col 1): missing space after if
+Error (line 44, col 5): bad spacing
+Norme: ./ft_getants.c
+Error (line 15): Space before function name
+Error (line 15, col 3): bad spacing
+Error (line 19, col 1): missing space after if
+Norme: ./ft_roomdel.c
+Error (line 15): Space before function name
+Error (line 23): Space before function name
+Error (line 23): Space before function name
+Error (line 23): Space before function name
+Error (line 23): Space before function name
+Error (line 23): Space before function name
+Error (line 23): Space before function name
+Error (line 23): Space before function name
+Error (line 23): Space before function name
+Error (line 23, col 4): bad spacing
+Norme: ./ft_parsedata.c
+Error (line 26, col 10): bad spacing
+Error (line 42, col 8): bad spacing
+Norme: ./ft_roomnew.c
+Error (line 17, col 7): bad spacing
+Norme: ./ft_roomparse.c
+Error (line 62, col 5): bad spacing
+Norme: ./get_next_line.c
+Norme: ./get_edges.c
+Error (line 15): wrong number of spaces in preprocessor indentation
+Error (line 16): wrong number of spaces in preprocessor indentation
+Error (line 17): wrong number of spaces in preprocessor indentation
+Error (line 24): Space before function name
+Error (line 24, col 6): bad spacing
+Error (line 24, col 11): bad spacing
+Error (line 33): Space before function name
+Error (line 33, col 6): bad spacing
+Error (line 35, col 7): bad spacing
+Error (line 42): bad indentation
+Error (line 43): bad indentation
+Error (line 44): bad indentation
+Error (line 45): bad indentation
+Error (line 48): must begin only by tabulations
+Error (line 48): bad indentation
+Error (line 56, col 4): bad spacing
+Error (line 57, col 4): bad spacing
+Error (line 65): line has 103 characters
+Error (line 66): line has 105 characters
+Error (line 68): line has 117 characters
+Error (line 69): C++ comment
+Error (line 69): line has 130 characters
+Error (line 70): line has 104 characters
+Error (line 71): line has 115 characters
+Error (line 72): C++ comment
+Error (line 72): line has 129 characters
+Error (line 73): line has 104 characters
+Error (line 77): Space before function name
+Error (line 77): function ft_getedges has 26 lines
+Error (line 77, col 6): bad spacing
+Error (line 81, col 4): bad spacing
+Norme: ./main.c
+Error (line 16): Space before function name
+Error (line 16, col 4): bad spacing
+Norme: ./get_rooms.c
+Error (line 15): wrong number of spaces in preprocessor indentation
+Error (line 16): wrong number of spaces in preprocessor indentation
+Error (line 17): wrong number of spaces in preprocessor indentation
+Error (line 18): wrong number of spaces in preprocessor indentation
+Error (line 19): wrong number of spaces in preprocessor indentation
+Error (line 34): function ft_getrooms has 44 lines
+Error (line 38, col 4): bad spacing
+Norme: ./bfs.c
+Error: global scope bad aligned
+Error: 19 functions in the file
+Error (line 15): wrong number of spaces in preprocessor indentation
+Error (line 16): wrong number of spaces in preprocessor indentation
+Error (line 17): wrong number of spaces in preprocessor indentation
+Error (line 18): wrong number of spaces in preprocessor indentation
+Error (line 20): C++ comment
+Error (line 22): Space before function name
+Error (line 27): Space before function name
+Error (line 27, col 10): bad spacing
+Error (line 72): Space before function name
+Error (line 72): function ft_hashmapupdate has 29 lines
+Error (line 72, col 4): bad spacing
+Error (line 74, col 10): bad spacing
+Error (line 77): line has 86 characters
+Error (line 78): line has 89 characters
+Error (line 81): line has 83 characters
+Error (line 82): line has 116 characters
+Error (line 83): line has 119 characters
+Error (line 86): comment not well formatted
+Error (line 86): comment not well placed
+Error (line 88): Empty line
+Error (line 103, col 0): no empty line before block
+Error (line 105): Space before function name
+Error (line 105): bad spacing after ft_scorecompute
+Error (line 105, col 3): bad spacing
+Error (line 116): multiple empty lines
+Error (line 117): Space before function name
+Error (line 117): bad spacing before ft_prev
+Error (line 117, col 3): bad spacing
+Error (line 131): ft_pathextract have 5 parameters
+Error (line 131): line has 106 characters
+Error (line 131): function ft_pathextract has 33 lines
+Error (line 133, col 8): bad spacing
+Error (line 134, col 7): bad spacing
+Error (line 143, col 4): bad spacing
+Error (line 145): C++ comment
+Error (line 149, col 5): bad spacing
+Error (line 154): line has 97 characters
+Error (line 155): C++ comment
+Error (line 168): function ft_flowpath has 32 lines
+Error (line 171, col 10): bad spacing
+Error (line 172, col 10): bad spacing
+Error (line 173, col 7): bad spacing
+Error (line 179, col 4): bad spacing
+Error (line 187): C++ comment
+Error (line 190): line has 85 characters
+Error (line 192): C++ comment
+Error (line 192): bad indentation
+Error (line 197): C++ comment
+Error (line 204): Space before function name
+Error (line 204): declarations in ft_flowextract must be at the top of the function
+Error (line 204): declarations in ft_flowextract are bad aligned
+Error (line 204): function ft_flowextract has 53 lines
+Error (line 204, col 0): ft_flowextract has 6 variables
+Error (line 204, col 3): bad spacing
+Error (line 206, col 8): bad spacing
+Error (line 207, col 7): bad spacing
+Error (line 216, col 4): bad spacing
+Error (line 221, col 5): bad spacing
+Error (line 228): C++ comment
+Error (line 228): bad indentation
+Error (line 242): line has 101 characters
+Error (line 263, col 10): bad spacing
+Error (line 275): Space before function name
+Error (line 275): function ft_bfs has 39 lines
+Error (line 275, col 0): ft_bfs has 6 variables
+Error (line 275, col 3): bad spacing
+Error (line 278, col 8): bad spacing
+Error (line 281, col 4): bad spacing
+Error (line 290): line has 83 characters
+Error (line 294): line has 86 characters
+Error (line 295): C++ comment
+Error (line 301): C++ comment
+Error (line 301): bad indentation
+Error (line 302): C++ comment
+Error (line 302): bad indentation
+Error (line 305): line has 106 characters
+Error (line 309): line has 95 characters
+Error (line 318): Space before function name
+Error (line 318, col 3): bad spacing
+Error (line 320, col 10): bad spacing
+Error (line 333, col 25): bad character after ,
+Error (line 343): Space before function name
+Error (line 343): function ft_maxflow has 45 lines
+Error (line 343, col 0): ft_maxflow has 6 variables
+Error (line 343, col 3): bad spacing
+Error (line 346, col 8): bad spacing
+Error (line 348, col 4): bad spacing
+Error (line 349, col 4): bad spacing
+Error (line 358): line has 83 characters
+Error (line 362): C++ comment
+Error (line 363): line has 86 characters
+Error (line 367): line has 93 characters
+Error (line 369): C++ comment
+Error (line 369): bad indentation
+Error (line 370): C++ comment
+Error (line 370): bad indentation
+Error (line 373): line has 92 characters
+Error (line 375): line has 92 characters
+Error (line 377): C++ comment
+Error (line 377): bad indentation
+Error (line 379): line has 99 characters
+Error (line 386): C++ comment
+Error (line 387): C++ comment
+Error (line 388): Empty line
+Error (line 392): bad spacing after ft_grpnew
+Error (line 401): comment not well formatted
+Error (line 443): function ft_maxflowcaller has 29 lines
+Error (line 445, col 4): bad spacing
+Error (line 450): comment not well formatted
+Error (line 450): comment not well placed
+Error (line 450): bad indentation
+Error (line 457): Empty line
+Error (line 458): comment not well formatted
+Error (line 458): comment not well placed
+Error (line 458): bad indentation
+Error (line 460): Empty line
+Error (line 469): line has 84 characters
+Error (line 476): Space before function name
+Error (line 476): function ft_bfsmanager has 26 lines
+Error (line 476, col 3): bad spacing
+Error (line 478, col 4): bad spacing
+Error (line 481): line has 93 characters
+Error (line 489): C++ comment
+Error (line 489): bad indentation
+Error (line 490): C++ comment
+Error (line 490): bad indentation
+Error (line 502): C++ comment
+Norme: ./ft_putinstructions.c
+Error: 13 functions in the file
+Error (line 22, col 7): bad spacing
+Error (line 36, col 13): bad spacing
+Error (line 38, col 7): bad spacing
+Error (line 58, col 7): bad spacing
+Error (line 72, col 4): bad spacing
+Error (line 73, col 4): bad spacing
+Error (line 74, col 7): bad spacing
+Error (line 92): Space before function name
+Error (line 92, col 12): bad spacing
+Error (line 94, col 13): bad spacing
+Error (line 96, col 7): bad spacing
+Error (line 128): Empty line
+Error (line 129, col 0): no empty line before block
+Error (line 134, col 4): bad spacing
+Error (line 146): Space before function name
+Error (line 146): function ft_pathsnew has 28 lines
+Error (line 146, col 6): bad spacing
+Error (line 149, col 7): bad spacing
+Error (line 150, col 7): bad spacing
+Error (line 168): line has 93 characters
+Error (line 178): Space before function name
+Error (line 178, col 3): bad spacing
+Error (line 180, col 4): bad spacing
+Error (line 181, col 4): bad spacing
+Error (line 198, col 10): missing space around +
+Error (line 207): Space before function name
+Error (line 207): declarations in ft_instruprinter must be at the top of the function
+Error (line 207): declarations must be followed by one empty line in ft_instruprinter
+Error (line 207): declarations in ft_instruprinter are bad aligned
+Error (line 207): function ft_instruprinter has 38 lines
+Error (line 207, col 4): bad spacing
+Error (line 209, col 4): bad spacing
+Error (line 210, col 4): bad spacing
+Error (line 213, col 5): cnt is instanciated during declaration
+Error (line 228, col 5): tt is instanciated during declaration
+Error (line 237, col 16): missing space around -
+Error (line 245): Empty line
+Error (line 251, col 10): bad spacing
+Error (line 252, col 10): bad spacing
+Error (line 269): Space before function name
+Error (line 269): declarations in ft_putinstructions must be at the top of the function
+Error (line 269): declarations must be followed by one empty line in ft_putinstructions
+Error (line 269): declarations in ft_putinstructions are bad aligned
+Error (line 269): function ft_putinstructions has 45 lines
+Error (line 269, col 0): ft_putinstructions has 6 variables
+Error (line 269, col 3): bad spacing
+Error (line 271, col 13): bad spacing
+Error (line 272, col 7): bad spacing
+Error (line 280, col 5): i2 is instanciated during declaration
+Error (line 282, col 5): done_ants is instanciated during declaration
+Error (line 283, col 5): ants is instanciated during declaration
+Error (line 296): missing newline after if
+Error (line 296, col 53): no newline before block
+Error (line 300): spaces at the end of line
+Norme: ./queue.c
+Error: global scope bad aligned
+Error (line 13): spaces at the end of line
+Error (line 15): Space before function name
+Error (line 15, col 4): bad spacing
+Error (line 20): declarations in ft_dequeue are bad aligned
+Error (line 22, col 10): bad spacing
+Error (line 23, col 10): bad spacing
+Error (line 29, col 6): bad spacing
+Error (line 36, col 5): bad spacing
+Error (line 45): Space before function name
+Error (line 45, col 6): bad spacing

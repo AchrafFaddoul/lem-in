@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 00:08:52 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 17:14:25 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,8 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, t_dlist *standby, int i_gr
 int             ft_bfsmanager(t_farm *farm);
 int				ft_putinstructions(t_farm *farm);
 void			ft_roomdel(t_room **room);
+int				ft_pathdel(t_dlist **path);
+void			ft_grpdestroy(t_dlist **paths, int path_nb);
+void			ft_farmdel(t_farm *farm);
 
 #endif

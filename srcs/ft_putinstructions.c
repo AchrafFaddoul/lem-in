@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putinstructions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 01:23:35 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 17:09:39 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,20 +143,35 @@ static void			ft_pathfiller(t_farm *farm, t_node **path, size_t i)
 	}
 }
 
+size_t		ft_paths_nb(size_t size, t_simulation **sim_arr)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (sim_arr[i][0].ants_nb == 0)
+			break ;
+		i++;
+	}
+	return (i);
+}
+
 t_node 				**ft_pathsnew(t_farm *farm, t_simulation **sim_arr)
 {
 	size_t			size;
 	size_t 			i;
 	t_node 			**paths;
 
-	i = 0;
-	size = farm->grps[0].path_nb;
-	while (i < (size_t)farm->grps[0].path_nb)
-	{
-		if (sim_arr[i][0].ants_nb == 0)
-			break ;
-		i++;
-	}
+	// i = 0;
+	// size = farm->grps[0].path_nb;
+	// while (i < (size_t)farm->grps[0].path_nb)
+	// {
+	// 	if (sim_arr[i][0].ants_nb == 0)
+	// 		break ;
+	// 	i++;
+	// }
+	i = ft_paths_nb(farm->grps[0].path_nb, sim_arr);
 	farm->paths_nb = i;
 	size = i;
 	i = 0;
@@ -293,11 +308,12 @@ int	 				ft_putinstructions(t_farm *farm)
 					paths[i2][j2 + 1].ants = ants++;
 					paths[i2][j2].ants--;
 				}
-				else if (j2 == (int)farm->grps[0].path[i2]->size){
+				else if (j2 == (int)farm->grps[0].path[i2]->size)
+				{
 					done_ants++;
 					paths[i2][j2].ants = 0;
 				}
-				else 
+				else
 				{
 					paths[i2][j2 + 1].ants = paths[i2][j2].ants;
 					paths[i2][j2].ants = 0;
@@ -312,5 +328,7 @@ int	 				ft_putinstructions(t_farm *farm)
 			i2 = 0;
 		}
 	}
+	ft_pathsdestroy(paths, ft_paths_nb(farm->grps[0].path_nb, sim_arr));
+	ft_simdestroy(sim_arr, farm->grps[0].path_nb);
 	return (1);
 }

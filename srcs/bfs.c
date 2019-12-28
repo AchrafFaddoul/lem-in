@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/27 20:53:59 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/28 17:20:23 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,9 @@
 # define PRINT   -1
 # define ERROR   -2
 
-//score managing in BFS
-
 static void dummy_del(void *content)
 {
 	ft_memdel((void **)(&content));
-}
-
-static int 			ft_pathdel(t_dlist *path)
-{
-	if (path)
-		ft_dlstdel(&path, dummy_del);
-	else
-		return (0);
-	return (1);
 }
 
 void			ft_revflowmark(t_room *room, int value)
@@ -83,23 +72,6 @@ void 			ft_hashmapupdate(t_farm *farm, t_dlist *path)
 		ft_revflowmark(GET_ENTRY(((t_item*)(current->prev->content))->index), (((t_item*)(current->content))->index));
 		current = current->prev;
 	}
-/*size_t i = 0;
-	t_element *tmp;
-
-	while (i < farm->rooms_ht->size)
-	{
-		printf("\nFLOW:%d|", farm->rooms_ht->entries[i]->flow);
-		printf(  "HT_key:%s\n|", farm->rooms_ht->entries[i]->key);
-		printf(  "HT_index:%zu\n|", i);
-		tmp = ((t_room*)(farm->rooms_ht->entries[i]->content))->edges->head;
-		while (tmp)
-		{
-			printf("---->FLOW:%d", ((t_room*)((t_room*)tmp->content))->flow);
-			printf("--->key:%s\n", ((t_room*)((t_room*)tmp->content))->key);
-			tmp = tmp->next;
-		}
-		i++;
-	}*/
 }
 
 int 			ft_scorecompute(int path, int node, int ants)
@@ -142,7 +114,6 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, t_dlist *standby, int i_gr
 	item = ft_itemnew(farm->end->index, -1);
 	elm  = ft_elemnew((t_item*)item);
 	ft_dlstpush(path, elm);
-	//printf("hehe\n");
 	while (dequeued != farm->start->index)
 	{
 		item = ft_itemnew(dequeued, -1);
@@ -152,7 +123,6 @@ int				ft_pathextract(t_farm *farm, t_dlist *lst_vis, t_dlist *standby, int i_gr
 	}
 	farm->grps[i_grp].node_nb += (path->size - 1);
 	ret = ft_scorecompute(farm->grps[i_grp].path_nb + 1, farm->grps[i_grp].node_nb, farm->ants);
-	//printf("score is %lld\n", ret);
 	if (ret < farm->grps[i_grp].score)
 	{
 		farm->grps[i_grp].score = ret;
@@ -184,17 +154,12 @@ t_dlist			*ft_flowpath(t_farm *farm, int flow)
 		elm = ft_elemnew((t_item*)item);
 		ft_dlstpush(path, elm);
 		tmp = GET_ENTRY(flow)->edges->head;
-		//printf("==============>actual room %s\n", GET_ENTRY(flow)->key);
 		while (tmp)
 		{
 			if (((t_room*)(tmp->content))->index == ((t_room*)(tmp->content))->flow)
-			{
-				//printf("im here %s\n", GET_ENTRY(((t_room*)tmp)->index)->key);
 				flow = ((t_room*)(tmp->content))->index;
-			}
 			tmp = tmp->next;
 		}
-		//printf("==============>next room %s\n", GET_ENTRY(flow)->key);
 	}
 	farm->grps[1].path[farm->grps[1].path_nb++] = path;
 	farm->grps[1].node_nb += (path->size - 1);
@@ -222,12 +187,6 @@ int 		ft_flowextract(t_farm *farm, t_dlist *vis, int dequeued)
 		ft_dlstpush(path, elm);
 		dequeued = ft_prev(vis, dequeued);
 	}
-	elm = path->head;
-	while (elm)
-	{
-		//printf("KEY%s\n", (GET_ENTRY((t_item*)((elm->content)->index)))->key);
-		elm = elm->next;
-	}
 	ft_hashmapupdate(farm, path);
 	t_element *tmp;
 
@@ -240,7 +199,7 @@ int 		ft_flowextract(t_farm *farm, t_dlist *vis, int dequeued)
 		tmp = tmp->next;
 	}
 	farm->grps[1].score = ft_scorecompute(farm->grps[1].path_nb, farm->grps[1].node_nb, farm->ants);
-	ft_pathdel(path);
+	ft_pathdel(&path);
 	i = -1;
 	while (++i < farm->grps[1].path_nb)
 	{
@@ -272,6 +231,11 @@ int			ft_search_item(t_dlist *lst, int target)
 	return (0);
 }
 
+static void	item_del(void *content)
+{
+	free(content);
+}
+
 int 			ft_bfs(t_farm *farm, int i_grp)
 {
 	t_dlist		*queue;
@@ -292,14 +256,12 @@ int 			ft_bfs(t_farm *farm, int i_grp)
 	{
 		dequeued = ft_dequeue(queue);
 		tmp = (((t_room*)(farm->rooms_ht->entries[dequeued]->content))->edges)->head;
-		//printf("max flow dequeued %s\n", GET_ENTRY(dequeued)->key);
 		while (tmp)
 		{
 			current_item = ((t_room*)(tmp->content))->index;
 			if (current_item == farm->end->index)
 			{
-				//	ft_dlstdel(&queue, dummy_del); prblm here seg
-				//printf("room found %s\n", GET_ENTRY(dequeued)->key);
+				ft_dlstdel(&queue, item_del);
 				return (ft_pathextract(farm, lst_vis, NULL, i_grp, dequeued));
 			}
 			if (!ft_search_item(lst_vis, current_item) && !(farm->rooms_ht->entries[current_item]->flow))
@@ -312,6 +274,7 @@ int 			ft_bfs(t_farm *farm, int i_grp)
 		}
 	}
 	ft_dlstdel(&lst_vis, dummy_del);
+	ft_dlstdel(&queue, item_del);
 	return (MAX_FLOW);
 }
 
@@ -359,22 +322,19 @@ int 			ft_maxflow(t_farm *farm)
 	while (queue->size)
 	{
 		dequeued = ft_dequeue(queue);
-		//printf("max flow dequeued %s\n", GET_ENTRY(dequeued)->key);
 		tmp = (((t_room*)(farm->rooms_ht->entries[dequeued]->content))->edges)->head;
 		while (tmp)
 		{
 			current_item = ((t_room*)(tmp->content))->index;
 			if ((current_item == farm->end->index) && ((t_room*)(tmp->content))->flow == -1)
 			{
-				//ft_dlstdel(&queue, dummy_del);   < prblm herey
-				//printf("====>>room found %s\n", GET_ENTRY(dequeued)->key);
+				ft_dlstdel(&queue, item_del);
 				return (ft_flowextract(farm, lst_vis, dequeued));
 			}
 			if (!ft_search_item(lst_vis, current_item) && current_item != farm->end->index)
 			{
 				if (ft_flowvalid(farm, lst_vis, ((t_room*)(tmp->content))->flow, dequeued))
 				{
-					//printf("room queued %s\n", GET_ENTRY(current_item)->key);
 					item = ft_itemnew(current_item, dequeued);
 					ft_dlstpush(lst_vis, ft_elemnew((t_item*)ft_itemnew(current_item, dequeued)));
 					ft_enqueue(queue, ft_elemnew((t_item*)item));
@@ -383,9 +343,7 @@ int 			ft_maxflow(t_farm *farm)
 			tmp = tmp->next;
 		}
 	}
-	//printf("no more maxflow lol\n");
-	//ft_dlstdel(&lst_vis, dummy_del);
-
+	ft_dlstdel(&queue, item_del);
 	return (MAX_FLOW);
 }
 
@@ -397,35 +355,6 @@ t_dlist			**ft_grpnew(size_t size)
 	if (!grp)
 		return (NULL);
 	return (grp);
-}
-/*
-static void 		ft_farmreset(t_farm *farm)
-{
-	t_element 		*tmp;
-	size_t i;
-
-	i	= 0;
-	while (i < farm->rooms_ht->size)
-	{
-		farm->rooms_ht->entries[i]->flow = 0;
-		tmp = (((t_room*)(farm->rooms_ht->entries[i]->content))->edges)->head;
-		while (tmp)
-		{
-			((t_room*)(tmp->content))->flow = -1;
-			tmp = tmp->next;
-		}
-		i++;
-	}
-}
-*/
-
-void			ft_grpdestroy(t_dlist **grp, int path_nb)
-{
-	int			i;
-
-	i = 0;
-	while (i < path_nb)
-		ft_pathdel(grp[i++]);
 }
 
 void			ft_grpsreverse(t_farm *farm)
@@ -447,29 +376,6 @@ int				ft_maxflowcaller(t_farm *farm)
 	ret = ft_maxflow(farm);
 	if (ret == ERROR || ret == MAX_FLOW)
 		return (ret);
-	/*while ((ret = ft_bfs(farm, 1)) != MAX_FLOW)
-	{
-		if (ret == ERROR)
-			return (ERROR);
-		else if (ret == PRINT)
-			return (1);
-	}*/
-
-	/*t_element *tmp;
-	int i;
-
-	i = -1;
-	printf("================PATH NB %d\n",farm->grps[1].path_nb );
-	while(++i < farm->grps[1].path_nb)
-	{
-		printf("PATH SIZE %zu\n",farm->grps[1].path[i]->size);
-		tmp = farm->grps[1].path[i]->head;
-		while(tmp)
-		{
-			printf("ROOM %s \n", GET_ENTRY(((t_item*)(tmp->content))->index)->key);
-			tmp = tmp->next;
-		}
-	}*/
 	return (1);
 }
 
@@ -486,19 +392,18 @@ int 			ft_bfsmanager(t_farm *farm)
 	farm->grps[1].score = 9223372036854775807;
 	while ((ret = ft_maxflowcaller(farm)) != ERROR)
 	{
-		//printf("G1 score is %lld\n", farm->grps[0].score);
-		//printf("G2 score is %lld\n\n", farm->grps[1].score);
 		if (ret == MAX_FLOW)
 		{
+			ft_grpdestroy(farm->grps[1].path, farm->grps[1].path_nb);
 			return (1);
 		}
 		if (farm->grps[0].score < farm->grps[1].score)
 		{
+			ft_grpdestroy(farm->grps[1].path, farm->grps[1].path_nb);
 			return (1);
 		}
 		else
 			ft_grpsreverse(farm);
 	}
-	//compare scores
 	return (0);
 }
