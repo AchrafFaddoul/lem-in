@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 22:20:36 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 01:39:42 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 void 	ft_enqueue(t_dlist *lst, t_element *elm)
 {
 	ft_dlstpush(lst, elm);
-}
-static void item_del(void *content)
-{
-	free(content);
 }
 
 int		ft_dequeue(t_dlist *lst)

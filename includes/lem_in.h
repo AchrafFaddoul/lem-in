@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 22:22:49 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 01:34:26 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 # include "get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
+
 # define GET_ENTRY(index) ((t_room*)(farm->rooms_ht->entries[index]->content))
+
+# define MAX_FLOW 0
+# define UPDATED  1
+# define ERROR   -2
 
 typedef struct			s_room
 {
@@ -87,16 +92,19 @@ int				ft_edgesparse(const char *input,
 			char **vertex, char **neighbor);
 void				ft_enqueue(t_dlist *lst, t_element *elm);
 int				ft_dequeue(t_dlist *lst);
-t_item				*ft_itemnew(int value, int prev);
-int				ft_search_item(t_dlist *lst, int target);
-int				ft_ismatched(t_room *room, t_dlist *standby, t_dlist *lst_vis);
+t_item			*ft_itemnew(int value, int prev);
 void			ft_flowmark(t_room *room, int value);
+void			ft_revflowmark(t_room *room, int value);
 void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
-int             ft_bfsmanager(t_farm *farm);
+int             ft_maxflow_manager(t_farm *farm);
+int				ft_maxflow(t_farm *farm, int i_grp);
+int				ft_flowextract(t_farm *farm, t_dlist *vis,
+					int dequeued, int i_grp);
 int				ft_putinstructions(t_farm *farm);
 void			ft_roomdel(t_room **room);
 int				ft_pathdel(t_dlist **path);
 void			ft_grpdestroy(t_dlist **paths, int path_nb);
 void			ft_farmdel(t_farm *farm);
+void			item_del(void *content);
 
 #endif

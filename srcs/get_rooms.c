@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/21 23:15:16 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 01:45:03 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
 		if (ft_countof(current->content, '-') == 1)
 			break ;
 	}
+	printf("adr_getrooms:%p\n", farm->rooms);
+	printf("adr_del_head:%p\n", farm->rooms->head);
+	printf("KEY%s\n",((t_room*)(farm->rooms->head->content))->key);
 	return (current);
 }
