@@ -6,11 +6,11 @@
 /*   By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 11:36:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2018/10/23 17:54:16 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:58:14 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strupcase(char *str)
 {

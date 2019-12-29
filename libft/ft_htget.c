@@ -6,16 +6,16 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 14:53:01 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 14:59:05 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:58:51 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t				compute_hash(const char *key)
+size_t			compute_hash(const char *key)
 {
-	const int 	p = 31;
-	const int 	m = 1e9 + 9;
+	const int	p = 31;
+	const int	m = 1e9 + 9;
 	size_t		hash_value;
 	size_t		p_pow;
 
@@ -32,8 +32,8 @@ size_t				compute_hash(const char *key)
 
 void			*ft_htget(t_hashtable *ht, const char *key)
 {
-	size_t  index;
-	size_t	start;
+	size_t		index;
+	size_t		start;
 
 	index = compute_hash(key) % ht->size;
 	start = index;

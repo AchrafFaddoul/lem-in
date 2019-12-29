@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 17:26:11 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 20:36:58 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:51:58 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int					ft_minlen(t_farm *farm, t_simulation **sim_arr)
 	return (target);
 }
 
-t_node		**ft_pathsdestroy(t_node **paths, size_t size)
+t_node				**ft_pathsdestroy(t_node **paths, size_t size)
 {
 	size_t			i;
 

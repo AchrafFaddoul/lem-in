@@ -6,20 +6,20 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 17:07:38 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 17:23:58 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:54:53 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			del(void *content)
+void				del(void *content)
 {
 	ft_strdel((char**)&content);
 }
 
 t_simulation		**ft_simdestroy(t_simulation **sim_arr, size_t size)
 {
-	size_t 			i;
+	size_t			i;
 
 	i = 0;
 	while (i < size)
@@ -33,9 +33,9 @@ t_simulation		**ft_simdestroy(t_simulation **sim_arr, size_t size)
 
 t_simulation		**ft_simnew(t_farm *farm)
 {
-	t_simulation 	**sim_arr;
+	t_simulation	**sim_arr;
 	size_t			size;
-	size_t 			i;
+	size_t			i;
 
 	i = 0;
 	size = farm->grps[0].path_nb;
@@ -55,7 +55,7 @@ t_simulation		**ft_simnew(t_farm *farm)
 static void			ft_structinit(t_farm *farm, t_simulation **sim_arr)
 {
 	size_t			i;
-	size_t 			size;
+	size_t			size;
 
 	i = 0;
 	size = (size_t)farm->grps[0].path_nb;
@@ -65,11 +65,12 @@ static void			ft_structinit(t_farm *farm, t_simulation **sim_arr)
 		i++;
 	}
 }
-t_simulation 		**ft_simulation(t_farm *farm)
+
+t_simulation		**ft_simulation(t_farm *farm)
 {
-	t_simulation 	**sim_arr;
+	t_simulation	**sim_arr;
 	t_dlist			**path;
-	size_t 			i;
+	size_t			i;
 	long long		ants_nb;
 
 	i = 0;

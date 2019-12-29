@@ -6,15 +6,15 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 01:28:57 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 01:33:21 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 22:01:40 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_htdel(t_hashtable **ht, void (*del)(void*))
+void		ft_htdel(t_hashtable **ht, void (*del)(void*))
 {
-	size_t  i;
+	size_t	i;
 
 	i = 0;
 	while (i < (*ht)->size)

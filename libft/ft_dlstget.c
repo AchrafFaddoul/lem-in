@@ -6,12 +6,11 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 15:10:13 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 15:22:14 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:57:51 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void			*ft_dlstget(t_dlist *lst, const void *data,
 		int (*equ)(const void*, const void*))
