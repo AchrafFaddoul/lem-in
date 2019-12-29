@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 01:34:26 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/29 15:01:16 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ int				ft_pathdel(t_dlist **path);
 void			ft_grpdestroy(t_dlist **paths, int path_nb);
 void			ft_farmdel(t_farm *farm);
 void			item_del(void *content);
+t_room			*ft_roomdup(t_room *room);
 
 #endif

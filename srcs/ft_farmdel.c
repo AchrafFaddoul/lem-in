@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 22:23:38 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 02:31:24 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 15:41:12 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,19 @@ int			ft_pathdel(t_dlist **path)
 	return (1);
 }
 
+static void nothing(void *element)
+{
+//	ft_memdel((void**)&element);
+	(void)element;
+}
+
+
 void		ft_farmdel(t_farm *farm)
 {
-	printf("%p\n",farm->rooms);
+	printf("AAAAAAAAAADDDDDDDDDDDRRRRRRR|%p|\n", farm->rooms);
 	ft_htdel(&farm->rooms_ht, call_del);
-	printf("%p\n",farm->rooms);
-	free(farm->rooms);
-	printf("%p\n",farm->rooms);
+	printf("AAAAAAAAAADDDDDDDDDDDRRRRRRR|%p|\n", farm->rooms);
+	ft_dlstdel(&farm->rooms, &nothing);
 
 	ft_grpdestroy(farm->grps[0].path, farm->grps[0].path_nb);
 	free(farm->grps[0].path);

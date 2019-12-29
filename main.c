@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_htentrydel.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/28 01:31:44 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 15:54:43 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/12/29 16:00:03 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/12/29 16:00:18 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_htentrydel(t_htentry **entry, void (*del)(void*))
+int main()
 {
-	if (entry == NULL || *entry == NULL)
-		return ;
-	ft_strdel(&(*entry)->key);
-	del((*entry)->content);
-	ft_memdel((void**)entry);
+return (0);
 }
+
