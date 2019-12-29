@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 11:20:27 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/28 01:33:28 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 19:05:06 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putchar(char c);
 void	ft_putstr(char const *s);
 void	ft_putendl(char const *s);
-void	ft_putnbr(int n);
+void	ft_putnbr(long long n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);

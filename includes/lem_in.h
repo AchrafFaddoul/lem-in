@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 15:01:16 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 19:21:14 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct 			s_simulation
 
 typedef struct 			s_node
 {
-	int 				ants;
+	long long 			ants;
 	char 				*room;
 }						t_node;
 
@@ -73,14 +73,14 @@ typedef struct			s_farm
 }					t_farm;
 
 t_farm				*ft_farmfill(t_farm *farm, t_dlist *lst);
-int				ft_getants(t_farm *farm, char *line);
+int					ft_getants(t_farm *farm, char *line);
 t_dlist				*read_input(void);
-int				ft_parsedata(t_farm *farm);
+int					ft_parsedata(t_farm *farm);
 void				ft_error(void);
 t_farm				*ft_farmnew(void);
-int				get_ants(t_farm *farm, char *line);
-int				ft_isnumber(char *str);
-int				ft_isoverflow(char *str);
+int					get_ants(t_farm *farm, char *line);
+int					ft_isnumber(char *str);
+int					ft_isoverflow(char *str);
 t_element			*ft_getrooms(t_farm *farm, t_dlist *lst);
 t_room				*ft_roomnew(char *name);
 t_room				*ft_roomparse(const char *input);
@@ -88,24 +88,31 @@ t_hashtable			*ft_dlisttoht(t_farm *farm);
 int					ft_edgesparse(const char *input,
 			char **vertex, char **neighbor);
 t_farm				*ft_getedges(t_farm *farm, t_element *lst);
-int				ft_edgesparse(const char *input,
+int					ft_edgesparse(const char *input,
 			char **vertex, char **neighbor);
 void				ft_enqueue(t_dlist *lst, t_element *elm);
-int				ft_dequeue(t_dlist *lst);
-t_item			*ft_itemnew(int value, int prev);
-void			ft_flowmark(t_room *room, int value);
-void			ft_revflowmark(t_room *room, int value);
-void			ft_hashmapupdate(t_farm *farm, t_dlist *path);
-int             ft_maxflow_manager(t_farm *farm);
-int				ft_maxflow(t_farm *farm, int i_grp);
-int				ft_flowextract(t_farm *farm, t_dlist *vis,
+int					ft_dequeue(t_dlist *lst);
+t_item				*ft_itemnew(int value, int prev);
+void				ft_flowmark(t_room *room, int value);
+void				ft_revflowmark(t_room *room, int value);
+void				ft_hashmapupdate(t_farm *farm, t_dlist *path);
+int        	    	 ft_maxflow_manager(t_farm *farm);
+int					ft_maxflow(t_farm *farm, int i_grp);
+int					ft_flowextract(t_farm *farm, t_dlist *vis,
 					int dequeued, int i_grp);
-int				ft_putinstructions(t_farm *farm);
-void			ft_roomdel(t_room **room);
-int				ft_pathdel(t_dlist **path);
-void			ft_grpdestroy(t_dlist **paths, int path_nb);
-void			ft_farmdel(t_farm *farm);
-void			item_del(void *content);
-t_room			*ft_roomdup(t_room *room);
+int					ft_putinstructions(t_farm *farm);
+void				ft_roomdel(t_room **room);
+int					ft_pathdel(t_dlist **path);
+void				ft_grpdestroy(t_dlist **paths, int path_nb);
+void				ft_farmdel(t_farm *farm);
+void				item_del(void *content);
+t_room				*ft_roomdup(t_room *room);
+t_simulation		**ft_simdestroy(t_simulation **sim_arr, size_t size);
+t_simulation		**ft_simnew(t_farm *farm);
+t_simulation		**ft_simulation(t_farm *farm);
+void				del(void *content);
+int					ft_minlen(t_farm *farm, t_simulation **sim_arr);
+void				ft_resultprinter(long long ants, char *room);
+void				ft_structfiller(t_farm *farm, t_node **paths);
 
 #endif

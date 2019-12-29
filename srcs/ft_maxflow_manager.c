@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 14:50:30 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 17:00:57 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_dlist	**ft_grpnew(size_t size)
 	return (grp);
 }
 
-static void		ft_grpsreverse(t_farm *farm)
+static int		ft_grpsreverse(t_farm *farm)
 {
 	farm->grps[0].score = farm->grps[1].score;
 	ft_grpdestroy(farm->grps[0].path, farm->grps[0].path_nb);
@@ -30,10 +30,12 @@ static void		ft_grpsreverse(t_farm *farm)
 	farm->grps[0].path = NULL;
 	farm->grps[0].path_nb = farm->grps[1].path_nb;
 	farm->grps[0].path = farm->grps[1].path;
-	farm->grps[1].path = ft_grpnew(farm->start->edges->size);
+	if (!(farm->grps[1].path = ft_grpnew(farm->start->edges->size)))
+		return (0);
 	farm->grps[1].path_nb = 0;
 	farm->grps[1].score = 9223372036854775807;
 	farm->grps[1].node_nb = 0;
+	return (1);
 }
 
 int				ft_maxflow_manager(t_farm *farm)
@@ -49,18 +51,17 @@ int				ft_maxflow_manager(t_farm *farm)
 	farm->grps[1].score = 9223372036854775807;
 	while ((ret = ft_maxflow(farm, 1)) != ERROR)
 	{
-		if (ret == MAX_FLOW)
-		{
-			ft_grpdestroy(farm->grps[1].path, farm->grps[1].path_nb);
-			return (1);
-		}
-		if (farm->grps[0].score < farm->grps[1].score)
+		if (ret == MAX_FLOW || farm->grps[0].score < farm->grps[1].score)
 		{
 			ft_grpdestroy(farm->grps[1].path, farm->grps[1].path_nb);
 			return (1);
 		}
 		else
-			ft_grpsreverse(farm);
+		{
+			if (!ft_grpsreverse(farm))
+				return (0);
+		}
+
 	}
 	return (0);
 }

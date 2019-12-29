@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:37:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 02:03:52 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 17:00:45 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_dlist			*read_input(void)
 	t_dlist		*lst;
 	t_element	*elm;
 	char		*line;
-	int 		ret;
+	int			ret;
 
-	if (!(lst  = ft_dlstnew()))
+	if (!(lst = ft_dlstnew()))
 		return (NULL);
 	while ((ret = get_next_line(0, &line)))
 	{
@@ -47,7 +47,7 @@ t_dlist			*read_input(void)
 
 int				ft_parsedata(t_farm *farm)
 {
-	t_dlist 	*lst;
+	t_dlist		*lst;
 
 	if (!(lst = read_input()))
 		return (0);
