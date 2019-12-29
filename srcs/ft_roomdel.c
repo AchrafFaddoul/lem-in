@@ -6,16 +6,15 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:52:16 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 17:22:09 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 20:43:17 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-
-static void entry_del(void *content)
+static void	entry_del(void *content)
 {
-	t_room *room;
+	t_room	*room;
 
 	room = (t_room*)content;
 	ft_strdel(&room->key);
@@ -23,7 +22,7 @@ static void entry_del(void *content)
 	ft_roomdel(&room);
 }
 
-void        ft_roomdel(t_room **room)
+void		ft_roomdel(t_room **room)
 {
 	ft_strdel(&(*room)->key);
 	if ((*room)->edges)

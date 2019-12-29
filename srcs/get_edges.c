@@ -6,22 +6,18 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 15:24:38 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:05:21 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-# define T_INVALID  	0
-# define T_COMMENT      1
-# define T_LINKS	2
 
 static int		equ(const void *target, const void *current)
 {
 	return (target == current);
 }
 
-static 	int 	get_type(const char *line)
+static int		get_type(const char *line)
 {
 	if ((*line == 'L') || ft_strnequ(line, "##", 2))
 		return (T_INVALID);
@@ -30,31 +26,13 @@ static 	int 	get_type(const char *line)
 	return (T_LINKS);
 }
 
-t_room 			*ft_roomdup(t_room *room)
-{
-	t_room 		*new_room;
-
-	new_room = (t_room*)ft_memalloc(sizeof(t_room));
-	if (!new_room)
-		return (NULL);
-	new_room->key = ft_strdup(room->key);
-	if (!(new_room->key))
-		{
-			ft_memdel((void**)new_room);
-			return (NULL);
-		}
-	new_room->index = room->index;
-	new_room->flow = -1;
-   return (new_room);
-}
-
 static int		search_and_insert(t_farm *farm,
 		const char *vertex, const char *neighbor)
 {
 	t_room	*vertex_room;
 	t_room	*neighbor_room;
-	int 	vx_in;
-	int 	ng_in;
+	int		vx_in;
+	int		ng_in;
 
 	if (!(vertex_room = (t_room*)ft_htget(farm->rooms_ht, vertex)))
 		return (0);
@@ -62,21 +40,29 @@ static int		search_and_insert(t_farm *farm,
 		return (0);
 	vx_in = vertex_room->index;
 	ng_in = neighbor_room->index;
-	if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, neighbor_room, equ)))
-		if ((ft_dlstget(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, vertex_room, equ)))
+	if ((ft_dlstget((GET_ENTRY(vx_in))->edges, neighbor_room, equ)))
+		if ((ft_dlstget((GET_ENTRY(ng_in))->edges, vertex_room, equ)))
 			return (0);
-	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges, ft_elemnew(ft_roomdup(neighbor_room)));
-	((t_room*)(((t_room*)(farm->rooms_ht->entries[vx_in]->content))->edges->tail->content))->flow = -1;
-	ft_dlstpush(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges, ft_elemnew(ft_roomdup(vertex_room)));
-	((t_room*)(((t_room*)(farm->rooms_ht->entries[ng_in]->content))->edges->tail->content))->flow = -1;
+	ft_dlstpush((GET_ENTRY(vx_in))->edges,
+			ft_elemnew(ft_roomdup(neighbor_room)));
+	((t_room*)((GET_ENTRY(vx_in))->edges->tail->content))->flow = -1;
+	ft_dlstpush((GET_ENTRY(ng_in))->edges, ft_elemnew(ft_roomdup(vertex_room)));
+	((t_room*)((GET_ENTRY(ng_in))->edges->tail->content))->flow = -1;
 	return (1);
 }
 
-t_farm 			*ft_getedges(t_farm *farm, t_element *lst)
+static t_farm	*del_nodes(char *vertex, char *neighbor)
+{
+	ft_strdel(&vertex);
+	ft_strdel(&neighbor);
+	return (NULL);
+}
+
+t_farm			*ft_getedges(t_farm *farm, t_element *lst)
 {
 	char		*vertex;
 	char		*neighbor;
-	int 		ret;
+	int			ret;
 
 	while (lst)
 	{
@@ -90,13 +76,8 @@ t_farm 			*ft_getedges(t_farm *farm, t_element *lst)
 		if (!ft_edgesparse((char*)(lst->content), &vertex, &neighbor))
 			return (NULL);
 		if (!(search_and_insert(farm, vertex, neighbor)))
-		{
-			ft_strdel(&vertex);
-			ft_strdel(&neighbor);
-			return (NULL);
-		}
-		ft_strdel(&vertex);
-		ft_strdel(&neighbor);
+			return (del_nodes(vertex, neighbor));
+		del_nodes(vertex, neighbor);
 		lst = lst->next;
 	}
 	return (farm);

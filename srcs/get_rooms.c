@@ -6,17 +6,11 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 16:41:22 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 21:06:40 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-# define T_INSTRUCTION	0
-# define T_START		1
-# define T_END			2
-# define T_COMMENT		3
-# define T_VERTEX		4
 
 static int		get_type(const char *line)
 {
@@ -27,7 +21,7 @@ static int		get_type(const char *line)
 	if (ft_strequ(line, "##end"))
 		return (T_END);
 	if (*line == '#')
-		return (T_COMMENT);
+		return (T_CMT);
 	return (T_VERTEX);
 }
 
@@ -43,7 +37,7 @@ t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
 	{
 		if (!(ret = get_type(current->content)))
 			return (NULL);
-		if (ret == T_COMMENT)
+		if (ret == T_CMT)
 		{
 			current = current->next;
 			continue ;

@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 16:59:37 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 20:18:51 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 		return (NULL);
 	if (!ft_maxflow_manager(farm))
 		return (NULL);
-	ft_putinstructions(farm);
+	if (!ft_putinstructions(farm))
+		return (NULL);
 	return (farm);
 }

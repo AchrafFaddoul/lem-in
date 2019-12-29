@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 17:00:57 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 20:41:05 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int				ft_maxflow_manager(t_farm *farm)
 			if (!ft_grpsreverse(farm))
 				return (0);
 		}
-
 	}
 	return (0);
 }

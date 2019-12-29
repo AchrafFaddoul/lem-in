@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 18:52:53 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 02:03:05 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 20:44:08 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*extract_name(const char *input)
 t_room		*ft_roomparse(const char *input)
 {
 	t_room	*room;
-	char 	*name;
+	char	*name;
 
 	if (!(name = extract_name(input)))
 		return (NULL);

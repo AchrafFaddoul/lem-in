@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_roomnew.c                                       :+:      :+:    :+:   */
+/*   ft_roomdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 10:59:30 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 20:43:37 by afaddoul         ###   ########.fr       */
+/*   Created: 2019/12/29 21:03:23 by afaddoul          #+#    #+#             */
+/*   Updated: 2019/12/29 21:04:24 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room		*ft_roomnew(char *name)
+t_room			*ft_roomdup(t_room *room)
 {
-	t_room	*room;
+	t_room		*new_room;
 
-	room = (t_room*)ft_memalloc(sizeof(t_room));
-	if (!room)
+	new_room = (t_room*)ft_memalloc(sizeof(t_room));
+	if (!new_room)
 		return (NULL);
-	room->key = ft_strdup(name);
-	if (!room->key)
+	new_room->key = ft_strdup(room->key);
+	if (!(new_room->key))
 	{
-		ft_memdel((void**)&room);
+		ft_memdel((void**)new_room);
 		return (NULL);
 	}
-	room->edges = ft_dlstnew();
-	if (room->edges == NULL)
-	{
-		ft_strdel(&room->key);
-		ft_memdel((void**)&room);
-	}
-	return (room);
+	new_room->index = room->index;
+	new_room->flow = -1;
+	return (new_room);
 }
