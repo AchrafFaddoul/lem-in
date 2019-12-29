@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:37:42 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 01:28:52 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 02:03:52 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int				ft_parsedata(t_farm *farm)
 	farm->input = lst;
 	if (!ft_farmfill(farm, lst))
 		return (0);
-	printf("BEF_DEL_KEY%s\n",((t_room*)(farm->rooms->head->content))->key);
 	ft_farmdel(farm);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 18:52:53 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 00:28:07 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 02:03:05 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ t_room		*ft_roomparse(const char *input)
 	if (!(room = ft_roomnew(name)))
 		ft_memdel((void**)&room);
 	ft_strdel(&name);
-	printf("inside roomparse%p\n", room->edges);
 	return (room);
 }

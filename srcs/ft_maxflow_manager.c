@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 01:31:22 by smouzdah         ###   ########.fr       */
+/*   Updated: 2019/12/29 02:00:12 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int				ft_maxflow_manager(t_farm *farm)
 	farm->grps[1].score = 9223372036854775807;
 	while ((ret = ft_maxflow(farm, 1)) != ERROR)
 	{
+	printf("stucl\n");
 		if (ret == MAX_FLOW)
 		{
 			ft_grpdestroy(farm->grps[1].path, farm->grps[1].path_nb);
