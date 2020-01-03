@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 20:39:15 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/03 17:58:07 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ static void			ft_antspuller(t_node **paths, int i, int j, int *ants)
 void				ft_antsmover(t_farm *farm, t_node **paths,
 		int *i, int *done_ants)
 {
-	int				ants;
+	static int		ants = 1;
 	int				j;
 
-	ants = 1;
 	j = farm->grps[0].path[*i]->size + 1;
 	while (--j >= 0)
 	{
