@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 21:47:58 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/04 11:06:26 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct 			s_item
 typedef struct 			s_simulation
 {
 	int 				node_nb;
-	int 				ants_nb;
+	long long			ants_nb;
 	int 				path_size;
 }						t_simulation;
 
@@ -124,15 +124,14 @@ int					ft_minlen(t_farm *farm, t_simulation **sim_arr);
 void				ft_resultprinter(long long ants, char *room);
 void				ft_structfiller(t_farm *farm, t_node **paths);
 void                ft_antsmover(t_farm *farm, t_node **paths,
-		int *i, int *done_ants);
+		long long *i, long long *done_ants);
 size_t				ft_paths_nb(size_t size, t_simulation **sim_arr);
 t_node				**ft_pathsnew(t_farm *farm, t_simulation **sim_arr);
-int					ft_antsmove(t_node *path, t_simulation *sim_arr, int *ants);
+long long 			ft_antsmove(t_node *path, t_simulation *sim_arr, 
+		long long *ants);
 void				ft_resultprinter(long long ants, char *room);
 void				ft_instruprinter(t_farm *farm, t_node **paths);
 void				ft_inputprinter(t_farm *farm);
-void                ft_antsmover(t_farm *farm, t_node **paths,
-		int *i, int *done_ants);
 void				ft_structfiller(t_farm *farm, t_node **paths);
 t_node				**ft_pathsdestroy(t_node **paths, size_t size);
 

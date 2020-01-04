@@ -6,16 +6,17 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 20:37:44 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 20:38:47 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/03 18:47:12 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int					ft_antsmove(t_node *path, t_simulation *sim_arr, int *ants)
+long long 			ft_antsmove(t_node *path, t_simulation *sim_arr,
+		long long *ants)
 {
-	int				end_reached;
-	int				i;
+	long long 		end_reached;
+	long long 		i;
 
 	i = sim_arr->path_size - 1;
 	end_reached = 0;

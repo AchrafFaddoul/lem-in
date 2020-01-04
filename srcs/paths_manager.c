@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 17:26:11 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 21:51:58 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/04 13:09:34 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int					ft_minlen(t_farm *farm, t_simulation **sim_arr)
 {
 	size_t			size;
-	int				min_len;
-	int				target;
+	long long		min_len;
+	long long 		target;
 	size_t			i;
 
 	i = 0;
-	min_len = 2147483647;
-	target = 2147483647;
+	min_len = 3147483647;
+	target = 3147483647;
 	size = (size_t)farm->grps[0].path_nb;
 	while (i < size)
 	{

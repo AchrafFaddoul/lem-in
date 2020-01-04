@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/11 11:20:27 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 19:05:06 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/03 18:41:24 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ char	*ft_strupcase(char *str);
 char	*ft_strlowcase(char *str);
 void	ft_swap(int *a, int *b);
 int		ft_unsigned_nb_len(unsigned long long n);
-long	ft_atol(const char *str);
 size_t	ft_countof(const char *str, char c);
 void	ft_dlstdel(t_dlist **lst, void (*del)(void*));
 void 	*ft_dlstget(t_dlist *lst, const void *data,
@@ -135,6 +134,7 @@ int	ft_isulong(const char *str, char c);
 t_hashtable	*ft_htnew(size_t size);
 t_htentry	*ft_htentrynew(const char *key, const void *content);
 long long	ft_htinsert(t_hashtable *ht, const t_htentry *entry);
+long long	ft_atol(const char *str);
 void		ft_htdel(t_hashtable **ht, void (*del)(void*));
 void		ft_htentrydel(t_htentry **entry, void (*del)(void*));
 

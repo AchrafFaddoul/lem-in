@@ -6,13 +6,13 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 21:59:58 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 21:59:59 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/03 18:40:49 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_atol(const char *str)
+long long		ft_atol(const char *str)
 {
 	int			i;
 	int			sign;
