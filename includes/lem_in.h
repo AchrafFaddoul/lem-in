@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/04 11:06:26 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/04 15:40:28 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,20 @@
 
 # include "libft.h"
 # include "get_next_line.h"
-# include <stdio.h>
-# include <stdlib.h>
+#include <stdio.h>
 
 # define GET_ENTRY(index) ((t_room*)(farm->rooms_ht->entries[index]->content))
-
-# define MAX_FLOW 0
-# define UPDATED  1
-# define ERROR   -2
-# define T_INVALID  0
-# define T_COMMENT  1
-# define T_LINKS    2
+# define MAX_INT 		2147483647
+# define MAX_FLOW 		0
+# define UPDATED  		1
+# define ERROR   		-2
+# define T_INVALID  	0
+# define T_COMMENT  	1
+# define T_LINKS    	2
 # define T_INSTRUCTION	0
 # define T_START        1
 # define T_END          2
-# define T_CMT      3
+# define T_CMT      	3
 # define T_VERTEX       4
 
 

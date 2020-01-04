@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 21:05:21 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/04 16:47:16 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int		equ(const void *target, const void *current)
 
 static int		get_type(const char *line)
 {
-	if ((*line == 'L') || ft_strnequ(line, "##", 2))
+	if ((*line == 'L'))
 		return (T_INVALID);
-	if ((*line == '#'))
+	if ((*line == '#') || (line[0] == '#' && line[1] == '#'))
 		return (T_COMMENT);
 	return (T_LINKS);
 }
