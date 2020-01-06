@@ -31,4 +31,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean fclean re $(LIBFT)
+#.PHONY : clean fclean re $(LIBFT)

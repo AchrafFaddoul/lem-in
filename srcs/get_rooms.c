@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/04 17:06:11 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/05 01:25:47 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ static int		get_type(const char *line)
 		return (T_START);
 	if (ft_strequ(line, "##end"))
 		return (T_END);
-	if (*line == '#' || (line[0] == '#' && line[1] == '#'))
+	if (*line == '#')
 		return (T_CMT);
 	return (T_VERTEX);
 }
 
-t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
+t_element		*ft_getrooms(t_farm *farm, t_element *elm)
 {
 	t_element	*current;
 	t_room		*room;
 	int 		ret;
 
-	current = lst->head->next;
+	current = elm;
 	farm->rooms = ft_dlstnew();
 	while (current)
 	{
@@ -64,8 +64,8 @@ t_element		*ft_getrooms(t_farm *farm, t_dlist *lst)
 		}
 		else if (!(room = ft_roomparse((char*)(current->content))))
 		{
-		//	if (ft_countof(current->content, '-') == 1)
-		//		break ;
+			if (ft_countof(current->content, '-') == 1)
+				break ;
 			return (NULL);
 		}
 		else

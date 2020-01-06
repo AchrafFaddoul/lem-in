@@ -6,24 +6,23 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/04 12:57:53 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/05 00:47:49 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void				ft_antspuller(t_node **paths, long long i, long long j,
-		long long *ants)
+static void			ft_antspuller(t_node **paths, int i, int j, int *ants)
 {
 	paths[i][j + 1].ants = (*ants)++;
 	paths[i][j].ants--;
 }
 
-void					ft_antsmover(t_farm *farm, t_node **paths,
-		long long *i, long long *done_ants)
+void				ft_antsmover(t_farm *farm, t_node **paths,
+		int *i, int *done_ants)
 {
-	static long long	ants = 1;
-	long long			j;
+	static int		ants = 1;
+	int				j;
 
 	j = farm->grps[0].path[*i]->size + 1;
 	while (--j >= 0)
@@ -46,10 +45,10 @@ void					ft_antsmover(t_farm *farm, t_node **paths,
 	}
 }
 
-void					ft_structfiller(t_farm *farm, t_node **paths)
+void				ft_structfiller(t_farm *farm, t_node **paths)
 {
-	long long 			i;
-	long long 			done_ants;
+	int i;
+	int done_ants;
 
 	i = 0;
 	done_ants = 0;
@@ -65,10 +64,10 @@ void					ft_structfiller(t_farm *farm, t_node **paths)
 	}
 }
 
-int						ft_putinstructions(t_farm *farm)
+int					ft_putinstructions(t_farm *farm)
 {
-	t_simulation		**sim_arr;
-	t_node				**paths;
+	t_simulation	**sim_arr;
+	t_node			**paths;
 
 	sim_arr = ft_simulation(farm);
 	if (!sim_arr)

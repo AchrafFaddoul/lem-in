@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/04 15:22:50 by afaddoul         ###   ########.fr       */
+/*   Updated: 2019/12/29 20:18:51 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 {
 	t_element	*current;
 
-	if (!(ft_getants(farm, lst->head->content)))
+	if (!(current = ft_antsparser(farm, lst)))
 		return (NULL);
-	if (!(current = ft_getrooms(farm, lst)))
+	if (!(current = ft_getrooms(farm, current)))
 		return (NULL);
 	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
 		return (NULL);

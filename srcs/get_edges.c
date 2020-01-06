@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/04 16:47:16 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/05 01:13:16 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		get_type(const char *line)
 {
 	if ((*line == 'L'))
 		return (T_INVALID);
-	if ((*line == '#') || (line[0] == '#' && line[1] == '#'))
+	if ((*line == '#') || ft_strnequ(line, "##", 2))
 		return (T_COMMENT);
 	return (T_LINKS);
 }
