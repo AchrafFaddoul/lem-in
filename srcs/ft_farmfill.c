@@ -16,14 +16,19 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 {
 	t_element	*current;
 
+	printf("here\n");
 	if (!(current = ft_antsparser(farm, lst)))
 		return (NULL);
+	printf("here\n");
 	if (!(current = ft_getrooms(farm, current)))
 		return (NULL);
+	printf("here\n");
 	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
 		return (NULL);
+	printf("here\n");
 	if (!(ft_getedges(farm, current)))
 		return (NULL);
+	printf("here\n");
 	if (!ft_maxflow_manager(farm))
 		return (NULL);
 	if (!ft_putinstructions(farm))

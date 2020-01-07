@@ -33,8 +33,11 @@ t_element		*ft_getrooms(t_farm *farm, t_element *elm)
 
 	current = elm;
 	farm->rooms = ft_dlstnew();
+	printf("IN\n");
 	while (current)
 	{
+		printf("ADR->|%p|\n", (char*)current->content);
+		printf("ROOM->|%s|\n", (char*)current->content);
 		if (!(ret = get_type(current->content)))
 			return (NULL);
 		if (ret == T_CMT)
@@ -46,6 +49,8 @@ t_element		*ft_getrooms(t_farm *farm, t_element *elm)
 		{
 			if (farm->start)
 				return (NULL);
+			if (!current->next)
+				return (NULL);
 			current = current->next;
 			if (!(room = ft_roomparse((char*)(current->content))))
 				return (NULL);
@@ -54,13 +59,17 @@ t_element		*ft_getrooms(t_farm *farm, t_element *elm)
 		}
 		else if (ret == T_END)
 		{
+			printf("CHECK\n");
 			if (farm->end)
+				return (NULL);
+			if (!current->next)
 				return (NULL);
 			current = current->next;
 			if (!(room = ft_roomparse((char*)(current->content))))
 				return (NULL);
 			farm->end = room;
 			ft_dlstpush(farm->rooms, ft_elemnew(room));
+			printf("CHECK\n");
 		}
 		else if (!(room = ft_roomparse((char*)(current->content))))
 		{
@@ -70,9 +79,12 @@ t_element		*ft_getrooms(t_farm *farm, t_element *elm)
 		}
 		else
 			ft_dlstpush(farm->rooms, ft_elemnew(room));
+		printf("CHECK\n");
 		current = current ? current->next : NULL;
 		if (ft_countof(current->content, '-') == 1)
 			break ;
+		printf("CHECK\n");
 	}
+	printf("OUT\n");
 	return (current);
 }

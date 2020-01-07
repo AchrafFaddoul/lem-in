@@ -62,8 +62,11 @@ t_farm			*ft_getedges(t_farm *farm, t_element *lst)
 {
 	char		*vertex;
 	char		*neighbor;
-	int			ret;
+	int		ret;
 
+	printf("HADIK A L MEKAOUI\n");
+	if (!lst)
+		return (NULL);
 	while (lst)
 	{
 		if (!(ret = get_type((char*)(lst->content))))
