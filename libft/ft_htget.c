@@ -34,7 +34,9 @@ void			*ft_htget(t_hashtable *ht, const char *key)
 {
 	size_t		index;
 	size_t		start;
+	size_t		count;
 
+	count  = 0;
 	index = compute_hash(key) % ht->size;
 	start = index;
 	while (1)
@@ -46,6 +48,9 @@ void			*ft_htget(t_hashtable *ht, const char *key)
 			break ;
 		if (index == ht->size)
 			index = 0;
+		count++;
+		if (count == ht->size)
+			return (NULL);
 	}
 	return (NULL);
 }
