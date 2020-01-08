@@ -64,7 +64,6 @@ t_farm			*ft_getedges(t_farm *farm, t_element *lst)
 	char		*neighbor;
 	int		ret;
 
-	printf("HADIK A L MEKAOUI\n");
 	if (!lst)
 		return (NULL);
 	while (lst)
@@ -83,5 +82,8 @@ t_farm			*ft_getedges(t_farm *farm, t_element *lst)
 		del_nodes(vertex, neighbor);
 		lst = lst->next;
 	}
+	if (!(GET_ENTRY(farm->start->index)->edges->head)
+		|| !(GET_ENTRY(farm->end->index)->edges->head))
+		return (NULL);
 	return (farm);
 }
