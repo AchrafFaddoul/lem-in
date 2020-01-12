@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 15:57:29 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 16:58:33 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int			get_type(const char *line)
 	return (T_VERTEX);
 }
 
-static t_element	*ft_inputskip(t_farm *farm, t_element *current,
+static t_element	*ft_parsecmd(t_farm *farm, t_element *current,
 		t_room *room, int ret)
-{	
+{
 	if (ret == T_START)
 	{
 		if (farm->start)
@@ -55,14 +55,9 @@ static t_element	*ft_inputskip(t_farm *farm, t_element *current,
 	return (current);
 }
 
-t_element			*ft_getrooms(t_farm *farm, t_element *elm)
+static t_element	*get_vertex(t_farm *farm, t_element *current,
+		t_room *room, int ret)
 {
-	t_element		*current;
-	t_room			*room;
-	int				ret;
-
-	current = elm;
-	farm->rooms = ft_dlstnew();
 	while (current)
 	{
 		if (!(ret = get_type(current->content)))
@@ -72,7 +67,7 @@ t_element			*ft_getrooms(t_farm *farm, t_element *elm)
 			current = current->next;
 			continue ;
 		}
-		else if (!(current = ft_inputskip(farm, current, room, ret)))
+		else if (!(current = ft_parsecmd(farm, current, room, ret)))
 			return (NULL);
 		else if (!(room = ft_roomparse((char*)(current->content))))
 		{
@@ -91,5 +86,18 @@ t_element			*ft_getrooms(t_farm *farm, t_element *elm)
 		else
 			return (NULL);
 	}
+	return (current);
+}
+
+t_element			*ft_getrooms(t_farm *farm, t_element *elm)
+{
+	t_element		*current;
+	static t_room	*room;
+	static int		ret;
+
+	current = elm;
+	farm->rooms = ft_dlstnew();
+	if (!(current = get_vertex(farm, current, room, ret)))
+		return (NULL);
 	return (current);
 }
