@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/05 01:04:33 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 03:49:22 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,6 @@ void					ft_antsmover(t_farm *farm, t_node **paths,
 void					ft_structfiller(t_farm *farm, t_node **paths);
 t_node					**ft_pathsdestroy(t_node **paths, size_t size);
 t_element				*ft_antsparser(t_farm *farm, t_dlist *lst);
+int						ft_verif_item(t_dlist *lst, int target);
 
 #endif

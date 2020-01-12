@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/05 01:13:16 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 12:59:16 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_farm			*ft_getedges(t_farm *farm, t_element *lst)
 {
 	char		*vertex;
 	char		*neighbor;
-	int		ret;
+	int			ret;
 
 	if (!lst)
 		return (NULL);

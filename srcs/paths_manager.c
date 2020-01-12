@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 17:26:11 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/05 00:49:07 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 12:58:28 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int					ft_minlen(t_farm *farm, t_simulation **sim_arr)
 {
 	size_t			size;
 	long long		min_len;
-	long long 		target;
+	long long		target;
 	size_t			i;
 
 	i = 0;

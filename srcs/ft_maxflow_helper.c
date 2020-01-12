@@ -6,11 +6,25 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 01:30:31 by smouzdah          #+#    #+#             */
-/*   Updated: 2019/12/29 01:31:19 by smouzdah         ###   ########.fr       */
+/*   Updated: 2020/01/12 03:50:46 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int				ft_verif_item(t_dlist *lst, int target)
+{
+	t_element	*tmp;
+
+	tmp = lst->head;
+	while (tmp)
+	{
+		if ((((t_item*)(tmp->content))->index) == target)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
 
 void			item_del(void *content)
 {

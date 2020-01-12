@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/05 01:25:47 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 12:59:11 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_element		*ft_getrooms(t_farm *farm, t_element *elm)
 {
 	t_element	*current;
 	t_room		*room;
-	int 		ret;
+	int			ret;
 
 	current = elm;
 	farm->rooms = ft_dlstnew();

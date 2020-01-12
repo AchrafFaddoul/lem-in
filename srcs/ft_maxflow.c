@@ -6,13 +6,13 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 01:23:21 by smouzdah          #+#    #+#             */
-/*   Updated: 2019/12/29 16:57:16 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 03:50:49 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int		ft_verif_item(t_dlist *lst, int target)
+static int		ft_prev_extract(t_dlist *lst, int target)
 {
 	t_element	*tmp;
 
@@ -20,7 +20,7 @@ static int		ft_verif_item(t_dlist *lst, int target)
 	while (tmp)
 	{
 		if ((((t_item*)(tmp->content))->index) == target)
-			return (1);
+			return ((((t_item*)(tmp->content))->prev));
 		tmp = tmp->next;
 	}
 	return (0);
@@ -29,26 +29,24 @@ static int		ft_verif_item(t_dlist *lst, int target)
 static int		ft_flowvalid(t_farm *farm, t_dlist *lst, int flow, int target)
 {
 	t_element	*tmp;
+	int			ret;
 
-	tmp = (((t_room*)(farm->rooms_ht->entries[target]->content))->edges)->head;
+	tmp = GET_ENTRY(target)->edges->head;
 	if (flow == target)
 		return (0);
 	if (target == farm->start->index)
 		return (1);
+	ret = 1;
 	while (tmp)
 	{
 		if (((t_room*)(tmp->content))->index == flow)
 			return (1);
 		if (((t_room*)(tmp->content))->flow == target)
-		{
-			if (ft_verif_item(lst, ((t_room*)(tmp->content))->index))
-				return (1);
-			else
-				return (0);
-		}
+			ret =
+			(ft_prev_extract(lst, target) == ((t_room*)(tmp->content))->index);
 		tmp = tmp->next;
 	}
-	return (1);
+	return (ret);
 }
 
 static void		ft_queue_vis_push(t_dlist *queue, t_dlist *lst_vis,
@@ -78,9 +76,7 @@ static int		ft_bfs_manager(t_farm *farm, t_dlist *queue,
 		{
 			if (ft_flowvalid(farm, lst_vis,
 				((t_room*)(tmp->content))->flow, dequeued))
-			{
 				ft_queue_vis_push(queue, lst_vis, current, dequeued);
-			}
 		}
 		tmp = tmp->next;
 	}

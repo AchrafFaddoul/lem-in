@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 20:18:51 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 12:29:26 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		ft_isgraphvld(t_farm *farm)
 {
-	int 		ret;
+	int			ret;
 
 	ret = 0;
 	return (ret = (!farm->start || !farm->end) ? ret : 1);

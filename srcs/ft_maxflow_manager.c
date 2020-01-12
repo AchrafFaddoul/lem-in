@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 10:46:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 20:41:05 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 04:12:48 by smouzdah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				ft_maxflow_manager(t_farm *farm)
 	farm->grps[0].score = 9223372036854775807;
 	farm->grps[0].path = ft_grpnew(farm->start->edges->size);
 	ret = ft_maxflow(farm, 0);
-	if (ret == ERROR)
+	if (ret == ERROR || ret == MAX_FLOW)
 		return (0);
 	farm->grps[1].path = ft_grpnew(farm->start->edges->size);
 	farm->grps[1].score = 9223372036854775807;
