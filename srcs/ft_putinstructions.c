@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 23:13:45 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 15:16:20 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 17:04:23 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int					ft_putinstructions(t_farm *farm)
 		return (0);
 	if (!(paths = ft_pathsnew(farm, sim_arr)))
 		return (0);
-	//ft_inputprinter(farm);
+	ft_inputprinter(farm);
 	ft_structfiller(farm, paths);
 	ft_pathsdestroy(paths, ft_paths_nb(farm->grps[0].path_nb, sim_arr));
 	ft_simdestroy(sim_arr, farm->grps[0].path_nb);
