@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_rooms.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 14:12:36 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 18:57:07 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 20:03:14 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,8 @@ static t_element	*get_vertex(t_farm *farm, t_element *current,
 	{
 		if (!(ret = get_type(current->content)))
 			return (NULL);
-		if (ret == T_CMT)
-		{
-			current = current->next;
+		if (ret == T_CMT && (current = current->next))
 			continue ;
-		}
 		else if (!(current = ft_parsecmd(farm, current, room, ret)))
 			return (NULL);
 		else if (!(room = ft_roomparse((char*)(current->content))))
@@ -78,12 +75,11 @@ static t_element	*get_vertex(t_farm *farm, t_element *current,
 		else
 			ft_dlstpush(farm->rooms, ft_elemnew(room));
 		current = current ? current->next : NULL;
-		if (current)
+		if (current && ft_countof(current->content, '-') == 1)
 		{
-			if (ft_countof(current->content, '-') == 1)
-				break ;
+			break ;
 		}
-		else
+		else if (!current)
 			return (NULL);
 	}
 	return (current);
