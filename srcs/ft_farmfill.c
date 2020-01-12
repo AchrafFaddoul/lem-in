@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 12:29:26 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 15:00:03 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 	if (!ft_isgraphvld(farm))
 		return (NULL);
 	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
+		return (NULL);
+	if (!current)
 		return (NULL);
 	if (!(ft_getedges(farm, current)))
 		return (NULL);

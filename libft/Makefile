@@ -6,7 +6,7 @@
 #    By: afaddoul <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/08 09:09:52 by afaddoul          #+#    #+#              #
-#    Updated: 2019/08/15 19:19:46 by afaddoul         ###   ########.fr        #
+#    Updated: 2020/01/12 15:03:12 by afaddoul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,3 +33,5 @@ fclean : clean
 	/bin/rm -f $(NAME)
 
 re : fclean all
+
+.PHONY : clean fclean re

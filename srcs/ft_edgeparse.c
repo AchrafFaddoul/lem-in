@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 16:10:46 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 13:16:13 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 14:57:00 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,38 @@ static int		ft_isroom(int c)
 		return (1);
 	return (0);
 }
-/*
-static char		**extract_vertex(const char *input, char **links, int *i)
+
+static int		extract_vertex(const char *input, char **links, int *i)
 {
 	if (!(links[0] = ft_strndup(input, *i))
-		|| (links[0][0] == 'L' || links[0][0] == '#'))
+			|| (links[0][0] == 'L' || links[0][0] == '#'))
 	{
 		ft_memdel((void**)links);
-		return (NULL);
+		return (0);
 	}
-
-	input += *i + 1;
 	*i = -1;
- 	while (links[0][++(*i)])
+	while (links[0][++(*i)])
 	{
 		if (!ft_isroom(links[0][*i]))
 		{
 			ft_strdel((char**)&links[0]);
 			ft_memdel((void**)links);
-			return (NULL);
+			return (0);
 		}
 	}
-	return (links);
+	return (1);
 }
 
-static char		**extract_neighbor(const char *input, char **links, int *i)
+static int		extract_neighbor(const char *input, char **links, int *i)
 {
+	input += *i + 1;
 	if (!(links[1] = ft_strdup(input))
-		|| (links[1][0] == 'L' || links[1][0] == '#'))
+			|| (links[1][0] == 'L' || links[1][0] == '#'))
 	{
 		ft_strdel((char**)&links[0]);
 		ft_memdel((void**)links);
-		return (NULL);
+		return (0);
 	}
-
 	*i = -1;
 	while (links[1][++(*i)])
 	{
@@ -60,12 +58,12 @@ static char		**extract_neighbor(const char *input, char **links, int *i)
 			ft_strdel((char**)&links[0]);
 			ft_strdel((char**)&links[1]);
 			ft_memdel((void**)links);
-			return (NULL);
+			return (0);
 		}
 	}
-	return (links);
+	return (1);
 }
-*/
+
 static char		**extract_links(const char *input)
 {
 	int			i;
@@ -78,50 +76,10 @@ static char		**extract_links(const char *input)
 		return (NULL);
 	if (!(links = (char**)ft_memalloc(sizeof(char*) * 2)))
 		return (NULL);
-//	if (!extract_vertex(input, links, &i))
-//		return (NULL);
-//	if (!extract_neighbor(input, links, &i))
-//		return (NULL);
-	//return (links);
-
-//block 1
-	if (!(links[0] = ft_strndup(input, i))
-		|| (links[0][0] == 'L' || links[0][0] == '#'))
-	{
-		ft_memdel((void**)links);
+	if (!extract_vertex(input, links, &i))
 		return (NULL);
-	}
-	input += i + 1;
-	i = -1;
- 	while (links[0][++i])
-	{
-		if (!ft_isroom(links[0][i]))
-		{
-			ft_strdel((char**)&links[0]);
-			ft_memdel((void**)links);
-			return (NULL);
-		}
-	}
-//block 2
-	if (!(links[1] = ft_strdup(input))
-		|| (links[1][0] == 'L' || links[1][0] == '#'))
-	{
-		ft_strdel((char**)&links[0]);
-		ft_memdel((void**)links);
+	if (!extract_neighbor(input, links, &i))
 		return (NULL);
-	}
-
-	i = -1;
-	while (links[1][++i])
-	{
-		if (!ft_isroom(links[1][i]))
-		{
-			ft_strdel((char**)&links[0]);
-			ft_strdel((char**)&links[1]);
-			ft_memdel((void**)links);
-			return (NULL);
-		}
-	}
 	return (links);
 }
 

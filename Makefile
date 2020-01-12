@@ -10,16 +10,20 @@ FILES = srcs/ft_farmnew.c srcs/ft_roomnew.c	srcs/get_next_line.c srcs/ft_farmfil
 
 OBJ = $(FILES:.c=.o)
 
+LIBFT = ./libft/libft.a
+
 INCLUDES = includes/
 
 all: $(NAME)
 
-$(NAME) : $(OBJ) $(HEADER_FILES)
-	make -C ./libft
-	gcc $(FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
+$(NAME) : $(LIBFT) $(OBJ) $(HEADER_FILES)
+	gcc $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 $(OBJ) : %.o : %.c
 	gcc $(FLAGS)  $< -o $@ -c -I $(INCLUDES) -I $(INCLUDES)
+
+$(LIBFT) :
+	make -C ./libft/
 
 clean :
 	@rm -rf $(OBJ)
@@ -31,4 +35,4 @@ fclean : clean
 
 re : fclean all
 
-#.PHONY : clean fclean re $(LIBFT)
+.PHONY : clean fclean re $(LIBFT)

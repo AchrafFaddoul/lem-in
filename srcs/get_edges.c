@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:37:43 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 12:59:16 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/12 15:00:00 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ t_farm			*ft_getedges(t_farm *farm, t_element *lst)
 	char		*neighbor;
 	int			ret;
 
-	if (!lst)
-		return (NULL);
 	while (lst)
 	{
 		if (!(ret = get_type((char*)(lst->content))))
