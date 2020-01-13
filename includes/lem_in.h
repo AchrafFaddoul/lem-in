@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/13 01:31:50 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/13 01:48:29 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include "get_next_line.h"
-# include <stdio.h>
 # include <stdlib.h>
 
 # define GET_ENTRY(index) ((t_room*)(farm->rooms_ht->entries[index]->content))

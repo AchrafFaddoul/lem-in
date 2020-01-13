@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 14:53:01 by afaddoul          #+#    #+#             */
-/*   Updated: 2019/12/29 21:58:51 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/13 01:42:14 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			*ft_htget(t_hashtable *ht, const char *key)
 	size_t		start;
 	size_t		count;
 
-	count  = 0;
+	count = 0;
 	index = compute_hash(key) % ht->size;
 	start = index;
 	while (1)

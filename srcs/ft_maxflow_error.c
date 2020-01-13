@@ -6,32 +6,33 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:13:14 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/13 01:16:09 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/13 01:45:59 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void room_del(void *content)
+static void		room_del(void *content)
 {
-	t_room  *room;
+	t_room		*room;
+
 	room = (t_room*)content;
 	ft_strdel(&room->key);
 	ft_memdel((void**)&room->edges);
 	ft_roomdel(&room);
 }
 
-static void     dummy_del(void *content)
+static void		dummy_del(void *content)
 {
 	ft_strdel((char **)(&content));
 }
 
-static void nothing(void *element)
+static void		nothing(void *element)
 {
 	(void)element;
 }
 
-static void call_del(void *content)
+static void		call_del(void *content)
 {
 	ft_roomdel((t_room**)&content);
 }

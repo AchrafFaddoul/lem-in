@@ -6,37 +6,38 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 01:01:27 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/13 01:12:42 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/13 01:47:01 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void room_del(void *content)
- {
-    t_room  *room;
-    room = (t_room*)content;
-    ft_strdel(&room->key);
-    ft_memdel((void**)&room->edges);
-    ft_roomdel(&room);
-}
-
-static void     dummy_del(void *content)
+static void		room_del(void *content)
 {
-     ft_strdel((char **)(&content));
+	t_room		*room;
+
+	room = (t_room*)content;
+	ft_strdel(&room->key);
+	ft_memdel((void**)&room->edges);
+	ft_roomdel(&room);
 }
 
-static void nothing(void *element)
+static void		dummy_del(void *content)
 {
-    (void)element;
+	ft_strdel((char **)(&content));
 }
 
-static void call_del(void *content)
+static void		nothing(void *element)
 {
-     ft_roomdel((t_room**)&content);
+	(void)element;
 }
 
-void ft_printing_error(t_farm *farm)
+static void		call_del(void *content)
+{
+	ft_roomdel((t_room**)&content);
+}
+
+void			ft_printing_error(t_farm *farm)
 {
 	ft_error();
 	ft_dlstdel(&farm->input, dummy_del);
