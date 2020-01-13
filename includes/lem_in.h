@@ -6,7 +6,7 @@
 /*   By: smouzdah <smouzdah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 11:42:47 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 18:53:56 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/13 01:31:50 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,10 @@ void					ft_structfiller(t_farm *farm, t_node **paths);
 t_node					**ft_pathsdestroy(t_node **paths, size_t size);
 t_element				*ft_antsparser(t_farm *farm, t_dlist *lst);
 int						ft_verif_item(t_dlist *lst, int target);
+void					ft_printing_error(t_farm *farm);
+void					ft_maxflow_error(t_farm *farm);
+void					ft_hashmap_error(t_farm *farm);
+void					ft_inputdel(t_farm *farm);
+void					ft_rooms_del(t_farm *farm);
 
 #endif
