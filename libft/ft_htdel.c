@@ -6,11 +6,12 @@
 /*   By: afaddoul <afaddoul@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 01:28:57 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 20:16:38 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/13 00:29:09 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 void		ft_htdel(t_hashtable **ht, void (*del)(void*))
 {

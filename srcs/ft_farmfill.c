@@ -6,7 +6,7 @@
 /*   By: afaddoul <afaddoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 13:44:04 by afaddoul          #+#    #+#             */
-/*   Updated: 2020/01/12 20:40:12 by afaddoul         ###   ########.fr       */
+/*   Updated: 2020/01/13 01:00:11 by afaddoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ static int		ft_isgraphvld(t_farm *farm)
 	return (ret = (!farm->start || !farm->end) ? ret : 1);
 }
 
+static void call_del(void *content)
+{
+	ft_roomdel((t_room**)&content);
+}
+
+static void nothing(void *element)
+{
+	(void)element;
+}
 static void     dummy_del(void *content)
 {
 	ft_strdel((char **)(&content));
@@ -33,27 +42,6 @@ static void room_del(void *content)
 	ft_strdel(&room->key);
 	ft_memdel((void**)&room->edges);
 	ft_roomdel(&room);
-}
-
-static void 	destroy_entries(t_hashtable *ht)
-{
-	size_t		i;
-
-	i = 0;
-	if (!ht)
-		return ;
-	while (i < ht->size)
-	{
-		if (ht->entries[i])
-		{
-			ft_strdel(&(ht->entries[i])->key);
-			room_del((ht->entries[i])->content);
-			ft_memdel((void**)ht->entries);
-		}
-		i++;
-	}
-	free(ht->entries);
-	ft_memdel((void**)ht);
 }
 
 t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
@@ -82,22 +70,106 @@ t_farm			*ft_farmfill(t_farm *farm, t_dlist *lst)
 			ft_dlstdel(&farm->rooms, room_del);
 		exit(1);
 	}
-	if (!(farm->rooms_ht = ft_dlisttoht(farm)))
+	if (!(ft_dlisttoht(farm)))
 	{
 		ft_error();//F3
 		ft_dlstdel(&farm->input, dummy_del);
-		if (farm->rooms)
-			ft_dlstdel(&farm->rooms, room_del);
-		destroy_entries(farm->rooms_ht);
+		if (farm->rooms_ht)
+		{
+			ft_htdel(&farm->rooms_ht, call_del);
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, &nothing);
+		}
+		else
+		{
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, room_del);
+		}
 		exit(1);
 	}
 	if (!current)
-		return (NULL);
+	{
+		ft_error();//F3
+		ft_dlstdel(&farm->input, dummy_del);
+		if (farm->rooms_ht)
+		{
+			ft_htdel(&farm->rooms_ht, call_del);
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, &nothing);
+		}
+		else
+		{
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, room_del);
+		}
+		exit(1);
+	}
 	if (!(ft_getedges(farm, current)))
-		return (NULL);
+	{
+		ft_error();//F3
+		ft_dlstdel(&farm->input, dummy_del);
+		if (farm->rooms_ht)
+		{
+			ft_htdel(&farm->rooms_ht, call_del);
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, &nothing);
+		}
+		else
+		{
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, room_del);
+		}
+		exit(1);
+	}
 	if (!ft_maxflow_manager(farm))
-		return (NULL);
+	{
+		ft_error();//F4
+		ft_dlstdel(&farm->input, dummy_del);
+		if (farm->rooms_ht)
+		{
+			ft_htdel(&farm->rooms_ht, call_del);
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, &nothing);
+		}
+		else
+		{
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, room_del);
+		}
+		if (farm->grps[0].path)
+		{
+			ft_grpdestroy(farm->grps[0].path, farm->grps[0].path_nb);
+			free(farm->grps[0].path);
+		}
+		if (farm->grps[1].path)
+		{
+			ft_grpdestroy(farm->grps[1].path, farm->grps[1].path_nb);
+			free(farm->grps[1].path);
+		}
+		exit(1);
+	}
 	if (!ft_putinstructions(farm))
-		return (NULL);
+	{
+		ft_error();//F4-
+		ft_dlstdel(&farm->input, dummy_del);
+		if (farm->rooms_ht)
+		{
+			ft_htdel(&farm->rooms_ht, call_del);
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, &nothing);
+		}
+		else
+		{
+			if (farm->rooms)
+				ft_dlstdel(&farm->rooms, room_del);
+		}
+		if (farm->grps[0].path)
+		{
+			ft_grpdestroy(farm->grps[0].path, farm->grps[0].path_nb);
+			free(farm->grps[0].path);
+		}
+		exit(1);
+	}
+
 	return (farm);
 }
